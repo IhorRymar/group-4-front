@@ -1,0 +1,26 @@
+:root {
+  /* color */
+  --main-color: #4A56E2;
+
+  --main-text-color: #000000;
+  --second-text-color: #FFFFFF;
+  --third-text-color: #4A56E2;
+  --fourth-text-color: #BDBDBD;
+  --income-text-color: #24CCA7;    /*доходи*/
+  --expenses-text-color: #FF6596;  /*витрати*/
+
+  --first-btn-bg-color: #24CCA7;
+  --second-btn-bg-color: #FF6596;
+
+  --bg-color:rgba(255, 255, 255, 0.4);
+  --bg-modal-color: rgba(0, 0, 0, 0.25);
+  --second-bg-color: #E7EAF2;
+
+  --icon-color: #6E78E8;
+  --icon-focus-color: #4A56E2;
+
+  /* font */
+  --main-font: 'Circe', sans-serif;
+  --second-font: 'Poppins', sans-serif;
+
+}
