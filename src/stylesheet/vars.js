@@ -1,3 +1,5 @@
+import './fonts.css';
+
 const baseVars = {
   colors: {
     main: '#4A56E2',

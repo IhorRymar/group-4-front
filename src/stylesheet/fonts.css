@@ -25,7 +25,7 @@
   src: local('Poppins Regular'), local('Poppins-Regular'),
     url('../assets/fonts/Poppins-Regular.woff2') format('woff2'),
     url('../assets/fonts/Poppins-Regular.woff') format('woff'),
-    url('../assets/fonts/Poppins-Regular.eot?') format('eot');
+    url('../assets/fonts/Poppins-Regular.eot') format('eot');
 }
 
 @font-face {
@@ -35,5 +35,5 @@
   src: local('Poppins Bold'), local('Poppins-Bold'),
     url('../assets/fonts/Poppins-Bold.woff2') format('woff2'),
     url('../assets/fonts/Poppins-Bold.woff') format('woff'),
-    url('../assets/fonts/Poppins-Bold.eot?') format('eot');
+    url('../assets/fonts/Poppins-Bold.eot') format('eot');
 }
