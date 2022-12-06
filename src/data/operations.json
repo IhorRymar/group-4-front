@@ -1,0 +1,107 @@
+[
+  {
+    "date": "04.09.22",
+    "type": "-",
+    "category": "Other",
+    "comment": "",
+    "sum": "250.00"
+  },
+  {
+    "date": "06.09.22",
+    "type": "+",
+    "category": "Regular Income",
+    "comment": "",
+    "sum": "7500.00"
+  },
+  {
+    "date": "12.09.22",
+    "type": "-",
+    "category": "Car",
+    "comment": "",
+    "sum": "1000.00"
+  },
+  {
+    "date": "15.09.22",
+    "type": "-",
+    "category": "Self Care",
+    "comment": "",
+    "sum": "750.00"
+  },
+  {
+    "date": "22.09.22",
+    "type": "-",
+    "category": "Products",
+    "comment": "",
+    "sum": "2500.00"
+  },
+  {
+    "date": "04.10.22",
+    "type": "-",
+    "category": "Education",
+    "comment": "",
+    "sum": "1500.00"
+  },
+  {
+    "date": "06.10.22",
+    "type": "+",
+    "category": "Regular Income",
+    "comment": "",
+    "sum": "7500.00"
+  },
+  {
+    "date": "12.10.22",
+    "type": "-",
+    "category": "Leisure",
+    "comment": "",
+    "sum": "4000.00"
+  },
+  {
+    "date": "15.10.22",
+    "type": "-",
+    "category": "Self Care",
+    "comment": "",
+    "sum": "600.00"
+  },
+  {
+    "date": "22.10.22",
+    "type": "-",
+    "category": "Products",
+    "comment": "",
+    "sum": "2750.00"
+  },
+  {
+    "date": "04.08.22",
+    "type": "-",
+    "category": "Education",
+    "comment": "",
+    "sum": "1700.00"
+  },
+  {
+    "date": "06.08.21",
+    "type": "+",
+    "category": "Regular Income",
+    "comment": "",
+    "sum": "6500.00"
+  },
+  {
+    "date": "12.08.21",
+    "type": "-",
+    "category": "Other Expanses",
+    "comment": "",
+    "sum": "5000.00"
+  },
+  {
+    "date": "15.08.21",
+    "type": "-",
+    "category": "Self Care",
+    "comment": "",
+    "sum": "500.00"
+  },
+  {
+    "date": "22.08.21",
+    "type": "-",
+    "category": "Products",
+    "comment": "",
+    "sum": "3000.00"
+  }
+]

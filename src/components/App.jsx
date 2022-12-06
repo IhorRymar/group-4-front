@@ -1,16 +1,9 @@
+import StatsPage from '../pages/StatsPage/StatsPage';
+
 export const App = () => {
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+      <StatsPage />
     </div>
   );
 };
