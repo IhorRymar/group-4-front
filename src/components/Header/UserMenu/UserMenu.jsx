@@ -2,11 +2,11 @@ import { StyledName } from './StyledName';
 import { StyledUserMenu } from './StyledUserMenu';
 import Logout from '../Logout/Logout';
 
-const UserMenu = ({ name }) => {
+const UserMenu = ({ handleClick2 }) => {
   return (
     <StyledUserMenu>
       <StyledName>Name</StyledName>
-      <Logout />
+      <Logout handleClick={handleClick2} />
     </StyledUserMenu>
   );
 };

@@ -1,9 +1,9 @@
 import logoutIcon from './logoutIcon.png';
 import { StyledLogout } from './Logout.styled';
 
-const Logout = () => {
+const Logout = ({ handleClick }) => {
   return (
-    <StyledLogout>
+    <StyledLogout onClick={handleClick}>
       <img src={logoutIcon} alt="logout" />
     </StyledLogout>
   );
