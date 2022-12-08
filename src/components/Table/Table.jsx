@@ -39,8 +39,6 @@ const Table = ({stats}) => {
     dispatch(fetchStatistics(period));
   }, [dispatch, monthNumber, year]);
 
-  console.log(incomeTotal);
-
   return (
     <TableContainer>
       <SelectWrapper>
@@ -59,7 +57,7 @@ const Table = ({stats}) => {
         >
           {months.map(month => {
             return (
-              <StyledMenuItem value={month}>{month}</StyledMenuItem>
+              <StyledMenuItem key={month} value={month}>{month}</StyledMenuItem>
             )
           })}
         </StyledSelect>

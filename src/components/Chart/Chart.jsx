@@ -4,7 +4,7 @@ import { Chart as ChartJS, ArcElement, Tooltip } from 'chart.js';
 import { Doughnut } from "react-chartjs-2"; 
 
 import { colorBoxSwitcher } from '../Table/ColorBox';
-import css from './Chart.module.css';
+import { Container, Balance } from './Chart.styled';
 
 ChartJS.register(ArcElement, Tooltip);
 
@@ -44,10 +44,10 @@ const Chart = ({ stats }) => {
   }
 
   return (
-    <div className={css.container}>
+    <Container>
       <Doughnut data={data} />
-      <div className={css.balance}>₴ 20000.00</div>
-    </div>
+      <Balance >₴ 20000.00</Balance>
+    </Container>
   );
 }
 
