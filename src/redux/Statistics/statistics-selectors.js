@@ -1,1 +1,1 @@
-export const getExpenses = ({ statistics }) => statistics.stats;
+export const getStatistics = ({ statistics }) => statistics.stats;

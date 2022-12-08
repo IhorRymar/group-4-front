@@ -77,6 +77,11 @@ export const ListItemText = styled.p`
 
 `;
 
+export const NotificationText = styled.p`
+  text-align: center;
+  color: ${baseVars.colors.expensesText};
+`;
+
 export const TotalContainer = styled.div`
 width: 100%;
   display: flex;

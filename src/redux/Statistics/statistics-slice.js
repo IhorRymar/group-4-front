@@ -1,27 +1,29 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { fetchExpenses } from "./statistics-operations";
+import { fetchStatistics } from "./statistics-operations";
 
 const statisticsSlice = createSlice({
   name: 'statistics',
   initialState: {
-    stats: [1, 2, 3],
+    expenses: [],
+    income: [],
     loading: false,
     error: null,
   },
 
   extraReducers: {
-    [fetchExpenses.pending]: (state) => {
-      state.loading = true;
-      state.error = null;
+    [fetchStatistics.pending]: (store) => {
+      store.loading = true;
+      store.error = null;
     },
-    [fetchExpenses.fullfilled]: (state, { payload }) => {
-      state.loading = false;
-      state.stats = payload;
+    [fetchStatistics.fulfilled]: (store, { payload }) => {
+      store.loading = false;
+      store.expenses = payload.expenseStatistics;
+      store.income = payload.incomeStatistics;
     },
-    [fetchExpenses.rejected]: (state, { payload }) => {
-      state.loading = false;
-      state.error = payload;
+    [fetchStatistics.rejected]: (store, { payload }) => {
+      store.loading = false;
+      store.error = payload;
     },
   }  
 });

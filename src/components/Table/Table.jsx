@@ -1,10 +1,11 @@
-// import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchExpenses } from 'redux/Statistics/statistics-operations';
+import { fetchStatistics } from 'redux/Statistics/statistics-operations';
 
-import { TableContainer, SelectWrapper, TableHeader, TableTitle, List, ListItem, ColorBox, TextWrapper, ListItemText, TotalContainer, TotalText, TotalNumber } from './Table.styled';
-import { StyledSelect, MenuProps, StyledMenuItem } from './SelectStyles';
+import { months, convertMonthNameToNumber } from 'services/monthList';
+
+import { TableContainer, SelectWrapper, TableHeader, TableTitle, List, ListItem, ColorBox, TextWrapper, ListItemText, NotificationText, TotalContainer, TotalText, TotalNumber } from './Table.styled';
+import { StyledSelect, MenuProps, StyledMenuItem, dropdownIcon } from './SelectStyles';
 
 const currentDate = new Date();
 const currentMonth = currentDate.toLocaleString('en-EN', { month: 'long' });
@@ -17,30 +18,28 @@ const Table = ({stats}) => {
   const handleMonthChange = (event) => {
     setMonth(event.target.value);
   };
-
   const handleYearChange = (event) => {
     setYear(event.target.value);
   };
 
-  const expenses = useSelector(state => state.statistics.stats);
+  const monthNumber = convertMonthNameToNumber(month, year);
+  const expenses = useSelector(state => state.statistics.expenses);
+  const income = useSelector(state => state.statistics.income);
+  const expensesTotal = expenses.reduce((acc, item) => acc + item.totalSum, 0);
+  const incomeTotal = income.reduce((acc, item) => acc + item.totalSum, 0);
 
-  // const period = {
-  //   startMonth: '1',
-  //   startYear: '2022',
-  // };
-
+  
   const dispatch = useDispatch();
-
-  console.log(expenses);
 
   useEffect(() => {
     const period = {
-      startMonth: 1,
-      startYear: 2022,
-    };
+    startMonth: monthNumber,
+    startYear: year,
+    } ;
+    dispatch(fetchStatistics(period));
+  }, [dispatch, monthNumber, year]);
 
-    dispatch(fetchExpenses(period));
-  }, [dispatch]);
+  console.log(incomeTotal);
 
   return (
     <TableContainer>
@@ -58,18 +57,11 @@ const Table = ({stats}) => {
           }}
           MenuProps={MenuProps}
         >
-          <StyledMenuItem value={'January'}>January</StyledMenuItem>
-          <StyledMenuItem value={'February'}>February</StyledMenuItem>
-          <StyledMenuItem value={'March'}>March</StyledMenuItem>
-          <StyledMenuItem value={'April'}>April</StyledMenuItem>
-          <StyledMenuItem value={'May'}>May</StyledMenuItem>
-          <StyledMenuItem value={'June'}>June</StyledMenuItem>
-          <StyledMenuItem value={'July'}>July</StyledMenuItem>
-          <StyledMenuItem value={'August'}>August</StyledMenuItem>
-          <StyledMenuItem value={'September'}>September</StyledMenuItem>
-          <StyledMenuItem value={'October'}>October</StyledMenuItem>
-          <StyledMenuItem value={'November'}>November</StyledMenuItem>
-          <StyledMenuItem value={'December'}>December</StyledMenuItem>
+          {months.map(month => {
+            return (
+              <StyledMenuItem value={month}>{month}</StyledMenuItem>
+            )
+          })}
         </StyledSelect>
         <StyledSelect
           value={year}
@@ -95,47 +87,33 @@ const Table = ({stats}) => {
         <TableTitle>Sum</TableTitle>
       </TableHeader>
       <List>
-        {stats.map(({ type, category, sum, index }) => {
-          if (type === '-') {
-            return (
-              <ListItem key={category}>
-                <ColorBox color={category}></ColorBox>
-                <TextWrapper>
-                  <ListItemText>{category}</ListItemText>
-                  <ListItemText>{sum}</ListItemText>
-                </TextWrapper>
-              </ListItem>
-            )
-          }
-          return null;
+        {(expenses.length !== 0) ? expenses.map(({ totalSum, categoryName, index }) => {
+          return (
+            <ListItem key={categoryName}>
+              <ColorBox color={categoryName}></ColorBox>
+              <TextWrapper>
+                <ListItemText>{categoryName}</ListItemText>
+                <ListItemText>{totalSum}</ListItemText>
+              </TextWrapper>
+            </ListItem>
+          );
         }
-        )}
+        ) :
+        <ListItem>
+          <NotificationText>No expenses were found in this period.</NotificationText>
+        </ListItem>
+        }
       </List>
       <TotalContainer>
         <TotalText>Expenses:</TotalText>
-        <TotalNumber exp>1000.00</TotalNumber>
+        <TotalNumber exp>{expensesTotal}</TotalNumber>
       </TotalContainer>
       <TotalContainer>
         <TotalText>Income:</TotalText>
-        <TotalNumber>2000.00</TotalNumber>
+        <TotalNumber>{incomeTotal}</TotalNumber>
       </TotalContainer>
     </TableContainer>
   );
 }
-
-//MUI Styled:
-
-const dropdownIcon = (props) => (
-  <svg {...props} width="20" height="11" viewBox="0 0 20 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M1 1L10 10L19 1" stroke="black"/>
-  </svg>
-);
-
-// Table.propTypes = {
-//   stats: PropTypes.arrayOf(PropTypes.shape({
-//     category: PropTypes.string.isRequired,
-//     sum: PropTypes.string.isRequired,
-//   })).isRequired,
-// };
 
 export default Table;

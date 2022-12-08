@@ -1,14 +1,13 @@
-import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-axios.defaults.baseURL = 'https://wallet-backend.cyclic.app/api'
+import * as api from '../../services/auth';
 
-export const fetchExpenses = createAsyncThunk(
-  'expenses/fetch',
-  async (period, thunkAPI) => {
+export const fetchStatistics = createAsyncThunk(
+  'statistics/fetch',
+  async (periodData, thunkAPI) => {
     try {
-      const data = await axios.post('/transactions/statistics', period);
-      return data;
+      const result = await api.getStatistics(periodData);
+      return result;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
