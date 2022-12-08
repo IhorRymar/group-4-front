@@ -8,6 +8,7 @@
   .container {
     width: 336px;
     height: 336px;
+    margin: 0 32px 32px 0;
   }
 }
 

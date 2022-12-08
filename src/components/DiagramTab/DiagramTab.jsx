@@ -1,3 +1,7 @@
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchExpenses } from 'redux/Statistics/statistics-operations';
+
 import Chart from '../Chart/Chart';
 import Table from '../Table/Table';
 
@@ -11,9 +15,9 @@ const DiagramTab = () => {
     <div className={css.container}>
       <div className={css.chartWrapper}>
         <h2 className={css.title}>Statistics</h2>
-        <Chart />
+        <Chart stats={operations} />
       </div>
-      <Table items={operations} />
+      <Table stats={operations} />
     </div>
   );
 }

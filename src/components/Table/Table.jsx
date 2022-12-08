@@ -1,15 +1,18 @@
-import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+// import PropTypes from 'prop-types';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchExpenses } from 'redux/Statistics/statistics-operations';
 
-import { styled, Select, MenuItem } from "@mui/material"
+import { TableContainer, SelectWrapper, TableHeader, TableTitle, List, ListItem, ColorBox, TextWrapper, ListItemText, TotalContainer, TotalText, TotalNumber } from './Table.styled';
+import { StyledSelect, MenuProps, StyledMenuItem } from './SelectStyles';
 
-import css from './Table.module.css';
+const currentDate = new Date();
+const currentMonth = currentDate.toLocaleString('en-EN', { month: 'long' });
+const currentYear = currentDate.getFullYear();
 
-
-
-const Table = ({items}) => {
-  const [month, setMonth] = useState('');
-  const [year, setYear] = useState('');
+const Table = ({stats}) => {
+  const [month, setMonth] = useState(currentMonth);
+  const [year, setYear] = useState(currentYear);
 
   const handleMonthChange = (event) => {
     setMonth(event.target.value);
@@ -19,9 +22,29 @@ const Table = ({items}) => {
     setYear(event.target.value);
   };
 
+  const expenses = useSelector(state => state.statistics.stats);
+
+  // const period = {
+  //   startMonth: '1',
+  //   startYear: '2022',
+  // };
+
+  const dispatch = useDispatch();
+
+  console.log(expenses);
+
+  useEffect(() => {
+    const period = {
+      startMonth: 1,
+      startYear: 2022,
+    };
+
+    dispatch(fetchExpenses(period));
+  }, [dispatch]);
+
   return (
-    <div className={css.container}>
-      <div className={css.selectWrapper}>
+    <TableContainer>
+      <SelectWrapper>
         <StyledSelect
           value={month}
           onChange={handleMonthChange}
@@ -66,37 +89,37 @@ const Table = ({items}) => {
           <StyledMenuItem value={'2021'}>2021</StyledMenuItem>
           <StyledMenuItem value={'2022'}>2022</StyledMenuItem>
         </StyledSelect>
-      </div>
-      <div className={css.tableHeader}>
-        <p className={css.tableTitle}>Category</p>
-        <p className={css.tableTitle}>Sum</p>
-      </div>
-      <ul className={css.list}>
-        {items.map(({ type, category, sum, index }) => {
+      </SelectWrapper>
+      <TableHeader>
+        <TableTitle>Category</TableTitle>
+        <TableTitle>Sum</TableTitle>
+      </TableHeader>
+      <List>
+        {stats.map(({ type, category, sum, index }) => {
           if (type === '-') {
             return (
-              <li key={index} className={css.listItem}>
-                <div className={css.categoryColorBox}></div>
-                <div className={css.textWrapper}>
-                  <p className={css.listItemText}>{category}</p>
-                  <p className={css.listItemText}>{sum}</p>
-                </div>
-              </li>
+              <ListItem key={category}>
+                <ColorBox color={category}></ColorBox>
+                <TextWrapper>
+                  <ListItemText>{category}</ListItemText>
+                  <ListItemText>{sum}</ListItemText>
+                </TextWrapper>
+              </ListItem>
             )
           }
           return null;
         }
         )}
-      </ul>
-      <div className={css.totalWrapper}>
-        <p>Expenses:</p>
-        <p>1000</p>
-      </div>
-      <div className={css.totalWrapper}>
-        <p>Income:</p>
-        <p>2000</p>
-      </div>
-    </div>
+      </List>
+      <TotalContainer>
+        <TotalText>Expenses:</TotalText>
+        <TotalNumber exp>1000.00</TotalNumber>
+      </TotalContainer>
+      <TotalContainer>
+        <TotalText>Income:</TotalText>
+        <TotalNumber>2000.00</TotalNumber>
+      </TotalContainer>
+    </TableContainer>
   );
 }
 
@@ -108,81 +131,11 @@ const dropdownIcon = (props) => (
   </svg>
 );
 
-const StyledSelect = styled(Select)({
-  width: '280px',
-  color: '#000',
-  fontFamily: 'Circe',
-  borderRadius: '30px',
-  marginBottom: '20px',
-  borderColor: '#4A56E2',
-
-  '@media screen and (min-width: 768px)': {
-    width: '160px',
-  },
-  '& .MuiOutlinedInput-notchedOutline': {
-    borderColor: '#000',
-  },
-  '&:hover .MuiOutlinedInput-notchedOutline': {
-    borderColor: '#4A56E2',
-  },
-  '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-    border: '1px solid #4A56E2',
-    outline: 'none',
-  },
-  '& .MuiSelect-outlined': {
-    padding: '13px 20px',
-    color: '#000',
-  },
-  '& .MuiSelect-icon': {
-    position: 'absolute',
-    right: '20px',
-    top: '50%',
-    transform: 'translateY(-50%)',
-  },
-  '& .MuiMenu-list': {
-    backgroundColor: 'red,'
-  }
-});
-
-const MenuProps = {
-  anchorPosition: { top: 200, left: 400 },
-  anchorOrigin: {
-    vertical: 'bottom',
-    horizontal: 'center',
-  }, 
-  PaperProps: {
-    style: {
-      background: 'rgba(255, 255, 255, 0.7)',
-      boxShadow: '0px 6px 15px rgba(0, 0, 0, 0.1)',
-      backdropFilter: 'blur(25px)',
-      borderRadius: '20px', 
-      maxHeight: '232px',
-    }
-  }
-};
-
-const StyledMenuItem = styled(MenuItem)({
-  fontFamily: 'Circe',
-
-  '&:hover': {
-    color: '#ff6596',
-    backgroundColor: '#fff',
-  },
-  '&.Mui-selected': {
-    color: '#ff6596',
-    backgroundColor: '#fff'
-  },
-  '&.MuiMenu-list': {
-    borderRadius: '0',
-  },
-});
-
-
-Table.propTypes = {
-  items: PropTypes.arrayOf(PropTypes.shape({
-    category: PropTypes.string.isRequired,
-    sum: PropTypes.string.isRequired,
-  })).isRequired,
-};
+// Table.propTypes = {
+//   stats: PropTypes.arrayOf(PropTypes.shape({
+//     category: PropTypes.string.isRequired,
+//     sum: PropTypes.string.isRequired,
+//   })).isRequired,
+// };
 
 export default Table;

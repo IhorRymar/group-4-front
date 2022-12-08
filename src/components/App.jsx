@@ -11,9 +11,8 @@ import Header from './Header/Header';
 
 const Register = lazy(() => import('../pages/RegisterPage/RegisterPage'));
 const Login = lazy(() => import('../pages/LoginPage/LoginPage.jsx'));
+const Statistics = lazy(() => import('../pages/StatsPage/StatsPage'));
 
-
-// import StatsPage from '../pages/StatsPage/StatsPage';
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -24,15 +23,17 @@ export const App = () => {
 
   return (
     <>
-  
+      <Header />
       <Suspense fallback={<p>...load page</p>}>
         <Routes>
           <Route element={<PrivateRoute />}>
-          <Route path="/" element={<Header />} />
+            {/* <Route path="/" element={<Header />} /> */}
+            <Route path="/" element={ <Statistics />} />
           </Route>
           <Route element={<PublicRoute />}>
-          <Route path="/register" element={ <Register />} />
-          <Route path="/login" element={ <Login />} />
+            <Route path="/register" element={ <Register />} />
+            <Route path="/login" element={<Login />} />
+            {/* <Route path="/statistics" element={ <Statistics />} /> */}
           </Route>
           <Route
             path="*"

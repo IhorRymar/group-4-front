@@ -1,8 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 
 .container {
-  width: 100%;
-  margin: 0 auto;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .title {
@@ -17,7 +18,9 @@
 @media screen and (min-width: 768px) {
   .container {
     display: flex;
-    max-width: 768px;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
   }
   .title {
     margin: 0 0 20px;
