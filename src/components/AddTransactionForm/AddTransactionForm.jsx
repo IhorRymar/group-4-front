@@ -1,6 +1,8 @@
-import { Formik } from 'formik';
+import { ErrorMessage, Formik } from 'formik';
 import { useState } from 'react';
 import moment from 'moment';
+import { toast } from 'react-toastify';
+import * as Yup from 'yup';
 import {
   CheckboxContainter,
   CheckboxField,
@@ -9,8 +11,8 @@ import {
   TextField,
   Comment,
 } from './AddTransactionForm.styled';
-import { DatePicker } from '../DatePicker/DatePicker3';
-import BasicSelect from '../DropDown/DropDown';
+import { DatePicker } from '../DatePicker/DatePicker';
+import CategorySelect from '../CategorySelect/CategorySelect';
 import { StyledButton } from '../StyledButton/StyledButton';
 
 export const AddTransactionForm = () => {
@@ -24,11 +26,18 @@ export const AddTransactionForm = () => {
 
   const initialValues = {
     transactionType: { transactionType },
+    category: '...',
     amount: '',
     date: initialDate,
     comment: '',
-    category: '...',
   };
+
+  const addTrasactionSchema = Yup.object().shape({
+    category: Yup.string().required(),
+    amount: Yup.number().required(),
+    date: Yup.date().required(),
+    comment: Yup.string().max(50),
+  });
 
   const handleSubmit = ({ transactionType, ...rest }, actions) => {
     let values = {
@@ -36,12 +45,15 @@ export const AddTransactionForm = () => {
       ...rest,
     };
     console.log(values);
-
     actions.resetForm();
   };
   return (
     <>
-      <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+      <Formik
+        initialValues={initialValues}
+        onSubmit={handleSubmit}
+        validationSchema={addTrasactionSchema}
+      >
         <StyledForm autoComplete="off">
           <label htmlFor="transactionType">
             <CheckboxContainter>
@@ -73,19 +85,25 @@ export const AddTransactionForm = () => {
           </label>
           {transactionType === 'Expenses' ? (
             <label htmlFor="category">
-              <BasicSelect name="category" />
+              <CategorySelect name="category" />
             </label>
           ) : (
             ''
           )}
           <label htmlFor="amount">
             <TextField type="text" name="amount" placeholder="0.00" />
+            <ErrorMessage
+              name="amount"
+              render={msg => {
+                toast.error(`${msg}`, { toastId: String(new Date()) });
+              }}
+            />
           </label>
           <label htmlFor="date">
             <DatePicker name="date" />
           </label>
           <label htmlFor="comment">
-            <Comment name="comment" placeholder="Comment" minRows={5} />
+            <Comment name="comment" placeholder="Comment" minRows={1} />
           </label>
           <StyledButton type="submit">Add transaction</StyledButton>
         </StyledForm>

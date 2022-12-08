@@ -1,28 +1,28 @@
-import * as React from "react";
+import * as React from 'react';
 
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
-import { useState } from "react";
-import { useFormikContext } from "formik";
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import { useState } from 'react';
+import { useFormikContext } from 'formik';
 
-export default function BasicSelect({ name }) {
+export default function CategorySelect({ name }) {
   const options = [
-    "Main expenses",
-    "Products",
-    "Car",
-    "Self care",
-    "Child care",
-    "Household products",
-    "Education",
-    "Leisure",
-    "Other expenses",
-    "Entertainment",
+    'Main expenses',
+    'Products',
+    'Car',
+    'Self care',
+    'Child care',
+    'Household products',
+    'Education',
+    'Leisure',
+    'Other expenses',
+    'Entertainment',
   ];
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = useState('');
   const { setFieldValue } = useFormikContext();
 
-  const handleChange = (event) => {
+  const handleChange = event => {
     setCategory(event.target.value);
     setFieldValue(name, event.target.value);
   };
@@ -32,12 +32,12 @@ export default function BasicSelect({ name }) {
       variant="standard"
       sx={{
         m: 1,
-        width: "100%",
-        marginBottom: "40px",
+        width: '100%',
+        marginBottom: '40px',
         marginRight: 0,
         marginLeft: 0,
-        fontSize: "12px",
-        borderBottomWidth: "1px",
+        fontSize: '12px',
+        borderBottomWidth: '1px',
         // borderBottom: `1px solid ${(p) => p.theme.color.muted}`,
       }}
     >
@@ -50,7 +50,7 @@ export default function BasicSelect({ name }) {
         <MenuItem value="" placeholder="Choose category">
           <em>Choose category</em>
         </MenuItem>
-        {options.map((option) => {
+        {options.map(option => {
           return (
             <MenuItem key={option} value={option}>
               {option}

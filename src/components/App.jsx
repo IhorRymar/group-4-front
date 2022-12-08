@@ -1,5 +1,5 @@
-//import { ToastContainer } from "react-toastify";
-//import "react-toastify/dist/ReactToastify.min.css";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 import { useDispatch } from 'react-redux';
 import PrivateRoute from './route/PrivateRoute';
 import PublicRoute from './route/PublicRoute';
@@ -43,6 +43,17 @@ export const App = () => {
           />
         </Routes>
       </Suspense>
+      <ToastContainer
+        position="top-right"
+        autoClose={800}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </>
   );
 };

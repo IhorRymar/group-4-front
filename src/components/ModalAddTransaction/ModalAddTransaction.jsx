@@ -5,7 +5,7 @@ import { StyledButton } from 'components/StyledButton/StyledButton';
 import { AddTransactionForm } from '../AddTransactionForm/AddTransactionForm';
 import { Heading } from './ModalAddTransaction.styled';
 
-export const ModalAddTransaction = ({ children, toggleModal, isOpen }) => {
+export const ModalAddTransaction = ({ toggleModal, isOpen }) => {
   const modalRoot = document.querySelector('#modal-root');
 
   useEffect(() => {

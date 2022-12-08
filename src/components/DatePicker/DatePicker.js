@@ -1,39 +1,44 @@
-import * as React from "react";
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
-import "dayjs/locale/ru";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import { useField, useFormikContext } from "formik";
-import { useState } from "react";
-import dateTraform from "../../helpers/dateTransform";
+import Datetime from "react-datetime";
+import moment from "moment";
+import "moment/locale/uk";
+import "react-datetime/css/react-datetime.css";
+import { useFormikContext } from "formik";
 
-export default function BasicDatePicker({ name }) {
-  const { setFieldValue } = useFormikContext();
-  const [field] = useField(name);
-  const [dateData, setDateData] = useState(Date.now());
+export const DatePicker = ({ name }) => {
+  const {
+    setFieldValue,
+    values: { date },
+  } = useFormikContext();
+  const hadnleChange = (value) => {
+    setFieldValue(name, moment(value).format("DD.MM.YYYY"));
+  };
+  let configDatePicker = {
+    locale: "uk",
+    tomeFormat: false,
+    name,
+    value: { date },
+  };
+
+  let inpuProps = {
+    style: {
+      width: "100%",
+      border: "none",
+      outline: "none",
+      marginBottom: 40,
+      paddingLeft: 14,
+      paddingBottom: "8px",
+      borderBottom: "1px solid #E0E0E0",
+    },
+  };
 
   return (
-    <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="ru">
-      <Box
-        sx={{
-          width: 500,
-          maxWidth: "100%",
-        }}
-      >
-        <DatePicker
-          onChange={(newValue) => {
-            const newDate = dateTraform(newValue);
-            setDateData(newValue);
-            setFieldValue(name, newDate);
-          }}
-          value={dateData}
-          renderInput={(params) => (
-            <TextField {...params} {...field} type="date" fullWidth />
-          )}
-        />
-      </Box>
-    </LocalizationProvider>
+    <Datetime
+      {...configDatePicker}
+      inputProps={inpuProps}
+      onChange={(value) => hadnleChange(value)}
+      dateFormat="DD.MM.YYYY"
+      timeFormat={false}
+      closeOnSelect={true}
+    />
   );
-}
+};
