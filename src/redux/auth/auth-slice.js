@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { signup, login, current } from './auth-operations';
 
 const initialState = {
-  user: {},
+  user: '',
   token: '',
   isLogin: false,
   loading: false,
@@ -20,8 +20,9 @@ const authSlice = createSlice({
     },
     [signup.fulfilled]: (store, { payload }) => {
       store.loading = false;
-      store.user = payload.user;
-      store.token = payload.token;
+      console.log(payload);
+      store.user = payload.user.name;
+      store.token = payload.accessToken;
       store.isLogin = true;
     },
     [signup.rejected]: (store, { payload }) => {
@@ -34,8 +35,8 @@ const authSlice = createSlice({
     },
     [login.fulfilled]: (store, { payload }) => {
       store.loading = false;
-      store.user = payload.user;
-      store.token = payload.token;
+      store.user = payload.user.name;
+      store.token = payload.accessToken;
       store.isLogin = true;
     },
     [login.rejected]: (store, { payload }) => {
@@ -48,8 +49,8 @@ const authSlice = createSlice({
     },
     [current.fulfilled]: (store, { payload }) => {
       store.loading = false;
-      store.user = payload.user;
-      store.token = payload.token;
+      store.user = payload.name;
+      store.token = payload.accessToken;
       store.isLogin = true;
     },
     [current.rejected]: (store, { payload }) => {

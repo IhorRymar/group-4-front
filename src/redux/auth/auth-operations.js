@@ -1,12 +1,15 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { useNavigate } from 'react-router-dom';
 
 import * as api from '../../services/auth';
 
 export const signup = createAsyncThunk(
   'auth/signup',
   async (data, { rejectWithValue }) => {
+    // const navigate = useNavigate();
     try {
       const result = await api.signup(data);
+      // navigate('/login', { replace: true });
       return result;
     } catch ({ response }) {
       const { status, data } = response;
