@@ -11,6 +11,7 @@ import Header from './Header/Header';
 
 const Register = lazy(() => import('../pages/RegisterPage/RegisterPage'));
 const Login = lazy(() => import('../pages/LoginPage/LoginPage.jsx'));
+const Statistics = lazy(() => import('../pages/StatsPage/StatsPage'));
 
 
 export const App = () => {
@@ -22,30 +23,31 @@ export const App = () => {
 
   return (
     <>
-  
+      <Header />
       <Suspense fallback={<p>...load page</p>}>
         <Routes>
           <Route element={<PrivateRoute />}>
- <Route path="/" element={<Header />} />
+            {/* <Route path="/" element={<Header />} /> */}
+            <Route path="/" element={ <Statistics />} />
           </Route>
           <Route element={<PublicRoute />}>
-             <Route path="/register" element={ <Register />} />
-          <Route path="/login" element={ <Login />} />
-         </Route>
+            <Route path="/register" element={ <Register />} />
+            <Route path="/login" element={<Login />} />
+          </Route>  
           <Route
-                  path="*"
-                  element={
-                    <main style={{ padding: "1rem" }}>
-                      <span>There's nothing here!</span>
-                      <br />
-                      <span>
-                        <Link to={"/"}>Return</Link>
-                      </span>
-                    </main>
-                  }
-                />
-            </Routes>
-        </Suspense>
+            path="*"
+            element={
+              <main style={{ padding: "1rem" }}>
+                <span>There's nothing here!</span>
+                <br />
+                <span>
+                  <Link to={"/"}>Return</Link>
+                </span>
+              </main>
+            }
+          />
+        </Routes>
+      </Suspense>
     </>
   );
 };

@@ -5,6 +5,8 @@ const instance = axios.create({
   baseURL: 'https://wallet-backend.cyclic.app/api',
 });
 
+//AUTHORIZATION API:
+
 const setToken = token => {
   if (token) {
     return (instance.defaults.headers.common.authorization = `Bearer ${token}`);
@@ -13,13 +15,13 @@ const setToken = token => {
 };
 export const signup = async data => {
   const { data: result } = await instance.post('/users/signup', data);
-  setToken(result.token);
+  setToken(result.accessToken);
   return result;
 };
 
 export const login = async data => {
   const { data: result } = await instance.post('/users/signin', data);
-  setToken(result.token);
+  setToken(result.accessToken);
   return result;
 };
 
@@ -33,5 +35,12 @@ export const getCurrent = async token => {
     throw error;
   }
 };
+
+// STATISTICS API:
+
+export const getStatistics = async (data) => {
+  const { data: result } = await instance.post('/transactions/statistics', data);
+  return result;
+}
 
 export default instance;
