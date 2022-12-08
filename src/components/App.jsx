@@ -33,8 +33,7 @@ export const App = () => {
           <Route element={<PublicRoute />}>
             <Route path="/register" element={ <Register />} />
             <Route path="/login" element={<Login />} />
-            {/* <Route path="/statistics" element={ <Statistics />} /> */}
-          </Route>
+          </Route>  
           <Route
             path="*"
             element={
