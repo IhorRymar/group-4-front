@@ -10,6 +10,7 @@ import {
   REGISTER,
 } from 'redux-persist';
 import authReducer from './auth/auth-slice';
+import statisticsReducer from './Statistics/statistics-slice';
 import storage from 'redux-persist/lib/storage';
 import { globalReducer } from './global/global-reducer';
 
@@ -24,6 +25,7 @@ const persistedReducer = persistReducer(persistConfig, authReducer);
 export const store = configureStore({
   reducer: {
     auth: persistedReducer,
+    statistics: statisticsReducer,
     global: globalReducer,
   },
   middleware: getDefaultMiddleware({
