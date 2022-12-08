@@ -26,15 +26,12 @@ export const App = () => {
           <Route element={<PrivateRoute />}>
             <Route path="/" element={<Header />} />
             {/* <Route path="/" element={<Header />} /> */}
-            <Route path="/" element={ <Statistics />} />
+            <Route path="/" element={<Statistics />} />
           </Route>
           <Route element={<PublicRoute />}>
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
           </Route>
-            <Route path="/register" element={ <Register />} />
-            <Route path="/login" element={<Login />} />
-          </Route>  
           <Route
             path="*"
             element={
@@ -49,6 +46,17 @@ export const App = () => {
           />
         </Routes>
       </Suspense>
+      <ToastContainer
+        position="top-right"
+        autoClose={800}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </>
   );
 };
