@@ -12,7 +12,7 @@ export const Backdrop = styled.div`
   }
 `;
 export const Container = styled.div`
- width: 100%;
+  width: 100%;
   margin: 0 auto;
 @media (min-width: 480px) {
     width: 480px;
@@ -23,5 +23,4 @@ export const Container = styled.div`
   @media (min-width: 1280px) {
     width: 1280px;
   }
-}
 `;
