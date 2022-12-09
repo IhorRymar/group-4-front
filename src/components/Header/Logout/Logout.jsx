@@ -1,7 +1,7 @@
 import logoutIcon from './logoutIcon.png';
 import { StyledLogout } from './Logout.styled';
 import { useDispatch } from 'react-redux';
-import { logout } from '../../../redux/auth/auth-operations';
+import { logout } from 'redux/auth/auth-operations';
 
 const Logout = () => {
   const dispatch = useDispatch();
