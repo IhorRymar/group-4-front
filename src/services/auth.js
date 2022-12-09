@@ -36,11 +36,27 @@ export const getCurrent = async token => {
   }
 };
 
+// LOGOUT
+
+export const logout = async token => {
+  try {
+    setToken(token);
+    const { data } = await instance.get('/users/logout');
+    return data;
+  } catch (error) {
+    setToken();
+    throw error;
+  }
+};
+
 // STATISTICS API:
 
-export const getStatistics = async (data) => {
-  const { data: result } = await instance.post('/transactions/statistics', data);
+export const getStatistics = async data => {
+  const { data: result } = await instance.post(
+    '/transactions/statistics',
+    data
+  );
   return result;
-}
+};
 
 export default instance;

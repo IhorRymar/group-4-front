@@ -11,7 +11,9 @@ import {
 } from 'redux-persist';
 import authReducer from './auth/auth-slice';
 import statisticsReducer from './Statistics/statistics-slice';
+import transactionReducer from './transactions/transactions-slice';
 import storage from 'redux-persist/lib/storage';
+import { globalReducer } from './global/global-reducer';
 
 const persistConfig = {
   key: 'token',
@@ -25,6 +27,8 @@ export const store = configureStore({
   reducer: {
     auth: persistedReducer,
     statistics: statisticsReducer,
+    global: globalReducer,
+    transactions: transactionReducer,
   },
   middleware: getDefaultMiddleware({
     serializableCheck: {
