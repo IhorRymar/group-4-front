@@ -21,11 +21,10 @@ export const App = () => {
 
   return (
     <>
+      <Header />
       <Suspense fallback={<p>...load page</p>}>
         <Routes>
           <Route element={<PrivateRoute />}>
-            <Route path="/" element={<Header />} />
-            {/* <Route path="/" element={<Header />} /> */}
             <Route path="/" element={<Statistics />} />
           </Route>
           <Route element={<PublicRoute />}>

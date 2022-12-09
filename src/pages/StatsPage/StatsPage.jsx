@@ -1,11 +1,11 @@
-import CommonContainer from 'components/CommonContainer/CommonContainer'
+import PageContainer from 'components/PageContainer/PageContainer';
 import DiagramTab from 'components/DiagramTab/DiagramTab';
 
 const StatsPage = () => {
   return (
-    <CommonContainer>
+    <PageContainer>
       <DiagramTab />
-    </CommonContainer>
+    </PageContainer>
   );
 }
 

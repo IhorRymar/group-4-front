@@ -6,7 +6,7 @@ export const Container = styled.div`
   display:flex;
   flex-direction: column;
   align-items: center;
-  background-color: ${baseVars.colors.secondBg};
+  /* background-color: ${baseVars.colors.secondBg}; */
 
   @media screen and (min-width: 768px) {
     display: flex;
