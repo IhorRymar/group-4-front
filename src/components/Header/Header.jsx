@@ -1,13 +1,12 @@
 import { StyledHeader } from './Header.styled';
 import Logo from './Logo/Logo';
 import UserMenu from './UserMenu/UserMenu';
-import Logout from './Logout/Logout';
 
-const Header = () => {
+const Header = ({ handleClick3 }) => {
   return (
     <StyledHeader>
       <Logo />
-      <UserMenu />
+      <UserMenu handleClick2={handleClick3} />
     </StyledHeader>
   );
 };

@@ -38,9 +38,12 @@ export const getCurrent = async token => {
 
 // STATISTICS API:
 
-export const getStatistics = async (data) => {
-  const { data: result } = await instance.post('/transactions/statistics', data);
+export const getStatistics = async data => {
+  const { data: result } = await instance.post(
+    '/transactions/statistics',
+    data
+  );
   return result;
-}
+};
 
 export default instance;

@@ -1,21 +1,29 @@
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import PrivateRoute from './route/PrivateRoute';
 import PublicRoute from './route/PublicRoute';
 import { lazy, Suspense, useEffect } from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
 import { current } from 'redux/auth/auth-operations';
+import { global } from '../redux/global/global-selectors';
+import { isAuth } from '../redux/auth/auth-selectors';
 import Header from './Header/Header';
 import HomeTab from './HomeTab/HomeTab';
+import Spinner from './Spinner/Spinner';
 
 const Register = lazy(() => import('../pages/RegisterPage/RegisterPage'));
 const Login = lazy(() => import('../pages/LoginPage/LoginPage.jsx'));
 // const Statistics = lazy(() => import('../pages/StatsPage/StatsPage'));
 
-
 export const App = () => {
   const dispatch = useDispatch();
+  const loading = useSelector(global);
+  const isLogin = useSelector(isAuth);
+
+  useEffect(() => {
+    dispatch(current());
+  }, [dispatch]);
 
   useEffect(() => {
     dispatch(current());
@@ -23,12 +31,13 @@ export const App = () => {
 
   return (
     <>
-      <Header />
-      <Suspense fallback={<p>...load page</p>}>
+      <Suspense fallback={<Spinner />}>
+        {loading && <Spinner />}
+        {isLogin && <Header />}
         <Routes>
           <Route element={<PrivateRoute />}>
-             <Route path="/" element={<HomeTab />} />
-             {/* <Route path="/statistics" element={<Statistics />} /> */}
+            <Route path="/" element={<HomeTab />} />
+            {/* <Route path="/statistics" element={<Statistics />} /> */}
           </Route>
           <Route element={<PublicRoute />}>
             <Route path="/register" element={<Register />} />
