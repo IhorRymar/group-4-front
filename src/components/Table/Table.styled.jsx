@@ -48,6 +48,7 @@ export const List = styled.ul`
 `;
 
 export const ListItem = styled.li`
+  position: relative;
   display: flex;
   align-items: center;
   padding: 16px 20px;
@@ -60,17 +61,18 @@ export const ListItem = styled.li`
 `;
 
 export const ColorBox = styled.div`
+  position: absolute;
   width: 24px;
   height: 24px;
   background-color: ${({color}) => colorBoxSwitcher(color)};
   border-radius: 2px;
-  margin-right: 16px;
 `;
 
 export const TextWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
+  padding-left: 40px;
 `;
 
 export const ListItemText = styled.p`

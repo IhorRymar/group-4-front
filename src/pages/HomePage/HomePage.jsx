@@ -1,12 +1,12 @@
 import PageContainer from 'components/PageContainer/PageContainer';
-import DiagramTab from 'components/DiagramTab/DiagramTab';
+import HomeTab from 'components/HomeTab/HomeTab';
 
-const StatsPage = () => {
+const HomePage = () => {
   return (
       <PageContainer>
-        <DiagramTab />
+        <HomeTab />
       </PageContainer>
   );
 }
 
-export default StatsPage;
+export default HomePage;
