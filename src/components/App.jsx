@@ -1,16 +1,13 @@
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
-import { useDispatch } from 'react-redux';
-//import { ToastContainer } from "react-toastify";
-//import "react-toastify/dist/ReactToastify.min.css";
 import { useDispatch, useSelector } from 'react-redux';
 import PrivateRoute from './route/PrivateRoute';
 import PublicRoute from './route/PublicRoute';
 import { lazy, Suspense, useEffect } from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
-import { Routes, Route, Link } from 'react-router-dom';
 import { current } from 'redux/auth/auth-operations';
 import { global } from '../redux/global/global-selectors';
+import { isAuth } from '../redux/auth/auth-selectors';
 import Header from './Header/Header';
 import Spinner from './Spinner/Spinner';
 
@@ -20,11 +17,12 @@ const Statistics = lazy(() => import('../pages/StatsPage/StatsPage'));
 
 export const App = () => {
   const dispatch = useDispatch();
+  const loading = useSelector(global);
+  const isLogin = useSelector(isAuth);
 
   useEffect(() => {
     dispatch(current());
   }, [dispatch]);
-  const loading = useSelector(global);
 
   useEffect(() => {
     dispatch(current());
@@ -32,38 +30,18 @@ export const App = () => {
 
   return (
     <>
-      <Suspense fallback={<p>...load page</p>}>
       <Suspense fallback={<Spinner />}>
         {loading && <Spinner />}
+        {isLogin && <Header />}
         <Routes>
           <Route element={<PrivateRoute />}>
-            <Route path="/" element={<Header />} />
-            <Route path="/" element={<Header />} />
-            {/* <Route path="/" element={<Header />} /> */}
             <Route path="/" element={<Statistics />} />
           </Route>
           <Route element={<PublicRoute />}>
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
           </Route>
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-          </Route>
-
           <Route
-            path="*"
-            element={
-              <main style={{ padding: '1rem' }}>
-                <span>There's nothing here!</span>
-                <br />
-                <span>
-                  <Link to={'/'}>Return</Link>
-                </span>
-              </main>
-            }
-          />
-        </Routes>
-      </Suspense>
             path="*"
             element={
               <main style={{ padding: '1rem' }}>
