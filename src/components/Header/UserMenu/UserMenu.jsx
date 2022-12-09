@@ -1,11 +1,14 @@
+import { useSelector } from 'react-redux';
+import { userName } from '../../../redux/auth/auth-selectors';
 import { StyledName } from './StyledName';
 import { StyledUserMenu } from './StyledUserMenu';
 import Logout from '../Logout/Logout';
 
-const UserMenu = ({ name }) => {
+const UserMenu = () => {
+  const name = useSelector(userName);
   return (
     <StyledUserMenu>
-      <StyledName>Name</StyledName>
+      <StyledName>{name}</StyledName>
       <Logout />
     </StyledUserMenu>
   );

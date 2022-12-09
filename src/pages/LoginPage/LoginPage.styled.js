@@ -58,7 +58,7 @@ export const WrapperImg = styled.div`
 `;
 
 export const FormLogin = styled.div`
- width: 100%;
+  width: 100%;
   @media screen and (min-width: 1280px) {
     display: flex;
     justify-content: center;
@@ -67,4 +67,5 @@ export const FormLogin = styled.div`
     width: auto;
     backdrop-filter: blur(50px);
     padding: 52px 91px 52px 107px;
+  }
 `;

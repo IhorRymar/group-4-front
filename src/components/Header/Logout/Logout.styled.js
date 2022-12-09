@@ -8,6 +8,7 @@ export const StyledLogout = styled.button`
   padding: 0;
   border: none;
   height: 18px;
+  cursor: pointer;
 
   @media screen and (min-width: ${baseVars.sizeScreen.tablet}) {
     height: 30px;
