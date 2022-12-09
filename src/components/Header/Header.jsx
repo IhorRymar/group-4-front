@@ -2,11 +2,11 @@ import { StyledHeader } from './Header.styled';
 import Logo from './Logo/Logo';
 import UserMenu from './UserMenu/UserMenu';
 
-const Header = ({ handleClick3 }) => {
+const Header = () => {
   return (
     <StyledHeader>
       <Logo />
-      <UserMenu handleClick2={handleClick3} />
+      <UserMenu />
     </StyledHeader>
   );
 };

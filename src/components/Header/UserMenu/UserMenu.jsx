@@ -4,12 +4,12 @@ import { StyledName } from './StyledName';
 import { StyledUserMenu } from './StyledUserMenu';
 import Logout from '../Logout/Logout';
 
-const UserMenu = ({ handleClick2 }) => {
+const UserMenu = () => {
   const name = useSelector(userName);
   return (
     <StyledUserMenu>
       <StyledName>{name}</StyledName>
-      <Logout handleClick={handleClick2} />
+      <Logout />
     </StyledUserMenu>
   );
 };
