@@ -1,8 +1,9 @@
-const initialState = {
-  loading: false,
-};
+import modalScliceReducer from 'redux/modal/modal-sclice';
+import { combineReducers } from 'redux';
 
-export const globalReducer = (state = initialState, action) => {
+const initialState = false;
+
+const isLoadingReducer = (state = initialState, action) => {
   const pending = [
     'auth/signup/pending',
     'auth/login/pending',
@@ -11,12 +12,12 @@ export const globalReducer = (state = initialState, action) => {
 
   const isPending = pending.includes(action.type);
 
-  if (isPending) {
-    return {
-      loading: true,
-    };
-  }
-  return {
-    loading: false,
-  };
+  return isPending;
 };
+
+const globalReducer = combineReducers({
+  loading: isLoadingReducer,
+  isAddTransactionModalOpen: modalScliceReducer,
+});
+
+export default globalReducer;

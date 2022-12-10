@@ -2,6 +2,7 @@ import { ErrorMessage, Formik } from 'formik';
 import { useState } from 'react';
 import moment from 'moment';
 import { toast } from 'react-toastify';
+import { addTrasaciotn } from 'services/transactions';
 import * as Yup from 'yup';
 import {
   CheckboxContainter,
@@ -9,26 +10,30 @@ import {
   MoneyText,
   StyledForm,
   TextField,
-  Comment,
 } from './AddTransactionForm.styled';
+import { Comment } from 'components/Comment/Comment';
 import { DatePicker } from '../DatePicker/DatePicker';
 import CategorySelect from '../CategorySelect/CategorySelect';
 import { StyledButton } from '../StyledButton/StyledButton';
+import { useDispatch } from 'react-redux';
+import { toggleModal } from 'redux/modal/modal-sclice';
 
-export const AddTransactionForm = () => {
+export const AddTransactionForm = ({ toggleModal }) => {
   moment.updateLocale('uk');
   const initialDate = moment().format('DD.MM.YYYY');
-  const [transactionType, setTransactonType] = useState('Income');
+  const [transactionType, setTransactonType] = useState('income');
   const isIncomeHandler = e => {
     let isChecked = e.target.checked;
-    isChecked ? setTransactonType('Expenses') : setTransactonType('Income');
+    isChecked ? setTransactonType('expense') : setTransactonType('income');
   };
+
+  const dispatch = useDispatch();
 
   const initialValues = {
     transactionType: { transactionType },
-    category: '...',
-    amount: '',
     date: initialDate,
+    amount: '',
+    category: 0,
     comment: '',
   };
 
@@ -39,12 +44,15 @@ export const AddTransactionForm = () => {
     comment: Yup.string().max(50),
   });
 
-  const handleSubmit = ({ transactionType, ...rest }, actions) => {
+  const handleSubmit = async ({ transactionType, ...rest }, actions) => {
     let values = {
       ...transactionType,
       ...rest,
     };
     console.log(values);
+
+    toggleModal();
+    await dispatch(addTrasaciotn(values));
     actions.resetForm();
   };
   return (
@@ -85,7 +93,7 @@ export const AddTransactionForm = () => {
           </label>
           {transactionType === 'Expenses' ? (
             <label htmlFor="category">
-              <CategorySelect name="category" />
+              <CategorySelect name="category" type="number" />
             </label>
           ) : (
             ''
@@ -103,7 +111,7 @@ export const AddTransactionForm = () => {
             <DatePicker name="date" />
           </label>
           <label htmlFor="comment">
-            <Comment name="comment" placeholder="Comment" minRows={1} />
+            <Comment name="comment" placeholder="Comment" minRows={4} />
           </label>
           <StyledButton type="submit">Add transaction</StyledButton>
         </StyledForm>

@@ -23,19 +23,15 @@ export const ModalAddTransaction = ({ toggleModal, isOpen }) => {
     };
   }, [isOpen, toggleModal]);
 
-  // const handleClick = (e) => {
-  //   if (e.target === e.currentTarget) {
-  //     toggleModal();
-  //   }
-  // };
-
   return createPortal(
     <Overlay>
       <ModalWindow>
         <Heading>Add transaction</Heading>
 
-        <AddTransactionForm />
-        <StyledButton type="button">Cancel</StyledButton>
+        <AddTransactionForm toggleModal={toggleModal} />
+        <StyledButton type="button" onClick={toggleModal}>
+          Cancel
+        </StyledButton>
       </ModalWindow>
     </Overlay>,
     modalRoot

@@ -19,7 +19,20 @@ export default function CategorySelect({ name }) {
     'Other expenses',
     'Entertainment',
   ];
-  const [category, setCategory] = useState('');
+
+  const categories = {
+    'Main expenses': 0,
+    Products: 1,
+    Car: 2,
+    'Self care': 3,
+    'Child care': 4,
+    'Household products': 5,
+    Education: 6,
+    Leisure: 6,
+    'Other expenses': 8,
+    Entertainment: 9,
+  };
+  const [category, setCategory] = useState(0);
   const { setFieldValue } = useFormikContext();
 
   const handleChange = event => {
@@ -47,12 +60,9 @@ export default function CategorySelect({ name }) {
         value={category}
         onChange={handleChange}
       >
-        <MenuItem value="" placeholder="Choose category">
-          <em>Choose category</em>
-        </MenuItem>
-        {options.map(option => {
+        {Object.keys(categories).map(option => {
           return (
-            <MenuItem key={option} value={option}>
+            <MenuItem key={option} value={Number(categories[option])}>
               {option}
             </MenuItem>
           );
