@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import css from './Currency.module.css';
 
 import { Navigation } from 'components/Navigation/Navigation';
 import { currency } from 'api/currency';
