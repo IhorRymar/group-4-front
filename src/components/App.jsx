@@ -15,7 +15,7 @@ import { Currency } from './Currency/Currency';
 const Register = lazy(() => import('../pages/RegisterPage/RegisterPage'));
 const Login = lazy(() => import('../pages/LoginPage/LoginPage.jsx'));
 const Home = lazy(() => import('../pages/HomePage/HomePage'));
-const Statistics = lazy(() => import('../pages/StatsPage/StatsPage'));
+// const Statistics = lazy(() => import('../pages/StatsPage/StatsPage'));
 
 export const App = () => {
   const dispatch = useDispatch();
