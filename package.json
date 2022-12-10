@@ -2,7 +2,7 @@
   "name": "group-4-front",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://goitacademy.github.io/",
+  "homepage": "https://ihorrymar.github.io/group-4-front/",
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
