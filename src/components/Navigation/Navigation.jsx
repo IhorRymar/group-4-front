@@ -1,11 +1,6 @@
 import React from 'react';
-// import css from './Navigation.module.css';
 
 import { useNavigate } from 'react-router-dom';
-// import { IoMdHome } from 'react-icons/io';
-// import { BiStats } from 'react-icons/bi';
-// import { FaDollarSign } from 'react-icons/fa';
-
 import { useWindowDimensions } from '../../hooks/useWindowDimensions';
 import {
   BiStatsStyled,
@@ -21,7 +16,6 @@ export const Navigation = () => {
   const { width } = useWindowDimensions();
   const nav = useNavigate();
   const path = window.location.pathname;
-  // console.log(path);
 
   const isCorectlyWidth = () =>
     width >= 768 && path === '/currency' ? nav('/diagram') : null;

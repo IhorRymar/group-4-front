@@ -1,5 +1,4 @@
 import React from 'react';
-// import css from './Balance.module.css';
 import { BalanceStyled, Text, Wrapper } from './Balance.styled';
 
 export const Balance = () => {
