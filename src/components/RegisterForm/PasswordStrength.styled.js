@@ -8,10 +8,10 @@ export const Progress = styled.div`
   transition: all 0.5s linear;
 `;
 export const ProgressBar = styled.div`
-margin-bottom:auto;
-@media screen and(max - width: 767px){
-   margin-left:10px;
-
+  margin-bottom: auto;
+  @media screen and(max - width: 767px) {
+    margin-left: 10px;
+  }
 `;
 export const Text = styled.p`
   font-size: 12px;
