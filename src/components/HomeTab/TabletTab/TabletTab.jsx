@@ -5,10 +5,11 @@ import { React } from 'react';
 import { EmptyContainer } from '../EmptyContainer/EmptyContainer';
 import moment from 'moment';
 import { Categories } from '../categories';
+import EllipsisText from "react-ellipsis-text";
 
 const TabletTab = ({ items, columns }) => {
-  let date = items.length ? items?.map(item => item) : null;
-  let data = date?.sort((a, b) =>
+  const date = items.length ? items?.map(item => item) : null;
+  const data = date?.sort((a, b) =>
     b.date
       .split('.')
       .reverse()
@@ -18,7 +19,7 @@ const TabletTab = ({ items, columns }) => {
 
   return (
     <>
-      {items.length > 0 ? (
+      {items.length !== 0 ? (
         <GeneralContainer>
           <table>
             <HeadContainer>
@@ -50,7 +51,7 @@ const TabletTab = ({ items, columns }) => {
                         {transactionType === 'income' ? '+' : '-'}
                       </BodyItems>
                       <BodyItems>{Categories(category)}</BodyItems>
-                      <BodyItems>{comment || '---'}</BodyItems>
+                      <BodyItems><EllipsisText text={`${comment  || "---"}`} length={24} tooltip="true" /></BodyItems>
                       <BodyItems>
                         {transactionType === 'income' ? (
                           <SpanSum
@@ -66,7 +67,7 @@ const TabletTab = ({ items, columns }) => {
                           </SpanSum>
                         )}
                       </BodyItems>
-                      <BodyItems>{balance}</BodyItems>
+                      <BodyItems>{balance.toFixed(2)}</BodyItems>
                     </BodyList>
                   )
                 )}
@@ -90,7 +91,7 @@ TabletTab.propTypes = {
       category: PropTypes.number,
       comment: PropTypes.string,
       amount: PropTypes.number.isRequired,
-      balance: PropTypes.string,
+      balance: PropTypes.number.isRequired,
     })
   ),
 };
@@ -203,10 +204,6 @@ const BodyList = styled.tr`
 const BodyItems = styled.td`
   max-height: 36px;
   text-align: start;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
   @media screen and (min-width: ${baseVars.sizeScreen.tablet}) {
     width: 14.5%;
   }
