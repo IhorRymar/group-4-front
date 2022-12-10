@@ -34,7 +34,7 @@ export const App = () => {
         <Routes>
           <Route element={<PrivateRoute />}>
             <Route path="/" element={<Home />} />
-            <Route
+            {/* <Route
               index
               element={
                 <div>
@@ -63,7 +63,7 @@ export const App = () => {
                 </main>
               }
             />
-            {/* <Route path="/statistics" element={<Statistics />} /> */}
+            <Route path="/statistics" element={<Statistics />} /> */}
           </Route>
 
           <Route element={<PublicRoute />}>
