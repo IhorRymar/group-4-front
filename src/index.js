@@ -14,7 +14,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <GlobalStyles />
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <BrowserRouter>
+        <BrowserRouter basename="/group-4-front/">
           <ThemeProvider theme={theme}>
             <App />
           </ThemeProvider>
