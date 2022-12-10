@@ -19,6 +19,7 @@
     "react-chartjs-2": "^5.0.1",
     "react-datetime": "^3.2.0",
     "react-dom": "^18.1.0",
+    "react-ellipsis-text": "^1.2.1",
     "react-icons": "^4.7.1",
     "react-loader-spinner": "^5.3.4",
     "react-media": "^1.10.0",

@@ -4,28 +4,35 @@ import baseVars from "stylesheet/vars";
 import { EmptyContainer } from "../EmptyContainer/EmptyContainer";
 import moment from 'moment';
 import { Categories } from "../categories";
+import EllipsisText from "react-ellipsis-text";
 
 const MobileCard = ({ items}) => {
 
-let date = items.map(item => item)
-let data = date.sort((a, b) => b.date.split('.').reverse().join().localeCompare(a.date.split('.').reverse().join()));
+ const date = items.length ? items?.map(item => item) : null;
+  const data = date?.sort((a, b) =>
+    b.date
+      .split('.')
+      .reverse()
+      .join()
+      .localeCompare(a.date.split('.').reverse().join())
+  );
  
   return (
   <>
       {
-        items.length > 0 ?
+        items.length !== 0 ?
           <TransactionContainer>
             {data.map(({ date, transactionType, category, comment, amount, balance, _id }) => (
               <TransactionList key={_id} color={transactionType}>
                 <ListItems><TitleItems>Date</TitleItems><TextItems>{moment.utc(date).format('DD.MM.YY')}</TextItems></ListItems>
                 <ListItems><TitleItems>Type</TitleItems>{transactionType === "income" ? <TextItems>+</TextItems> : <TextItems>-</TextItems>} </ListItems>
                 <ListItems><TitleItems>Category</TitleItems><TextItems>{Categories(category)}</TextItems></ListItems>
-                <ListItems><TitleItems>Comment</TitleItems><TextItems>{comment || "---"}</TextItems></ListItems>
+                <ListItems><TitleItems>Comment</TitleItems><TextItems><EllipsisText text={`${comment  || "---"}`} length={17} tooltip="true" /></TextItems></ListItems>
                 <ListItems><TitleItems>Sum</TitleItems>
                   {transactionType === "income" ?
                     <SumText style={{ color: "#24CCA7" }}>{amount.toFixed(2)}</SumText> :
                     <SumText style={{ color: "#FF6596" }}>{amount.toFixed(2)}</SumText>}</ListItems>
-                <ListItems><TitleItems>Balance</TitleItems><TextItems>{balance}</TextItems></ListItems>
+                <ListItems><TitleItems>Balance</TitleItems><TextItems>{balance.toFixed(2)}</TextItems></ListItems>
               </TransactionList>
             ))}
                  
@@ -42,7 +49,7 @@ MobileCard.propTypes = {
         category: PropTypes.number,
         comment: PropTypes.string,
         amount: PropTypes.number.isRequired,
-        balance: PropTypes.string,
+        balance: PropTypes.number.isRequired,
     }),
   ),
 };
@@ -116,10 +123,6 @@ font-weight: 400;
 font-size: 16px;
 line-height: 24px;
 text-align: right;
-max-width:100px;
-white-space: nowrap;
-overflow: hidden;
-text-overflow:  ellipsis;
 }
 `;
 
