@@ -9,12 +9,13 @@ import { current } from 'redux/auth/auth-operations';
 import { global } from '../redux/global/global-selectors';
 import { isAuth } from '../redux/auth/auth-selectors';
 import Header from './Header/Header';
-import HomeTab from './HomeTab/HomeTab';
+// import HomeTab from './HomeTab/HomeTab';
 import Spinner from './Spinner/Spinner';
 import { Currency } from './Currency/Currency';
 const Register = lazy(() => import('../pages/RegisterPage/RegisterPage'));
 const Login = lazy(() => import('../pages/LoginPage/LoginPage.jsx'));
-// const Statistics = lazy(() => import('../pages/StatsPage/StatsPage'));
+const Home = lazy(() => import('../pages/HomePage/HomePage'));
+const Statistics = lazy(() => import('../pages/StatsPage/StatsPage'));
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -32,7 +33,7 @@ export const App = () => {
         {isLogin && <Header />}
         <Routes>
           <Route element={<PrivateRoute />}>
-            <Route path="/" element={<HomeTab />} />
+            <Route path="/" element={<Home />} />
             <Route
               index
               element={
@@ -64,11 +65,10 @@ export const App = () => {
             />
             {/* <Route path="/statistics" element={<Statistics />} /> */}
           </Route>
-          {/* </Route> */}
 
           <Route element={<PublicRoute />}>
-            <Route path="/register" element={<Register />} />
-            <Route path="/login" element={<Login />} />
+            <Route path="register" element={<Register />} />
+            <Route path="login" element={<Login />} />
           </Route>
           <Route
             path="*"
