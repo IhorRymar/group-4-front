@@ -1,30 +1,33 @@
-import React from 'react';
-import Media from 'react-media';
-import LoginForm from '../../components/LoginForm/LoginForm';
-import GlobalContainer from '../../container';
-import { Title, WrapperImg, FormLogin, Img } from './LoginPage.styled';
-import { Container } from 'pages/RegisterPage/RegisterPage.styled';
-import { mediaQueries } from '../../utils';
-import signinImg from '../../images/photo/signin-img.png';
+import React from 'react'
+import Media from 'react-media'
+import LoginForm from '../../components/LoginForm/LoginForm'
+import { Title, WrapperImg, FormLogin, Img, Container } from './LoginPage.styled'
+import { mediaQueries } from '../../utils'
+import signinImg from '../../images/photo/signin-img.png'
+import PageContainer from 'components/PageContainer/PageContainer'
 
 const LoginPage = () => {
   return (
-    <GlobalContainer>
+    <PageContainer>
       <Container>
         <Media queries={mediaQueries}>
-          {matches => (
+          {(matches) => (
             <>
               {matches.tablet && (
                 <WrapperImg>
-                  <Img src={signinImg} alt="Человек с тележкой продуктов"></Img>
-
+                  <Img
+                    src={signinImg}
+                    alt="a man with a shopping cart"
+                  ></Img>  
                   <Title>Finance App</Title>
                 </WrapperImg>
               )}
               {matches.desktop && (
                 <WrapperImg>
-                  <Img src={signinImg} alt="Человек с тележкой продуктов"></Img>
-
+                  <Img
+                    src={signinImg}
+                    alt="A man with a cart of groceries"
+                  ></Img>  
                   <Title>Finance App</Title>
                 </WrapperImg>
               )}
@@ -32,12 +35,12 @@ const LoginPage = () => {
           )}
         </Media>
 
-        <FormLogin>
+        <FormLogin >
           <LoginForm />
         </FormLogin>
       </Container>
-    </GlobalContainer>
-  );
-};
+    </PageContainer>
+  )
+}
 
-export default LoginPage;
+export default LoginPage
