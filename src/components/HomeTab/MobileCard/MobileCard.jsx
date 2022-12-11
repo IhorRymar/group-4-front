@@ -8,7 +8,7 @@ import EllipsisText from "react-ellipsis-text";
 
 const MobileCard = ({ items}) => {
 
- const date = items.length ? items?.map(item => item) : null;
+ const date = items?.length ? items?.map(item => item) : null;
   const data = date?.sort((a, b) =>
     b.date
       .split('.')
@@ -20,9 +20,9 @@ const MobileCard = ({ items}) => {
   return (
   <>
       {
-        items.length !== 0 ?
+        items?.length !== 0 ?
           <TransactionContainer>
-            {data.map(({ date, transactionType, category, comment, amount, balance, _id }) => (
+            {data?.map(({ date, transactionType, category, comment, amount, balance, _id }) => (
               <TransactionList key={_id} color={transactionType}>
                 <ListItems><TitleItems>Date</TitleItems><TextItems>{moment.utc(date).format('DD.MM.YY')}</TextItems></ListItems>
                 <ListItems><TitleItems>Type</TitleItems>{transactionType === "income" ? <TextItems>+</TextItems> : <TextItems>-</TextItems>} </ListItems>

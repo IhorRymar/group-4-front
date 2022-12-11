@@ -8,7 +8,7 @@ import { Categories } from '../categories';
 import EllipsisText from 'react-ellipsis-text';
 
 const TabletTab = ({ items, columns }) => {
-  const date = items.length ? items?.map(item => item) : null;
+  const date = items?.length ? items?.map(item => item) : null;
   const data = date?.sort((a, b) =>
     b.date
       .split('.')
@@ -19,7 +19,7 @@ const TabletTab = ({ items, columns }) => {
 
   return (
     <>
-      {items.length !== 0 ? (
+      {items?.length !== 0 ? (
         <GeneralContainer>
           <table>
             <HeadContainer>
@@ -33,7 +33,7 @@ const TabletTab = ({ items, columns }) => {
           <BodyContainer>
             <BodyTable>
               <tbody>
-                {data.map(
+                {data?.map(
                   ({
                     date,
                     transactionType,

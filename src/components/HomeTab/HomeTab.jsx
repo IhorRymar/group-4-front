@@ -1,41 +1,73 @@
-import { React, Fragment, useEffect, useMemo } from 'react';
-import MobileCard from './MobileCard/MobileCard';
-import TabletTab from './TabletTab/TabletTab';
+import { React, Fragment,useEffect, useMemo, useState } from "react";
+import MobileCard from "./MobileCard/MobileCard";
+import TabletTab from "./TabletTab/TabletTab";
 import Media from 'react-media';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchTransactions } from 'redux/transactions/transactions-operation';
+import { useDispatch, useSelector } from "react-redux";
+import { fetchTransactions} from 'redux/transactions/transactions-operation';
 import { getTransactions } from 'redux/transactions/transactions-selector';
-import { COLUMNS } from './columns';
+import { COLUMNS } from './columns'
+import { Pagination } from '@mui/material';
+import styled from 'styled-components';
+import baseVars from 'stylesheet/vars';
 
-const HomeTab = () => {
+
+const HomeTab = () => { 
+  const [page, setPage] = useState(1);
+  const [transactionsPerPage] = useState(10);
   const columns = useMemo(() => COLUMNS, []);
-  const data = useSelector(getTransactions);
-
+  const { result: data, transactionsTotalQuantity } = useSelector(getTransactions);
+  
   const dispatch = useDispatch();
-
+ 
   useEffect(() => {
-    dispatch(fetchTransactions());
-  }, [dispatch]);
+    // console.log(page + "!!!")
+     dispatch(fetchTransactions(page));
+  }, [dispatch, page]);
+  
 
+  const handleChange = (e, page) => {
+  setPage(page)
+}
+  const totalPages = Math.ceil(transactionsTotalQuantity / transactionsPerPage)
+  const totalPagesInteger =  totalPages ? totalPages : 1
+  // console.log(totalPages)
+  
   return (
-    <>
-      <Media
-        queries={{
-          small: '(max-width: 767px)',
-          medium: '(min-width: 768px) and (max-width: 1279px)',
-          large: '(min-width: 1280px)',
-        }}
-      >
-        {matches => (
-          <Fragment>
-            {matches.small && <MobileCard items={data} columns={columns} />}
-            {matches.medium && <TabletTab items={data} columns={columns} />}
+      <Con>
+            <Media queries={{
+          small: "(max-width: 767px)",
+          medium: "(min-width: 768px) and (max-width: 1279px)",
+          large: "(min-width: 1280px)"
+            }}>
+                {matches => (
+            <Fragment>
+              {matches.small && <MobileCard items={data} columns={columns} />}
+            {matches.medium && <TabletTab items={data} columns={columns}   />}
             {matches.large && <TabletTab items={data} columns={columns} />}
-          </Fragment>
-        )}
+            <Paginate  count={totalPagesInteger} page={page} onChange={handleChange} />
+            </Fragment>
+          )}
       </Media>
-    </>
-  );
-};
+    
+    
+    </Con>
+    )
+}
 
-export default HomeTab;
+export default HomeTab
+
+const Con = styled.div`
+ display:flex;
+ flex-direction: column;
+`
+const Paginate = styled(Pagination)`
+  display:flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+  @media screen and (min-width: ${baseVars.sizeScreen.mobile}) {
+    width:320px;}
+  @media screen and (min-width: ${baseVars.sizeScreen.tablet}) {
+    width: 704px;}
+    @media screen and (min-width: ${baseVars.sizeScreen.desktop}) {
+    width: 768px;}
+`
