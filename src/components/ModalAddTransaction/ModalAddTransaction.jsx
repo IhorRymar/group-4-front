@@ -4,6 +4,7 @@ import { createPortal } from 'react-dom';
 import { StyledButton } from 'components/StyledButton/StyledButton';
 import { AddTransactionForm } from '../AddTransactionForm/AddTransactionForm';
 import { Heading } from './ModalAddTransaction.styled';
+import { StyledCloseButton } from './CloseButton/CloseButton';
 
 export const ModalAddTransaction = ({ toggleModal, isOpen }) => {
   const modalRoot = document.querySelector('#modal-root');
@@ -32,6 +33,7 @@ export const ModalAddTransaction = ({ toggleModal, isOpen }) => {
         <StyledButton type="button" onClick={toggleModal}>
           Cancel
         </StyledButton>
+        <StyledCloseButton type="button" onClick={toggleModal} />
       </ModalWindow>
     </Overlay>,
     modalRoot

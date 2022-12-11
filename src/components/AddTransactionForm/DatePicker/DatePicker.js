@@ -1,9 +1,7 @@
-import Datetime from 'react-datetime';
 import moment from 'moment';
 import 'moment/locale/uk';
 import 'react-datetime/css/react-datetime.css';
 import { useFormikContext } from 'formik';
-import { CalendarIcon } from './DatePicker.styled';
 import { StyledDateTime } from './DatePicker.styled';
 
 export const DatePicker = ({ name }) => {

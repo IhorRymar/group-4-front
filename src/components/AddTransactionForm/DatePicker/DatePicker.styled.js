@@ -6,7 +6,7 @@ export const CalendarIcon = styled(RiCalendar2Fill)`
   color: #4a56e2;
   position: absolute;
   right: 10px;
-  top: 80px;
+  top: 75px;
   @media screen and (min-width: 767px) {
     right: 20px;
     top: 6px;

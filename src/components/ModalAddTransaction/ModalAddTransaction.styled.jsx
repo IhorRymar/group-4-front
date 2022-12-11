@@ -18,6 +18,7 @@ export const ModalWindow = styled.div`
     padding: 20px;
     background-color: #fff;
   }
+  position: relative;
   width: 540px;
   border-radius: 20px;
   padding: 73px;
