@@ -1,11 +1,15 @@
-import { React } from 'react'
+import  React, { useCallback, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import PasswordStrength from './PasswordStrength'
-import { Btn, Button , Container, Logotype, Icon, FormaRegistration, Label, Inputicon,Error, Input} from "../LoginForm/LoginForm.styled";
+import { Btn, Button , Container, Logotype, Icon, FormaRegistration,Error,Label} from "../LoginForm/LoginForm.styled";
 import { signup } from '../../redux/auth/auth-operations'
 import { Formik } from 'formik'
 import { singupSchema } from '../../utils'
 import sprite from '../../images/svg/sprite.svg'
+import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { IconButton, InputAdornment, TextField } from '@mui/material';
+
+
 
 const RegisterForm = () => {
   const initialValues = {
@@ -14,12 +18,21 @@ const RegisterForm = () => {
            confirmPassword: "",
            email: "",
   }
-  //const [password, setPassword] = useState('')
+  
+  const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
     const handleSubmit = ({ name, email, password }) => {
     
      dispatch(signup({ name, email, password }));
     };
+  //const tooglePassword = () => { setShowPassword(!showPassword) }
+  const tooglePassword = useCallback(() => {
+    setShowPassword(prevShowPassword => !prevShowPassword);
+  }, []);
+  const handleMouseDownPassword = e => {
+    e.preventDefault();
+  }
+  
   return (
     <Container>
       <Logotype>
@@ -52,72 +65,126 @@ const RegisterForm = () => {
                {touched.email && errors.email && (
                  <Error>{errors.email}</Error>
             )}
-              <Input
-                placeholder="E-mail"
+              <TextField
                 type="email"
                 name="email"
+                variant="filled"
+              margin="normal"
+              required
+              fullWidth
+                label="E-mail"
+                size="small"
+              autoComplete="email"
+              color="primary"
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.email}
-              ></Input>
-              <Inputicon width="24" height="24">
+              />
+              {/* <Inputicon width="24" height="24">
                 <use href={`${sprite}#icon-email`}></use>
-              </Inputicon>
+              </Inputicon> */}
               
             </Label>
             <Label>
               {touched.password && errors.password && (
                 <Error>{errors.password}</Error>
               )}
-              <Input
-                placeholder="Password"
-                type="password"
+              <TextField
+                type={showPassword ? 'text' : 'password'}
+                label="Password"
                 name="password"
-                error={errors.password}
+                fullWidth
+              variant="filled"
+              margin="normal"
+              size="small"
+              autoComplete="current-password"
+                color="primary"
+                required
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.password}
-              ></Input>
-              <Inputicon width="24" height="24">
+                InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={tooglePassword}
+                      onMouseDown={handleMouseDownPassword}
+                    >
+                      {showPassword ? <Visibility /> : <VisibilityOff />}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
+              />
+              {/* <Inputicon width="24" height="24">
                 <use href={`${sprite}#icon-password`}></use>
-              </Inputicon>
+              </Inputicon> */}
             </Label>
 
             <Label>
               {touched.confirmPassword && errors.confirmPassword && (
                  <Error>{errors.confirmPassword}</Error>
               )}
-              <Input
-                placeholder="Confirm password"
-                type="password"
+              <TextField
+                label="Confirm password"
+                type={showPassword ? 'text' : 'password'}
                 name="confirmPassword"
+                fullWidth
+              variant="filled"
+              margin="normal"
+                size="small"
+                required
+              autoComplete="current-password"
+              color="primary"
                 onChange={handleChange}
                 onBlur={handleBlur}
+                InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={tooglePassword}
+                      onMouseDown={handleMouseDownPassword}
+                    >
+                      {showPassword ? <Visibility /> : <VisibilityOff />}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
                 value={values.confirmPassword}
                 style={{ marginBottom: "5px" }}
-              ></Input>
-              <Inputicon width="24" height="24" >
+              />
+              {/* <Inputicon width="24" height="24" >
                 <use href={`${sprite}#icon-password`}></use>
-              </Inputicon>
+              </Inputicon> */}
             </Label>
 
             <PasswordStrength password={values.password} />
-            <Label>
+            <label>
               {touched.name && errors.name && (
                 <Error >{errors.name}</Error>
               )}
-              <Input
-                placeholder="First name"
+              <TextField
+                label="First name"
                 type="text"
-                 name="name"
+                name="name"
+                required
+              fullWidth
+              autoComplete="name"
+              autoFocus
+              variant="filled"
+              margin="normal"
+              color="primary"
+              size="small"
                  onChange={handleChange}
                  onBlur={handleBlur}
                 value={values.name}
-              ></Input>
-              <Inputicon width="24" height="24">
+              />
+              {/* <Inputicon width="24" height="24">
                 <use href={`${sprite}#icon-account`}></use>
-              </Inputicon>
-            </Label>
+              </Inputicon> */}
+            </label>
             <Btn
               disabled={!isValid || !dirty}
               type="submit"

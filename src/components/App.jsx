@@ -1,14 +1,15 @@
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import { useDispatch, useSelector } from 'react-redux';
-import PrivateRoute from './route/PrivateRoute';
-import PublicRoute from './route/PublicRoute';
+import PrivateRoute from './HOC/PrivateRoute';
+import PublicRoute from './HOC/PublicRoute';
 import { lazy, Suspense, useEffect } from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
 import { current } from 'redux/auth/auth-operations';
 import { global } from '../redux/global/global-selectors';
 import { isAuth } from '../redux/auth/auth-selectors';
 import Header from './Header/Header';
+
 // import HomeTab from './HomeTab/HomeTab';
 import Spinner from './Spinner/Spinner';
 // import { Currency } from './Currency/Currency';
@@ -34,6 +35,7 @@ export const App = () => {
         <Routes>
           <Route element={<PrivateRoute />}>
             <Route path="/" element={<Home />} />
+            
             {/* <Route
               index
               element={

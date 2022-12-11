@@ -49,7 +49,7 @@ const PasswordStrength = ({ password }) => {
       <Progress style={{ height: '7px' }}>
         <Progress style={changePasswordColor()}></Progress>
       </Progress>
-      <Text style={{ color: funcProgressColor() }}>
+      <Text >
         {createPasswordLabel()}
       </Text>
     </ProgressBar>
