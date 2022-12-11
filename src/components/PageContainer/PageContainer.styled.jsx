@@ -3,6 +3,7 @@ import purpleEllipse from '../../images/svg/ellipse-purple.svg';
 import peachEllipse from '../../images/svg/ellipse-peach.svg';
 
 export const Background = styled.div`
+  /* position: relative; */
   width: 100%;
   min-height: 100vh;
   background-color: #e7eaf2;
@@ -16,18 +17,25 @@ export const Background = styled.div`
 export const Backdrop = styled.div`
   background-color: rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(25px);
+  min-height: 100vh;
 `;
 
 export const Container = styled.div`
-  width: 100%;
+  position: relative;
+  /* height: 100vh; */
+  width: 320px;
   padding: 0 20px;
   margin: 0 auto;
 
   @media (min-width: 768px) {
+    width: 768px;
     padding: 0 32px;
   }
 
   @media (min-width: 1280px) {
+    max-width: 1280px;
+    display: flex;
+    justify-content: space-between;
     width: 1280px;
     padding: 0 18px;
   }

@@ -13,8 +13,8 @@ export const NavigationStyled = styled.div`
 
   @media screen and (min-width: 768px) {
     flex-direction: column;
-    padding-top: 0;
-    padding-bottom: 0;
+    padding-top: 40px;
+    padding-bottom: 28px;
   }
 `;
 
@@ -59,7 +59,7 @@ export const NavLinkStyled = styled(NavLink)`
   @media screen and (min-width: 768px) {
     &:not(:last-child) {
       margin-right: 0;
-      margin-bottom: 20px;
+      margin-bottom: 12px;
     }
     &.active {
       ${Text} {

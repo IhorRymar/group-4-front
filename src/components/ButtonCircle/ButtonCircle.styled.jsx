@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
 export const Button = styled.button`
-  position: absolute;
-  bottom: 0;
-  right: 0;
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
   background-color: ${(props) => props.theme.buttons.primary.bg};
   width: 44px;
   height: 44px;

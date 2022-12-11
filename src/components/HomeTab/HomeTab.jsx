@@ -18,10 +18,10 @@ const HomeTab = () => {
   const { result: data, transactionsTotalQuantity } = useSelector(getTransactions);
   
   const dispatch = useDispatch();
- 
+
   useEffect(() => {
     // console.log(page + "!!!")
-     dispatch(fetchTransactions(page));
+    dispatch(fetchTransactions(page));
   }, [dispatch, page]);
   
 
@@ -57,12 +57,17 @@ const HomeTab = () => {
 export default HomeTab
 
 const Con = styled.div`
- display:flex;
- flex-direction: column;
+  display:flex;
+  
+  flex-direction: column;
+  @media screen and (min-width: ${baseVars.sizeScreen.desktop}) {
+    padding-top: 32px;
+    align-items: flex-end;
+  }
 `
 const Paginate = styled(Pagination)`
   display:flex;
-  justify-content: flex-end;
+  justify-content: center;
   margin-top: 20px;
   @media screen and (min-width: ${baseVars.sizeScreen.mobile}) {
     width:320px;}

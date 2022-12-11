@@ -16,12 +16,10 @@ export const Number = ({ balance }) => {
     <animated.div
       style={{
         fontFamily: "'Poppins', sans-serif",
-        fontWeight: '400',
+        fontWeight: '700',
         fontSize: '30px',
         lineHeight: '1.5',
         color: '#000000',
-        paddingLeft: '40px',
-        paddingBottom: '11px',
       }}
     >
       {number.to(balance => balance?.toFixed(2))}
