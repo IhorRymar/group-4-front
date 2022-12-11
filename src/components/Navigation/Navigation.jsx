@@ -18,7 +18,7 @@ export const Navigation = () => {
   const path = window.location.pathname;
 
   const isCorectlyWidth = () =>
-    width >= 768 && path === '/currency' ? nav('/diagram') : null;
+    width >= 768 && path === '/currency' ? nav('/statistics') : null;
 
   return (
     <NavigationStyled>
