@@ -4,11 +4,8 @@ import GlobalContainer from '../../container';
 import { Container } from 'container/Container.styled';
 import { mediaQueries } from '../../utils';
 
-import DiagramTab from 'components/DiagramTab/DiagramTab';
-import HomeTab from 'components/HomeTab/HomeTab';
+
 import { DashdoardDesktop } from './DashboardPage.styled';
-import MobileCard from 'components/HomeTab/MobileCard/MobileCard';
-import TabletTab from 'components/HomeTab/TabletTab/TabletTab';
 import HomePage from 'pages/HomePage/HomePage';
 
 
