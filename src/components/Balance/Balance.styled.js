@@ -6,8 +6,13 @@ export const Wrapper = styled.div`
   flex-direction: column;
   background: #ffffff;
   border-radius: 30px;
-  max-width: 336px;
+  width: 336px;
   position: relative;
+  padding: 8px 40px 8px;
+
+  @media screen and (min-width: 1280px) {
+    width: 395px;
+  }
 `;
 
 export const Text = styled.p`
@@ -17,16 +22,15 @@ export const Text = styled.p`
   line-height: 1.5;
   text-transform: uppercase;
   color: #a6a6a6;
-  padding-left: 40px;
-  padding-top: 8px;
+  /* margin-bottom: 12px; */
 `;
 
 export const BalanceStyled = styled(Number)`
   font-family: 'Poppins', sans-serif;
-  font-weight: 400;
+  font-weight: 700;
   font-size: 30px;
   line-height: 1.5;
   color: #000000;
-  padding-left: 40px;
-  padding-bottom: 11px;
+  /* padding-left: 40px; */
+  /* padding-bottom: 11px; */
 `;

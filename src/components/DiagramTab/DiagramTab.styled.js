@@ -1,23 +1,30 @@
 import styled from 'styled-components';
-import baseVars from '../../stylesheet/vars';
+// import baseVars from '../../stylesheet/vars';
 
 export const Container = styled.div`
   min-height: 100vh;
   display:flex;
   flex-direction: column;
   align-items: center;
-  /* background-color: ${baseVars.colors.secondBg}; */
 
   @media screen and (min-width: 768px) {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    justify-content: center;
+    justify-content: space-between;
+  }
+
+  @media screen and (min-width: 1280px) {
+    padding-top: 32px;
   }
 `;
 
 export const ChartWrapper = styled.div`
-
+  margin-bottom: 32px;
+  @media screen and (min-width: 768px) {
+    margin-right: 32px;
+  }
+  
 `;
 
 export const Title = styled.h2`

@@ -1,18 +1,17 @@
-import { StyledHeader } from './Header.styled';
+import { StyledHeader, Container } from './Header.styled';
 import Logo from './Logo/Logo';
 import UserMenu from './UserMenu/UserMenu';
 // import Logout from './Logout/Logout';
-import { Outlet } from 'react-router-dom';
+
 
 const Header = () => {
   return (
-    <>
-      <StyledHeader>
+    <StyledHeader>
+      <Container>
         <Logo />
         <UserMenu />
-      </StyledHeader>
-      <Outlet></Outlet>
-    </>
+      </Container>
+    </StyledHeader>
   );
 };
 
