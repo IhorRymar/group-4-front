@@ -91,10 +91,10 @@ const Table = ({ stats }) => {
         <TableTitle>Sum</TableTitle>
       </TableHeader>
       <List>
-        {(expenses.length !== 0) ? expenses.map(({ totalSum, categoryName, index }) => {
+        {(expenses.length !== 0) ? expenses.map(({ totalSum, category, categoryName }) => {
           return (
-            <ListItem key={categoryName}>
-              <ColorBox color={categoryName}></ColorBox>
+            <ListItem key={category}>
+              <ColorBox color={category}></ColorBox>
               <TextWrapper>
                 <ListItemText>{categoryName}</ListItemText>
                 <ListItemText>{totalSum.toFixed(2)}</ListItemText>

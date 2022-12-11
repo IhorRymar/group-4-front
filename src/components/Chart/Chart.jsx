@@ -21,14 +21,13 @@ const Chart = ({ stats }) => {
     dispatch(fetchBalance());
   }, [dispatch]);
 
-  const category = expenses.map(stat => stat.categoryName);
+  const category = expenses.map(stat => stat.category);
+  const categoryName = expenses.map(stat => stat.categoryName);
   const amount = expenses.map(stat => stat.totalSum);
   const color = category.map(item => colorBoxSwitcher(item));
 
-  // console.log(expenses);
-
   let chartData = {
-  labels: category,
+  labels: categoryName,
   datasets: [
     {
       label: 'Amount',
@@ -44,7 +43,7 @@ const Chart = ({ stats }) => {
       labels: ['none'],
       datasets: [
     {
-      label: '# of Votes',
+      label: 'Amount',
       data: [100],
       backgroundColor: ['#C9CCD5'],
       borderWidth: 0,
