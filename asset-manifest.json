@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/group-4-front/static/css/main.505a4885.css",
-    "main.js": "/group-4-front/static/js/main.284e87dd.js",
+    "main.js": "/group-4-front/static/js/main.6ba73741.js",
     "static/js/631.235f8980.chunk.js": "/group-4-front/static/js/631.235f8980.chunk.js",
     "static/js/950.194495ac.chunk.js": "/group-4-front/static/js/950.194495ac.chunk.js",
     "static/css/995.e13bc168.chunk.css": "/group-4-front/static/css/995.e13bc168.chunk.css",
@@ -10,7 +10,7 @@
     "static/js/523.7a2a4b55.chunk.js": "/group-4-front/static/js/523.7a2a4b55.chunk.js",
     "static/js/408.1f8bec33.chunk.js": "/group-4-front/static/js/408.1f8bec33.chunk.js",
     "static/js/145.14260b8c.chunk.js": "/group-4-front/static/js/145.14260b8c.chunk.js",
-    "static/js/479.4396c35a.chunk.js": "/group-4-front/static/js/479.4396c35a.chunk.js",
+    "static/js/479.2dfb278f.chunk.js": "/group-4-front/static/js/479.2dfb278f.chunk.js",
     "static/media/Circe-Regular.eot": "/group-4-front/static/media/Circe-Regular.cb92908127bb9d67856e.eot",
     "static/media/Circe-Bold.eot": "/group-4-front/static/media/Circe-Bold.88073c2acd9bd5c499ea.eot",
     "static/media/Circe-Bold.woff": "/group-4-front/static/media/Circe-Bold.fca9743700608e1abf6a.woff",
@@ -30,7 +30,7 @@
     "static/media/ellipse-purple.svg": "/group-4-front/static/media/ellipse-purple.e7cbaa19930a91cc921b259fee050777.svg",
     "static/media/ellipse-peach.svg": "/group-4-front/static/media/ellipse-peach.67efe2beefff5419592e10e36bf84721.svg",
     "main.505a4885.css.map": "/group-4-front/static/css/main.505a4885.css.map",
-    "main.284e87dd.js.map": "/group-4-front/static/js/main.284e87dd.js.map",
+    "main.6ba73741.js.map": "/group-4-front/static/js/main.6ba73741.js.map",
     "631.235f8980.chunk.js.map": "/group-4-front/static/js/631.235f8980.chunk.js.map",
     "950.194495ac.chunk.js.map": "/group-4-front/static/js/950.194495ac.chunk.js.map",
     "995.e13bc168.chunk.css.map": "/group-4-front/static/css/995.e13bc168.chunk.css.map",
@@ -39,10 +39,10 @@
     "523.7a2a4b55.chunk.js.map": "/group-4-front/static/js/523.7a2a4b55.chunk.js.map",
     "408.1f8bec33.chunk.js.map": "/group-4-front/static/js/408.1f8bec33.chunk.js.map",
     "145.14260b8c.chunk.js.map": "/group-4-front/static/js/145.14260b8c.chunk.js.map",
-    "479.4396c35a.chunk.js.map": "/group-4-front/static/js/479.4396c35a.chunk.js.map"
+    "479.2dfb278f.chunk.js.map": "/group-4-front/static/js/479.2dfb278f.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.505a4885.css",
-    "static/js/main.284e87dd.js"
+    "static/js/main.6ba73741.js"
   ]
 }
