@@ -17,7 +17,7 @@ export default function CategorySelect({ name }) {
     dispatch(fetchTransactionsCategories());
   }, [dispatch]);
 
-  const categories = useSelector(getCategories());
+  const categories = useSelector(getCategories);
 
   // const categories = {
   //   'Main expenses': 0,

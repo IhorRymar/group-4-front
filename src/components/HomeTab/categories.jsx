@@ -1,22 +1,24 @@
 export const Categories = id => {
   switch (id) {
     case 0:
-      return  "House rent and keeping";
+      return  "Main expenses";
     case 1:
-      return "Food";
+      return "Products";
      case 2:
       return "Car";
     case 3:
-      return "Child care";
-     case 4:
-      return "Education";
-    case 5:
       return "Self care";
-     case 6:
-      return "Leisure";
-    case 7:
+     case 4:
+      return "Child care";
+    case 5:
       return "Household products";
+     case 6:
+      return "Education";
+    case 7:
+      return "Leisure";
      case 8:
+      return "Entertainment";
+    case 9:
       return "Help UA Armed Force";
     case 999:
       return "Other expenses";
