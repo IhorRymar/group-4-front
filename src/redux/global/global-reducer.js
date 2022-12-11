@@ -8,6 +8,7 @@ const isLoadingReducer = (state = initialState, action) => {
     'auth/signup/pending',
     'auth/login/pending',
     'auth/current/pending',
+    'transactions/add/pending',
   ];
 
   const isPending = pending.includes(action.type);

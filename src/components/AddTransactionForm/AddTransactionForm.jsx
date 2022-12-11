@@ -2,7 +2,7 @@ import { ErrorMessage, Formik } from 'formik';
 import { useState } from 'react';
 import moment from 'moment';
 import { toast } from 'react-toastify';
-import { addTrasaciotn } from 'services/transactions';
+import { addTransaction } from 'services/transactions';
 import * as Yup from 'yup';
 import {
   CheckboxContainter,
@@ -16,7 +16,6 @@ import { DatePicker } from '../DatePicker/DatePicker';
 import CategorySelect from '../CategorySelect/CategorySelect';
 import { StyledButton } from '../StyledButton/StyledButton';
 import { useDispatch } from 'react-redux';
-import { toggleModal } from 'redux/modal/modal-sclice';
 
 export const AddTransactionForm = ({ toggleModal }) => {
   moment.updateLocale('uk');
@@ -33,7 +32,7 @@ export const AddTransactionForm = ({ toggleModal }) => {
     transactionType: { transactionType },
     date: initialDate,
     amount: '',
-    category: 0,
+    category: '',
     comment: '',
   };
 
@@ -44,16 +43,20 @@ export const AddTransactionForm = ({ toggleModal }) => {
     comment: Yup.string().max(50),
   });
 
-  const handleSubmit = async ({ transactionType, ...rest }, actions) => {
-    let values = {
-      ...transactionType,
-      ...rest,
-    };
-    console.log(values);
+  const handleSubmit = async (
+    { transactionType, category, ...rest },
+    actions
+  ) => {
+    let result =
+      category === 'expense'
+        ? { ...transactionType, category, ...rest }
+        : { ...transactionType, ...rest };
 
-    toggleModal();
-    await dispatch(addTrasaciotn(values));
+    console.log(result);
+
+    await dispatch(addTransaction(result));
     actions.resetForm();
+    toggleModal();
   };
   return (
     <>
@@ -67,7 +70,7 @@ export const AddTransactionForm = ({ toggleModal }) => {
             <CheckboxContainter>
               <MoneyText
                 style={
-                  transactionType === 'Income'
+                  transactionType === 'income'
                     ? { color: '#24cca7' }
                     : { color: '#E0E0E0' }
                 }
@@ -82,7 +85,7 @@ export const AddTransactionForm = ({ toggleModal }) => {
 
               <MoneyText
                 style={
-                  transactionType === 'Expenses'
+                  transactionType === 'expense'
                     ? { color: '#FF6596' }
                     : { color: '#E0E0E0' }
                 }
@@ -91,9 +94,9 @@ export const AddTransactionForm = ({ toggleModal }) => {
               </MoneyText>
             </CheckboxContainter>
           </label>
-          {transactionType === 'Expenses' ? (
+          {transactionType === 'expense' ? (
             <label htmlFor="category">
-              <CategorySelect name="category" type="number" />
+              <CategorySelect name="category" />
             </label>
           ) : (
             ''
