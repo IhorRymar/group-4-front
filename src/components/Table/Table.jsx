@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchStatistics } from 'redux/Statistics/statistics-operations';
+import { fetchTransactions } from 'redux/transactions/transactions-operation';
 
 import { months, convertMonthNameToNumber } from 'services/monthList';
 
@@ -11,7 +12,7 @@ const currentDate = new Date();
 const currentMonth = currentDate.toLocaleString('en-EN', { month: 'long' });
 const currentYear = currentDate.getFullYear();
 
-const Table = ({stats}) => {
+const Table = ({ stats }) => {
   const [month, setMonth] = useState(currentMonth);
   const [year, setYear] = useState(currentYear);
 
@@ -27,8 +28,9 @@ const Table = ({stats}) => {
   const income = useSelector(state => state.statistics.income);
   const expensesTotal = expenses.reduce((acc, item) => acc + item.totalSum, 0);
   const incomeTotal = income.reduce((acc, item) => acc + item.totalSum, 0);
+  const allTransactions = useSelector(state => state.transactions.items);
+  const yearList = [...new Set(allTransactions.map(item => item.date.substring(0, 4)))];
 
-  
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -37,6 +39,7 @@ const Table = ({stats}) => {
     startYear: year,
     } ;
     dispatch(fetchStatistics(period));
+    dispatch(fetchTransactions());
   }, [dispatch, monthNumber, year]);
 
   return (
@@ -74,10 +77,13 @@ const Table = ({stats}) => {
           }}
           MenuProps={MenuProps}
         >
-          <StyledMenuItem value={'2019'}>2019</StyledMenuItem>
-          <StyledMenuItem value={'2020'}>2020</StyledMenuItem>
-          <StyledMenuItem value={'2021'}>2021</StyledMenuItem>
-          <StyledMenuItem value={'2022'}>2022</StyledMenuItem>
+          {(yearList.length !== 0) ? yearList.map(year => {
+            return (
+              <StyledMenuItem key={year} value={year}>{year}</StyledMenuItem>
+            )
+          }) :
+            <StyledMenuItem key={currentYear} value={currentYear}>{currentYear}</StyledMenuItem>
+          }
         </StyledSelect>
       </SelectWrapper>
       <TableHeader>
@@ -91,7 +97,7 @@ const Table = ({stats}) => {
               <ColorBox color={categoryName}></ColorBox>
               <TextWrapper>
                 <ListItemText>{categoryName}</ListItemText>
-                <ListItemText>{totalSum}</ListItemText>
+                <ListItemText>{totalSum.toFixed(2)}</ListItemText>
               </TextWrapper>
             </ListItem>
           );
@@ -104,11 +110,11 @@ const Table = ({stats}) => {
       </List>
       <TotalContainer>
         <TotalText>Expenses:</TotalText>
-        <TotalNumber exp>{expensesTotal}</TotalNumber>
+        <TotalNumber exp>{expensesTotal.toFixed(2)}</TotalNumber>
       </TotalContainer>
       <TotalContainer>
         <TotalText>Income:</TotalText>
-        <TotalNumber>{incomeTotal}</TotalNumber>
+        <TotalNumber>{incomeTotal.toFixed(2)}</TotalNumber>
       </TotalContainer>
     </TableContainer>
   );
