@@ -29,7 +29,6 @@ export const AddTransactionForm = ({ toggleModal }) => {
   const dispatch = useDispatch();
 
   const initialValues = {
-    transactionType: { transactionType },
     date: initialDate,
     amount: '',
     category: '',
@@ -37,22 +36,24 @@ export const AddTransactionForm = ({ toggleModal }) => {
   };
 
   const addTrasactionSchema = Yup.object().shape({
-    category: Yup.string().required(),
+    category: Yup.string(),
     amount: Yup.number().required(),
     date: Yup.date().required(),
     comment: Yup.string().max(50),
   });
 
-  const handleSubmit = async (
-    { transactionType, category, ...rest },
-    actions
-  ) => {
+  const handleSubmit = async ({ category, ...rest }, actions) => {
+    const resultValues = {
+      category,
+      ...rest,
+      transactionType,
+    };
     let result =
-      category === 'expense'
-        ? { ...transactionType, category, ...rest }
-        : { ...transactionType, ...rest };
+      transactionType === 'expense'
+        ? { transactionType, category, ...rest }
+        : { transactionType, ...rest };
 
-    console.log(result);
+    console.log(resultValues);
 
     await dispatch(addTransaction(result));
     actions.resetForm();
@@ -79,8 +80,9 @@ export const AddTransactionForm = ({ toggleModal }) => {
               </MoneyText>
               <CheckboxField
                 type="checkbox"
-                name="money"
+                name="transactionType"
                 onChange={e => isIncomeHandler(e)}
+                value={transactionType}
               />
 
               <MoneyText
