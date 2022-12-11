@@ -8,7 +8,7 @@ import EllipsisText from "react-ellipsis-text";
 
 const MobileCard = ({ items}) => {
 
- const date = items?.length ? items?.map(item => item) : null;
+  const date = items?.length ? items?.map(item => item) : null;
   const data = date?.sort((a, b) =>
     b.date
       .split('.')
@@ -16,7 +16,7 @@ const MobileCard = ({ items}) => {
       .join()
       .localeCompare(a.date.split('.').reverse().join())
   );
- 
+
   return (
   <>
       {
@@ -35,10 +35,10 @@ const MobileCard = ({ items}) => {
                 <ListItems><TitleItems>Balance</TitleItems><TextItems>{balance.toFixed(2)}</TextItems></ListItems>
               </TransactionList>
             ))}
-                 
+
           </TransactionContainer> : <EmptyContainer />}
-   
-   </> )
+
+  </> )
 }
 MobileCard.propTypes = {
   items: PropTypes.arrayOf(
@@ -67,20 +67,17 @@ const borderColor = type => {
 };
 
 const TransactionContainer = styled.div`
- @media screen and (min-width: ${baseVars.sizeScreen.mobile}) {
+  @media screen and (min-width: ${baseVars.sizeScreen.mobile}) {
     display:flex;
     flex-direction: column;
     align-items:center;
-    margin-top: 32px;
-    background-color: #DCDCDF;
- }  
+  }  
 `;
 
 const TransactionList = styled.ul`
 @media screen and (min-width: ${baseVars.sizeScreen.mobile}) {
     box-sizing: border-box;
     width:280px;
-    height:282px;
     list-style: none;
     padding: 0px;
     border-radius:5px ;
@@ -92,11 +89,11 @@ const TransactionList = styled.ul`
 `;
 const ListItems = styled.li`
 @media screen and (min-width: ${baseVars.sizeScreen.mobile}) {
-     display:flex;
+    display:flex;
     justify-content: space-between;
     align-items: center;
     padding: 12px 20px 8px 20px;
-       
+
     :not(:last-child) {
         border-bottom: 1px solid #DCDCDF;
     }

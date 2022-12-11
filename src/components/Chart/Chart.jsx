@@ -1,7 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react';
-import { getBalance } from 'redux/balance/balance-selector';
-  import { fetchBalance } from 'redux/balance/balance-operation';
+import { fetchBalance } from 'redux/balance/balance-operation';
 
 import { Chart as ChartJS, ArcElement, Tooltip } from 'chart.js';
 import { Doughnut } from "react-chartjs-2"; 
@@ -13,7 +12,7 @@ ChartJS.register(ArcElement, Tooltip);
 
 const Chart = ({ stats }) => {
   const expenses = useSelector(state => state.statistics.expenses);
-  const { balance: data } = useSelector(getBalance);
+  const balance = useSelector(state => state.balance.balance);
 
   const dispatch = useDispatch();
 
@@ -55,7 +54,7 @@ const Chart = ({ stats }) => {
   return (
     <Container>
       <Doughnut data={chartData} />
-      <Balance >₴ {data.balance?.toFixed(2)}</Balance>
+      <Balance >₴ {(balance === 0) ? '0.00' : balance.balance.toFixed(2)}</Balance>
     </Container>
   );
 }
