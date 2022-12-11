@@ -11,7 +11,7 @@ import { isAuth } from '../redux/auth/auth-selectors';
 import Header from './Header/Header';
 // import HomeTab from './HomeTab/HomeTab';
 import Spinner from './Spinner/Spinner';
-// import { Currency } from './Currency/Currency';
+import { Currency } from './Currency/Currency';
 const Register = lazy(() => import('../pages/RegisterPage/RegisterPage'));
 const Login = lazy(() => import('../pages/LoginPage/LoginPage.jsx'));
 const Home = lazy(() => import('../pages/HomePage/HomePage'));
@@ -34,7 +34,7 @@ export const App = () => {
         <Routes>
           <Route element={<PrivateRoute />}>
             <Route path="/" element={<Home />} />
-            {/* <Route
+            <Route
               index
               element={
                 <div>
@@ -63,7 +63,7 @@ export const App = () => {
                 </main>
               }
             />
-            <Route path="/statistics" element={<Statistics />} /> */}
+            {/* <Route path="/statistics" element={<Statistics />} /> */}
           </Route>
 
           <Route element={<PublicRoute />}>

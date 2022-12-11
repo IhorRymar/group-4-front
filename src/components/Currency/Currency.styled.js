@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import backgroundImg from '../../images/photo/backgroundcurr.png';
 
 export const ContainerStyled = styled.div`
   padding-top: 20px;
@@ -121,7 +122,7 @@ export const TextItemText = styled.p`
 `;
 
 export const Background = styled.div`
-  background-image: url('../../images/photo/backgroundcurr.png');
+  background-image: url(${backgroundImg});
   background-repeat: no-repeat;
   background-size: 100%;
   width: 100%;
@@ -137,11 +138,13 @@ export const Line = styled.hr`
   @media screen and (min-width: 1280px) {
     box-shadow: -1px 0px 0px rgba(0, 0, 0, 0.05),
       1px 0px 0px rgba(255, 255, 255, 0.6);
-    color: #e7e5f2;
+    background-color: #e7e5f2;
     height: calc(100% + 40px);
+    width: 1px;
     top: -47px;
     right: 0;
     position: absolute;
     margin: 0;
+    border: none;
   }
 `;
