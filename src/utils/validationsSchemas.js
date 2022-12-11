@@ -14,7 +14,7 @@ export const singupSchema = Yup.object({
   name: Yup.string()
     .typeError('It should be long')
     .min(2, 'Name should be of minimum 2 character length')
-    .max(20, 'Name should be of maximum 20 characters length')
+    .max(12, 'Name should be of maximum 12 characters length')
     .required('Name is required'),
   password: Yup.string()
     .matches(
@@ -30,7 +30,10 @@ export const singupSchema = Yup.object({
     .oneOf([Yup.ref('password')], 'Passwords do not match'),
   email: Yup.string()
     .email('Please enter a valid email')
-    .matches(/(^[^@.]+)@([^@.]+)\.{1}(\w{1,6}$)/, 'Incorrect email')
+    .matches(
+      /(^[a-zA-Z0-9._-]{2,63}@[a-zA-Z0-9.]+\.[a-zA-Z0-9.]{2,}$)/,
+      'Incorrect email'
+    )
     .typeError('It should be long')
     .required('Email is required'),
 });
