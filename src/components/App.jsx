@@ -11,20 +11,16 @@ import { isAuth } from '../redux/auth/auth-selectors';
 import Header from './Header/Header';
 // import HomeTab from './HomeTab/HomeTab';
 import Spinner from './Spinner/Spinner';
-
+import { Currency } from './Currency/Currency';
 const Register = lazy(() => import('../pages/RegisterPage/RegisterPage'));
 const Login = lazy(() => import('../pages/LoginPage/LoginPage.jsx'));
 const Home = lazy(() => import('../pages/HomePage/HomePage'));
-const Statistics = lazy(() => import('../pages/StatsPage/StatsPage'));
+// const Statistics = lazy(() => import('../pages/StatsPage/StatsPage'));
 
 export const App = () => {
   const dispatch = useDispatch();
   const loading = useSelector(global);
   const isLogin = useSelector(isAuth);
-
-  useEffect(() => {
-    dispatch(current());
-  }, [dispatch]);
 
   useEffect(() => {
     dispatch(current());
@@ -38,11 +34,41 @@ export const App = () => {
         <Routes>
           <Route element={<PrivateRoute />}>
             <Route path="/" element={<Home />} />
-            <Route path="/statistics" element={<Statistics />} />
+            <Route
+              index
+              element={
+                <div>
+                  <Currency />
+                </div>
+              }
+            />
+            <Route
+              path="/diagram"
+              element={
+                <div>
+                  <Currency />
+                </div>
+              }
+            />
+            <Route path="/currency" element={<Currency />} />
+            <Route
+              path="*"
+              element={
+                <main style={{ padding: '1rem' }}>
+                  <span>There's nothing here!</span>
+                  <br />
+                  <span>
+                    <Link to={'/'}>Return</Link>
+                  </span>
+                </main>
+              }
+            />
+            {/* <Route path="/statistics" element={<Statistics />} /> */}
           </Route>
+
           <Route element={<PublicRoute />}>
-            <Route path="/register" element={<Register />} />
-            <Route path="/login" element={<Login />} />
+            <Route path="register" element={<Register />} />
+            <Route path="login" element={<Login />} />
           </Route>
           <Route
             path="*"

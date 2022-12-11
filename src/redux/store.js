@@ -12,6 +12,8 @@ import {
 import authReducer from './auth/auth-slice';
 import statisticsReducer from './Statistics/statistics-slice';
 import transactionReducer from './transactions/transactions-slice';
+import balanceReducer from './balance/balance-slice';
+import currencyReducer from './currency/currency-slice';
 import storage from 'redux-persist/lib/storage';
 import globalReducer from './global/global-reducer';
 import categoriesReducer from './categories/categories-slice';
@@ -31,6 +33,8 @@ export const store = configureStore({
     global: globalReducer,
     transactions: transactionReducer,
     categories: categoriesReducer,
+    balance: balanceReducer,
+    currency: currencyReducer,
   },
   middleware: getDefaultMiddleware({
     serializableCheck: {

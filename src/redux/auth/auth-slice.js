@@ -21,7 +21,7 @@ const authSlice = createSlice({
     [signup.fulfilled]: (store, { payload }) => {
       store.loading = false;
       store.user = payload.user.name;
-      store.token = payload.accessToken;
+      store.token = payload.user.accessToken;
       store.isLogin = true;
     },
     [signup.rejected]: (store, { payload }) => {
