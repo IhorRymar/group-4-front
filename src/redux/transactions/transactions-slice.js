@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { fetchTransactions, addTrasaciotn } from './transactions-operation';
+import { fetchTransactions, addTransaction } from './transactions-operation';
 
 const initialState = {
   items: [],
@@ -24,15 +24,15 @@ const transactionReducer = createSlice({
       store.loading = false;
       store.error = payload;
     },
-    [addTrasaciotn.pending]: store => {
+    [addTransaction.pending]: store => {
       store.loading = true;
       store.error = null;
     },
-    [addTrasaciotn.fulfilled]: (store, { payload }) => {
+    [addTransaction.fulfilled]: (store, { payload }) => {
       store.loading = false;
       store.items = store.items.push(payload);
     },
-    [addTrasaciotn.rejected]: (store, { payload }) => {
+    [addTransaction.rejected]: (store, { payload }) => {
       store.loading = false;
       store.error = payload;
     },

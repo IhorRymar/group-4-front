@@ -5,3 +5,8 @@ export const getTransactions = async () => {
   console.log(data.result);
   return data.result;
 };
+
+export const addTransaction = async transaction => {
+  const { data: result } = await instance.post('/transactions', transaction);
+  console.log(result);
+};
