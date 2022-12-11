@@ -28,7 +28,7 @@ export const Navigation = () => {
         </IconField>
         {width >= 768 ? <Text>Home</Text> : null}
       </NavLinkStyled>
-      <NavLinkStyled to={'/diagram'}>
+      <NavLinkStyled to={'/statistics'}>
         <IconField>
           <BiStatsStyled />
         </IconField>

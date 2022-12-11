@@ -28,7 +28,7 @@ const Table = ({ stats }) => {
   const income = useSelector(state => state.statistics.income);
   const expensesTotal = expenses.reduce((acc, item) => acc + item.totalSum, 0);
   const incomeTotal = income.reduce((acc, item) => acc + item.totalSum, 0);
-  const allTransactions = useSelector(state => state.transactions.items.result);
+  // const allTransactions = useSelector(state => state.transactions.items.result);
   // const yearList = [...new Set(allTransactions.map(item => item.date.substring(0, 4)))];
 
   const dispatch = useDispatch();
@@ -42,7 +42,7 @@ const Table = ({ stats }) => {
     dispatch(fetchTransactions());
   }, [dispatch, monthNumber, year]);
 
-  console.log(allTransactions);
+  // console.log(allTransactions);
 
   return (
     <TableContainer>

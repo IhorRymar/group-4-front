@@ -1,4 +1,5 @@
 import PageContainer from 'components/PageContainer/PageContainer';
+import { Navigation } from 'components/Navigation/Navigation';
 import HomeTab from 'components/HomeTab/HomeTab';
 import { ButtonCircle } from 'components/ButtonCircle/ButtonCircle';
 import { ModalAddTransaction } from 'components/ModalAddTransaction/ModalAddTransaction';
@@ -18,6 +19,7 @@ const HomePage = () => {
 
   return (
     <PageContainer>
+      <Navigation />
       <HomeTab />
       <ButtonCircle onClick={onModal}>+</ButtonCircle>
       {isModalOpen && (

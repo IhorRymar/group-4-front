@@ -12,11 +12,11 @@ import Header from './Header/Header';
 // import HomeTab from './HomeTab/HomeTab';
 import Spinner from './Spinner/Spinner';
 import { Currency } from './Currency/Currency';
-import DiagramTab from './DiagramTab/DiagramTab';
+// import DiagramTab from './DiagramTab/DiagramTab';
 const Register = lazy(() => import('../pages/RegisterPage/RegisterPage'));
 const Login = lazy(() => import('../pages/LoginPage/LoginPage.jsx'));
 const Home = lazy(() => import('../pages/HomePage/HomePage'));
-// const Statistics = lazy(() => import('../pages/StatsPage/StatsPage'));
+const Statistics = lazy(() => import('../pages/StatsPage/StatsPage'));
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -35,23 +35,15 @@ export const App = () => {
         <Routes>
           <Route element={<PrivateRoute />}>
             <Route path="/" element={<Home />} />
-            <Route
+            {/* <Route
               index
               element={
                 <div>
                   <Currency />
                 </div>
               }
-            />
-            <Route
-              path="/diagram"
-              element={
-                <div>
-                  <Currency />
-                  <DiagramTab />
-                </div>
-              }
-            />
+            /> */}
+            <Route path="/statistics" element={<Statistics />} />
             <Route path="/currency" element={<Currency />} />
             <Route
               path="*"
