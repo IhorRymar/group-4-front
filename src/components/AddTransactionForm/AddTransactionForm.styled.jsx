@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { TextareaAutosize } from '@mui/material';
+
 import { Field, Form } from 'formik';
 
 export const StyledForm = styled(Form)`
