@@ -18,11 +18,11 @@ export const Navigation = () => {
   const path = window.location.pathname;
 
   const isCorectlyWidth = () =>
-    width >= 768 && path === '/currency' ? nav('/statistics') : null;
-
+    width >= 768 && path === '/group-4-front/currency' ? nav('/statistics') : null;
+  
   return (
     <NavigationStyled>
-      <NavLinkStyled to={'/'}>
+      <NavLinkStyled to={'/home'}>
         <IconField>
           <IoMdHomeStyled />
         </IconField>

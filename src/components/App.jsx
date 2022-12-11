@@ -9,18 +9,14 @@ import { current } from 'redux/auth/auth-operations';
 import { global } from '../redux/global/global-selectors';
 import { isAuth } from '../redux/auth/auth-selectors';
 import Header from './Header/Header';
-// import HomeTab from './HomeTab/HomeTab';
+import HomeTab from './HomeTab/HomeTab';
 import Spinner from './Spinner/Spinner';
-import { Currency } from './Currency/Currency';
-// import DiagramTab from './DiagramTab/DiagramTab';
-import DashboardPage from 'pages/DashboardPage/DashboardPage';
-
-
+import Currency from './Currency/Currency';
+import DiagramTab from './DiagramTab/DiagramTab';
 
 const Register = lazy(() => import('../pages/RegisterPage/RegisterPage'));
 const Login = lazy(() => import('../pages/LoginPage/LoginPage.jsx'));
-const Home = lazy(() => import('../pages/HomePage/HomePage'));
-const Statistics = lazy(() => import('../pages/StatsPage/StatsPage'));
+const Dashboard = lazy(() => import('../pages/DashboardPage/DashboardPage'));
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -38,18 +34,11 @@ export const App = () => {
         {isLogin && <Header /> }
         <Routes>
           <Route element={<PrivateRoute />}>
-            <Route path="/" element={<Home />} />            
-            <Route
-              index
-              element={
-                <Currency>
-                  <DashboardPage />
-                </Currency>
-              }
-            />
-            <Route path="/statistics" element={<Statistics />} />
-            <Route path="/currency" element={<Currency />} />
-            
+            <Route path="/" element={<Dashboard />}>
+              <Route path="/home" element={<HomeTab />} />
+              <Route path="/statistics" element={<DiagramTab />} /> 
+              <Route path="/currency" element={<Currency />} />
+            </Route>            
             <Route
               path="*"
               element={
@@ -57,12 +46,11 @@ export const App = () => {
                   <span>There's nothing here!</span>
                   <br />
                   <span>
-                    <Link to={'/'}>Return</Link>
+                    <Link to={'/home'}>Return</Link>
                   </span>
                 </main>
               }
             />
-            {/* <Route path="/statistics" element={<Statistics />} /> */}
           </Route>
 
           <Route element={<PublicRoute />}>
@@ -76,7 +64,7 @@ export const App = () => {
                 <span>There's nothing here!</span>
                 <br />
                 <span>
-                  <Link to={'/'}>Return</Link>
+                  <Link to={'/home'}>Return</Link>
                 </span>
               </main>
             }

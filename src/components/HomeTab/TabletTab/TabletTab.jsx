@@ -111,12 +111,12 @@ const GeneralContainer = styled.div`
   @media screen and (min-width: ${baseVars.sizeScreen.tablet}) {
     width: 704px;
     height: 312px;
-    margin: 20px 32px 0px 32px;
+    /* margin: 0 32px 0px 32px; */
     background-color: transparent;
   }
   @media screen and (min-width: ${baseVars.sizeScreen.desktop}) {
     width: 715px;
-    margin: 46px 16px 0px 69px;
+    /* margin: 46px 16px 0px 69px; */
   }
 `;
 const HeadContainer = styled.thead`
