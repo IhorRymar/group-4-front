@@ -20,7 +20,7 @@ const authSlice = createSlice({
     },
     [signup.fulfilled]: (store, { payload }) => {
       store.loading = false;
-      store.user = payload.user.name;
+      store.user = payload.name;
       store.token = payload.user.accessToken;
       store.isLogin = true;
     },
@@ -34,7 +34,7 @@ const authSlice = createSlice({
     },
     [login.fulfilled]: (store, { payload }) => {
       store.loading = false;
-      store.user = payload.user.name;
+      store.user = payload.name;
       store.token = payload.accessToken;
       store.isLogin = true;
     },
