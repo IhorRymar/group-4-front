@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Number } from './Number/Number';
 
 export const Wrapper = styled.div`
   display: flex;
@@ -6,6 +7,7 @@ export const Wrapper = styled.div`
   background: #ffffff;
   border-radius: 30px;
   max-width: 336px;
+  position: relative;
 `;
 
 export const Text = styled.p`
@@ -19,7 +21,7 @@ export const Text = styled.p`
   padding-top: 8px;
 `;
 
-export const BalanceStyled = styled.p`
+export const BalanceStyled = styled(Number)`
   font-family: 'Poppins', sans-serif;
   font-weight: 400;
   font-size: 30px;
