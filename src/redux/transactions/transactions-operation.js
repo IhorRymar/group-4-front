@@ -13,7 +13,7 @@ export const fetchTransactions = createAsyncThunk(
   }
 );
 
-export const addTrasaciotn = createAsyncThunk(
+export const addTransaction = createAsyncThunk(
   'transactions/add',
   async (transaction, { rejectWithValue }) => {
     try {
