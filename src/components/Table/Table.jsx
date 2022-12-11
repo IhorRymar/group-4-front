@@ -28,8 +28,8 @@ const Table = ({ stats }) => {
   const income = useSelector(state => state.statistics.income);
   const expensesTotal = expenses.reduce((acc, item) => acc + item.totalSum, 0);
   const incomeTotal = income.reduce((acc, item) => acc + item.totalSum, 0);
-  const allTransactions = useSelector(state => state.transactions.items);
-  const yearList = [...new Set(allTransactions.map(item => item.date.substring(0, 4)))];
+  const allTransactions = useSelector(state => state.transactions.items.result);
+  // const yearList = [...new Set(allTransactions.map(item => item.date.substring(0, 4)))];
 
   const dispatch = useDispatch();
 
@@ -41,6 +41,8 @@ const Table = ({ stats }) => {
     dispatch(fetchStatistics(period));
     dispatch(fetchTransactions());
   }, [dispatch, monthNumber, year]);
+
+  console.log(allTransactions);
 
   return (
     <TableContainer>
@@ -77,13 +79,14 @@ const Table = ({ stats }) => {
           }}
           MenuProps={MenuProps}
         >
-          {(yearList.length !== 0) ? yearList.map(year => {
+          {/* {(yearList.length !== 0) ? yearList.map(year => {
             return (
               <StyledMenuItem key={year} value={year}>{year}</StyledMenuItem>
             )
           }) :
             <StyledMenuItem key={currentYear} value={currentYear}>{currentYear}</StyledMenuItem>
-          }
+          } */}
+          <StyledMenuItem key={currentYear} value={currentYear}>{currentYear}</StyledMenuItem>
         </StyledSelect>
       </SelectWrapper>
       <TableHeader>
