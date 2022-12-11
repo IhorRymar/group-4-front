@@ -1,25 +1,27 @@
 export const colorBoxSwitcher = (color) => {
   switch (color) {
-    case 'House rent and keeping':
+    case 0:
       return '#FED057';
-    case 'Food':
+    case 1:
       return '#FFD8D0';
-    case 'Car':
+    case 2:
       return '#FD9498';
-    case 'Child care':
+    case 3:
       return '#C5BAFF';
-    case 'Education':
+    case 4:
       return '#6E78E8';
-    case 'Self Care':
+    case 5:
       return '#4A56E2';
-    case 'Leisure':
+    case 6:
       return '#81E1FF';
-    case 'Household products':
+    case 7:
       return '#24CCA7';
-    case 'Help UA Armed Force':
+    case 8:
       return '#00AD84';
-    case 'Other expenses':
+    case 9:
       return '#4A8726';
+    case 999:
+      return '#A08320';
     default:
       return '#A08320';
   }
