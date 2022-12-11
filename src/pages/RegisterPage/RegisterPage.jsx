@@ -1,42 +1,42 @@
-import {  Container } from "./RegisterPage.styled";
-import { Title, Img, FormLogin, WrapperImg } from "pages/LoginPage/LoginPage.styled";
+import { Container, Img, FormLogin, Title} from "pages/LoginPage/LoginPage.styled";
+import { RegisterImg } from "./RegisterPage.styled";
 import Media from 'react-media'
 import { mediaQueries } from '../../utils'
 import  RegisterForm  from '../../components/RegisterForm/RegisterForm';
 import registerimg from '../../images/photo/register-img.png'
-import GlobalContainer from '../../container/Container.jsx'
+import PageContainer from '../../components/PageContainer/PageContainer'
 
 const RegisterPage = () => {
   return (
-    <GlobalContainer>
+    <PageContainer>
       <Container>
          <Media queries={mediaQueries}>
           {(matches) => (
             <>
               {matches.tablet && (
-                <WrapperImg>
+                <RegisterImg>
                   <Img
                     src={registerimg}
-                    alt="Человек с тележкой продуктов"
+                    alt="a girl with a phone"
                     width="274px"
                     height="250px"
                   />
                   
                   
                   <Title>Finance App</Title>
-               </WrapperImg>
+               </RegisterImg>
               )}
               {matches.desktop && (
-                <WrapperImg>
+                <RegisterImg>
                   <Img
                     src={registerimg}
-                    alt="Девушка с телефоном в руках"
+                    alt="a girl with a phone"
                     width="452px"
                     height="413px"
                   />
                   
                   <Title>Finance App</Title>
-                </WrapperImg>
+                </RegisterImg>
               )}
             </>
           )}
@@ -47,7 +47,7 @@ const RegisterPage = () => {
           <RegisterForm />
         </FormLogin>
       </Container>
-    </GlobalContainer>
+      </PageContainer>
   )
 }
 

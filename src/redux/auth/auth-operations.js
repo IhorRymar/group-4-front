@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 // import { useNavigate } from 'react-router-dom';
-
+import { toast } from 'react-toastify';
 import * as api from '../../services/auth';
 
 export const signup = createAsyncThunk(
@@ -9,15 +9,24 @@ export const signup = createAsyncThunk(
     // const navigate = useNavigate();
     try {
       const result = await api.signup(data);
+      if (data) {
+        toast.success('Congratulations!!! You have registered');
+        return data;
+      }
       // navigate('/login', { replace: true });
       return result;
-    } catch ({ response }) {
-      const { status, data } = response;
-      const error = {
-        status,
-        message: data.message,
-      };
-      return rejectWithValue(error);
+    } catch (error) {
+      if (error.response.status === 400) {
+        return rejectWithValue(
+          toast.error('The e-mail or password is incorrect')
+        );
+      }
+      if (error.response.status === 409) {
+        return rejectWithValue(toast.error('User has already created'));
+      }
+      return rejectWithValue(
+        toast.error('Something went wrong! Try signup again')
+      );
     }
   }
 );
@@ -27,14 +36,23 @@ export const login = createAsyncThunk(
   async (data, { rejectWithValue }) => {
     try {
       const result = await api.login(data);
+      if (data) {
+        toast.success('you are logged in');
+        return data;
+      }
       return result;
-    } catch ({ response }) {
-      const { status, data } = response;
-      const error = {
-        status,
-        message: data.message,
-      };
-      return rejectWithValue(error);
+    } catch (error) {
+      if (error.response.status === 400) {
+        return rejectWithValue(toast.error('Login error! Try login again.'));
+      }
+      if (error.response.status === 401) {
+        return rejectWithValue(
+          toast.error('The e-mail or password is incorrect')
+        );
+      }
+      return rejectWithValue(
+        toast.error('Something went wrong! Try login again')
+      );
     }
   }
 );
@@ -46,13 +64,8 @@ export const current = createAsyncThunk(
       const { auth } = getState();
       const result = await api.getCurrent(auth.token);
       return result;
-    } catch ({ response }) {
-      const { status, data } = response;
-      const error = {
-        status,
-        message: data.message,
-      };
-      return rejectWithValue(error);
+    } catch (error) {
+      return rejectWithValue(error.response.message);
     }
   }
 );

@@ -3,9 +3,9 @@ import styled from 'styled-components';
 export const Container = styled.div`
   display: flex;
   align-items: center;
-  height: 100vh;
   max-width: 480px;
-
+  margin: 0 auto;
+  padding: 20px;
   @media screen and (min-width: 768px) {
     display: flex;
     flex-direction: column;

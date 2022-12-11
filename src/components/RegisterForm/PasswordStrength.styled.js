@@ -16,4 +16,5 @@ export const ProgressBar = styled.div`
 export const Text = styled.p`
   font-size: 12px;
   text-align: end;
+  color: #ff6596;
 `;
