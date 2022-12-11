@@ -5,6 +5,8 @@ import { ModalAddTransaction } from 'components/ModalAddTransaction/ModalAddTran
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleModal } from 'redux/modal/modal-sclice';
 
+
+
 const HomePage = () => {
   const dispatch = useDispatch();
   const isModalOpen = useSelector(

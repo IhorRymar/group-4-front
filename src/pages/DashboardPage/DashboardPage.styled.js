@@ -7,7 +7,7 @@ export const DashdoardDesktop = styled.div`
   padding-top: 32px;
   padding-bottom: 32px;
   width: 100%;
-  position: relative;
+  
   
 
 `;

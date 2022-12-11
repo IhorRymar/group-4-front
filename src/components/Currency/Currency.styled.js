@@ -3,9 +3,10 @@ import backgroundImg from '../../images/photo/backgroundcurr.png';
 
 export const ContainerStyled = styled.div`
   padding-top: 20px;
-  display: flex;
+  /* display: flex; */
 
   @media screen and (min-width: 1280px) {
+    display: flex;
     padding-top: 40px;
     position: relative;
   }
@@ -35,6 +36,32 @@ export const Wrapper = styled.div`
     position: relative;
   }
 `;
+
+export const WrapperDashboard = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 728px;
+  margin: 0 auto;
+
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  @media screen and (min-width: 1280px) {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    max-width: 37%;
+    margin: 0;
+    padding-left: 50px;
+    height: 100vh;
+    position: relative;
+  }
+`
+
 
 export const Item = styled.div`
   @media screen and (min-width: 768px) {

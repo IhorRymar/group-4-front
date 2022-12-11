@@ -17,6 +17,7 @@ import {
   TitleItem,
   TitleList,
   Wrapper,
+  WrapperDashboard,
 } from './Currency.styled';
 import Spinner from 'components/Spinner/Spinner';
 import { fetchCurrency } from 'redux/currency/currency-operation';
@@ -24,7 +25,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getCurrency } from 'redux/currency/currency-selector';
 import { toast } from 'react-toastify';
 
-export const Currency = () => {
+
+
+
+export const Currency = (props) => {
   const { width } = useWindowDimensions();
 
   const { currency: data, loading, error } = useSelector(getCurrency);
@@ -98,6 +102,9 @@ export const Currency = () => {
           </Table>
           {width >= 1280 ? <Line /> : null}
         </Wrapper>
+        <WrapperDashboard>
+          {props.children}
+        </WrapperDashboard>
       </ContainerStyled>
     </Container>
   );
