@@ -55,7 +55,7 @@ const Chart = ({ stats }) => {
   return (
     <Container>
       <Doughnut data={chartData} />
-      <Balance >₴ {data.balance.toFixed(2)}</Balance>
+      <Balance >₴ {data.balance?.toFixed(2)}</Balance>
     </Container>
   );
 }
