@@ -5,7 +5,7 @@ import { React } from 'react';
 import { EmptyContainer } from '../EmptyContainer/EmptyContainer';
 import moment from 'moment';
 import { Categories } from '../categories';
-import EllipsisText from "react-ellipsis-text";
+import EllipsisText from 'react-ellipsis-text';
 
 const TabletTab = ({ items, columns }) => {
   const date = items.length ? items?.map(item => item) : null;
@@ -51,7 +51,13 @@ const TabletTab = ({ items, columns }) => {
                         {transactionType === 'income' ? '+' : '-'}
                       </BodyItems>
                       <BodyItems>{Categories(category)}</BodyItems>
-                      <BodyItems><EllipsisText text={`${comment  || "---"}`} length={24} tooltip="true" /></BodyItems>
+                      <BodyItems>
+                        <EllipsisText
+                          text={`${comment || '---'}`}
+                          length={24}
+                          tooltip="true"
+                        />
+                      </BodyItems>
                       <BodyItems>
                         {transactionType === 'income' ? (
                           <SpanSum

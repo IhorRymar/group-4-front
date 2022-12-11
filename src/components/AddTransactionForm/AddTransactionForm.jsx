@@ -2,6 +2,7 @@ import { ErrorMessage, Formik } from 'formik';
 import { useState } from 'react';
 import moment from 'moment';
 import { toast } from 'react-toastify';
+import { addTransaction } from 'services/transactions';
 import * as Yup from 'yup';
 import {
   CheckboxContainter,
@@ -9,26 +10,29 @@ import {
   MoneyText,
   StyledForm,
   TextField,
-  Comment,
 } from './AddTransactionForm.styled';
+import { Comment } from 'components/Comment/Comment';
 import { DatePicker } from '../DatePicker/DatePicker';
 import CategorySelect from '../CategorySelect/CategorySelect';
 import { StyledButton } from '../StyledButton/StyledButton';
+import { useDispatch } from 'react-redux';
 
-export const AddTransactionForm = () => {
+export const AddTransactionForm = ({ toggleModal }) => {
   moment.updateLocale('uk');
   const initialDate = moment().format('DD.MM.YYYY');
-  const [transactionType, setTransactonType] = useState('Income');
+  const [transactionType, setTransactonType] = useState('income');
   const isIncomeHandler = e => {
     let isChecked = e.target.checked;
-    isChecked ? setTransactonType('Expenses') : setTransactonType('Income');
+    isChecked ? setTransactonType('expense') : setTransactonType('income');
   };
+
+  const dispatch = useDispatch();
 
   const initialValues = {
     transactionType: { transactionType },
-    category: '...',
-    amount: '',
     date: initialDate,
+    amount: '',
+    category: '',
     comment: '',
   };
 
@@ -39,13 +43,20 @@ export const AddTransactionForm = () => {
     comment: Yup.string().max(50),
   });
 
-  const handleSubmit = ({ transactionType, ...rest }, actions) => {
-    let values = {
-      ...transactionType,
-      ...rest,
-    };
-    console.log(values);
+  const handleSubmit = async (
+    { transactionType, category, ...rest },
+    actions
+  ) => {
+    let result =
+      category === 'expense'
+        ? { ...transactionType, category, ...rest }
+        : { ...transactionType, ...rest };
+
+    console.log(result);
+
+    await dispatch(addTransaction(result));
     actions.resetForm();
+    toggleModal();
   };
   return (
     <>
@@ -59,7 +70,7 @@ export const AddTransactionForm = () => {
             <CheckboxContainter>
               <MoneyText
                 style={
-                  transactionType === 'Income'
+                  transactionType === 'income'
                     ? { color: '#24cca7' }
                     : { color: '#E0E0E0' }
                 }
@@ -74,7 +85,7 @@ export const AddTransactionForm = () => {
 
               <MoneyText
                 style={
-                  transactionType === 'Expenses'
+                  transactionType === 'expense'
                     ? { color: '#FF6596' }
                     : { color: '#E0E0E0' }
                 }
@@ -83,7 +94,7 @@ export const AddTransactionForm = () => {
               </MoneyText>
             </CheckboxContainter>
           </label>
-          {transactionType === 'Expenses' ? (
+          {transactionType === 'expense' ? (
             <label htmlFor="category">
               <CategorySelect name="category" />
             </label>
@@ -103,7 +114,7 @@ export const AddTransactionForm = () => {
             <DatePicker name="date" />
           </label>
           <label htmlFor="comment">
-            <Comment name="comment" placeholder="Comment" minRows={1} />
+            <Comment name="comment" placeholder="Comment" minRows={4} />
           </label>
           <StyledButton type="submit">Add transaction</StyledButton>
         </StyledForm>

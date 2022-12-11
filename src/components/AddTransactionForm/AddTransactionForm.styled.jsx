@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import { TextareaAutosize } from "@mui/material";
-import { Field, Form } from "formik";
+import styled from 'styled-components';
+import { TextareaAutosize } from '@mui/material';
+import { Field, Form } from 'formik';
 
 export const StyledForm = styled(Form)`
   label > input {
@@ -33,18 +33,18 @@ export const CheckboxField = styled.input`
   outline: none;
 
   :before {
-    content: "+";
+    content: '+';
     position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: ${(props) => props.theme.buttons.primary.bg};
+    background-color: ${props => props.theme.buttons.primary.bg};
     width: 44px;
     height: 44px;
     border-radius: 50%;
     outline: none;
     border: none;
-    color: ${(props) => props.theme.buttons.primary.color};
+    color: ${props => props.theme.buttons.primary.color};
     font-size: 20px;
     left: -4px;
     top: -2px;
@@ -56,7 +56,7 @@ export const CheckboxField = styled.input`
     background-color: #ececec;
 
     :before {
-      content: "-";
+      content: '-';
       background: #ff6596;
       box-shadow: 0px 6px 15px rgba(255, 101, 150, 0.5);
       left: 40px;
@@ -67,7 +67,7 @@ export const CheckboxField = styled.input`
 export const TextField = styled(Field)`
   box-sizing: border-box;
   border: none;
-  border-bottom: 1px solid ${(p) => p.theme.color.muted};
+  border-bottom: 1px solid ${p => p.theme.color.muted};
   width: 100%;
   padding-left: 14px;
   padding-right: 14px;
@@ -76,12 +76,12 @@ export const TextField = styled(Field)`
   outline: none;
 
   ::placeholder {
-    color: ${(p) => p.theme.color.muted};
+    color: ${p => p.theme.color.muted};
   }
 `;
 
 export const MoneyText = styled.span`
-  font-family: "Circe, sans-serif";
+  font-family: 'Circe, sans-serif';
   font-style: normal;
   font-weight: 700;
   font-size: 16px;
@@ -93,11 +93,4 @@ export const MoneyText = styled.span`
 export const Dropdown = styled(Field)`
   width: 100%;
   border: none;
-`;
-
-export const Comment = styled(TextareaAutosize)`
-  width: 100%;
-  border: none;
-  border-bottom: ${(p) => p.theme.radii.borderBottom};
-  margin-bottom: 40px;
 `;
