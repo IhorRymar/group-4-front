@@ -1,86 +1,51 @@
 import styled from 'styled-components';
 
-export const Content = styled.div`
-  @media screen and (min-width: 1280px) {
-    position: absolute;
-    right: 0;
-    width: 55vw;
-    height: 100vh;
-    background-color: #fff;
-    opacity: 0.4;
-  }
-`;
-
-export const Container = styled.div`
-  @media screen and (max-width: 767px) {
-    width: 100%;
-    height: 100%;
-    background-color: #fff;
-  }
+export const RegisterImg = styled.div`
   @media screen and (min-width: 768px) {
-    position: relative;
-    width: 768px;
-    margin: 0 auto;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-bottom: 50px;
   }
   @media screen and (min-width: 1280px) {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 1280px;
-    margin: 0 auto;
+    margin: 0;
   }
 `;
 
-export const Wrapper = styled.div`
-  @media screen and (min-width: 768px) {
-    position: relative;
-    padding-top: 360px;
-    padding-bottom: 48px;
-    max-width: 768px;
-    max-height: 1024px;
-    background-repeat: no-repeat;
-    background-position: left 114px top 60px;
-  }
-  @media screen and (min-width: 1280px) {
-    position: relative;
-    width: 560px;
-    height: 720px;
-    padding-left: 114px;
-    padding-right: 114px;
-    background-position: left 76px top 150px;
-  }
-`;
-
-export const Title = styled.h1`
+export const Title = styled.p`
   position: absolute;
+  right: 30px;
+  top: 163px;
+  font-family: Poppins;
+  font-style: normal;
   font-weight: 400;
   font-size: 30px;
-  line-height: 45px;
-  @media screen and (max-width: 767px) {
-    display: none;
-  }
-  @media screen and (min-width: 768px) {
-    right: 153px;
-    top: 163px;
-    width: 187px;
-    height: 45px;
-  }
+  line-height: 1.5;
+  color: #000000;
   @media screen and (min-width: 1280px) {
+    position: absolute;
+    top: 590px;
     left: 200px;
-    top: 597px;
   }
 `;
 
-export const ContentContainer = styled.div`
-  @media screen and (max-width: 767px) {
-    width: 100%;
-    height: 960px;
-  }
+export const Tittle = styled.p`
+  position: absolute;
+  right: 60px;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 1.5;
+  color: #000000;
+  display: inline-block;
   @media screen and (min-width: 1280px) {
-    position: relative;
-    width: 720px;
-    height: 720px;
-    background-repeat: no-repeat;
-    background-position: right 0;
+    position: absolute;
+    top: 585px;
+    left: 200px;
   }
 `;
