@@ -13,6 +13,8 @@ import Header from './Header/Header';
 import Spinner from './Spinner/Spinner';
 import { Currency } from './Currency/Currency';
 import DiagramTab from './DiagramTab/DiagramTab';
+import DashboardPage from 'pages/DashboardPage/DashboardPage';
+
 const Register = lazy(() => import('../pages/RegisterPage/RegisterPage'));
 const Login = lazy(() => import('../pages/LoginPage/LoginPage.jsx'));
 const Home = lazy(() => import('../pages/HomePage/HomePage'));
@@ -32,6 +34,7 @@ export const App = () => {
       <Suspense fallback={<Spinner />}>
         {loading && <Spinner />}
         {isLogin && <Header />}
+        {isLogin && <DashboardPage />}
         <Routes>
           <Route element={<PrivateRoute />}>
             <Route path="/" element={<Home />} />
@@ -53,6 +56,7 @@ export const App = () => {
               }
             />
             <Route path="/currency" element={<Currency />} />
+            
             <Route
               path="*"
               element={

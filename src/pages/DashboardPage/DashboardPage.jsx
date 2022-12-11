@@ -3,18 +3,20 @@ import Media from 'react-media';
 import GlobalContainer from '../../container';
 import { Container } from 'pages/RegisterPage/RegisterPage.styled';
 import { mediaQueries } from '../../utils';
-import StatsPage from '../StatsPage/StatsPage';
-import { AddTransactionButton } from 'components/AddTransactionButton/AddTransactionButton';
+// import StatsPage from '../StatsPage/StatsPage';
+// import { AddTransactionButton } from 'components/AddTransactionButton/AddTransactionButton';
 
 import DiagramTab from 'components/DiagramTab/DiagramTab';
 import HomeTab from 'components/HomeTab/HomeTab';
 import { DashdoardDesktop } from './DashboardPage.styled';
+import MobileCard from 'components/HomeTab/MobileCard/MobileCard';
+import TabletTab from 'components/HomeTab/TabletTab/TabletTab';
 
 
 
 
 
-const DashboardPage = () => {
+export const DashboardPage = () => {
   return (
     <GlobalContainer>
       <Container>
@@ -24,14 +26,14 @@ const DashboardPage = () => {
             <>
                 {matches.mobile && (
                     <div>
-                      <HomeTab />
+                      <MobileCard />
                       <DiagramTab />         
                     </div>
                 )}
               {matches.tablet && (
                 <div>
-                    <HomeTab />  
-                    <AddTransactionButton />
+                    <TabletTab />  
+                    <DiagramTab /> 
                     
                 </div>
               )}
@@ -40,8 +42,7 @@ const DashboardPage = () => {
                   <DashdoardDesktop>
                       <div>
                           <HomeTab />
-                          <StatsPage />   
-                        <AddTransactionButton />
+                          <DiagramTab />    
                       </div>
                    </DashdoardDesktop>
                   
