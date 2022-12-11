@@ -30,7 +30,7 @@ const HomeTab = () => {
 }
   const totalPages = Math.ceil(transactionsTotalQuantity / transactionsPerPage)
   const totalPagesInteger =  totalPages ? totalPages : 1
-  console.log(totalPages)
+  // console.log(totalPages)
   
   return (
       <Con>
