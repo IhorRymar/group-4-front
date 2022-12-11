@@ -10,12 +10,14 @@ import {
   MoneyText,
   StyledForm,
   TextField,
+  TabletWrapper,
 } from './AddTransactionForm.styled';
-import { Comment } from 'components/Comment/Comment';
-import { DatePicker } from '../DatePicker/DatePicker';
-import CategorySelect from '../CategorySelect/CategorySelect';
+import { Comment } from 'components/AddTransactionForm/Comment/Comment';
+import { DatePicker } from './DatePicker/DatePicker';
+import CategorySelect from './CategorySelect/CategorySelect';
 import { StyledButton } from '../StyledButton/StyledButton';
 import { useDispatch } from 'react-redux';
+import { CalendarIcon } from './DatePicker/DatePicker.styled';
 
 export const AddTransactionForm = ({ toggleModal }) => {
   moment.updateLocale('uk');
@@ -103,18 +105,21 @@ export const AddTransactionForm = ({ toggleModal }) => {
           ) : (
             ''
           )}
-          <label htmlFor="amount">
-            <TextField type="text" name="amount" placeholder="0.00" />
-            <ErrorMessage
-              name="amount"
-              render={msg => {
-                toast.error(`${msg}`, { toastId: String(new Date()) });
-              }}
-            />
-          </label>
-          <label htmlFor="date">
-            <DatePicker name="date" />
-          </label>
+          <TabletWrapper>
+            <label htmlFor="amount">
+              <TextField type="number" name="amount" placeholder="0.00" />
+              <ErrorMessage
+                name="amount"
+                render={msg => {
+                  toast.error(`${msg}`, { toastId: String(new Date()) });
+                }}
+              />
+            </label>
+            <label htmlFor="date" style={{ position: 'relative' }}>
+              <DatePicker name="date" />
+              <CalendarIcon />
+            </label>
+          </TabletWrapper>
           <label htmlFor="comment">
             <Comment name="comment" placeholder="Comment" minRows={4} />
           </label>

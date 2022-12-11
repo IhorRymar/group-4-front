@@ -14,7 +14,6 @@ const HomePage = () => {
   );
 
   const onModal = () => {
-    console.log('toggle modal is');
     dispatch(toggleModal(!isModalOpen));
   };
 
