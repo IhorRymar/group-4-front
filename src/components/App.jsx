@@ -13,6 +13,10 @@ import Header from './Header/Header';
 import Spinner from './Spinner/Spinner';
 import { Currency } from './Currency/Currency';
 import DiagramTab from './DiagramTab/DiagramTab';
+import DashboardPage from 'pages/DashboardPage/DashboardPage';
+
+
+
 const Register = lazy(() => import('../pages/RegisterPage/RegisterPage'));
 const Login = lazy(() => import('../pages/LoginPage/LoginPage.jsx'));
 const Home = lazy(() => import('../pages/HomePage/HomePage'));
@@ -31,28 +35,29 @@ export const App = () => {
     <>
       <Suspense fallback={<Spinner />}>
         {loading && <Spinner />}
-        {isLogin && <Header />}
+        {isLogin && <Header /> }
         <Routes>
           <Route element={<PrivateRoute />}>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Home />} />            
             <Route
               index
               element={
-                <div>
-                  <Currency />
-                </div>
+                <Currency>
+                  <DashboardPage />
+                </Currency>
               }
             />
             <Route
               path="/diagram"
               element={
-                <div>
-                  <Currency />
+                <Currency>
+                  {/* <Currency /> */}
                   <DiagramTab />
-                </div>
+                </Currency>
               }
             />
             <Route path="/currency" element={<Currency />} />
+            
             <Route
               path="*"
               element={
@@ -85,6 +90,7 @@ export const App = () => {
             }
           />
         </Routes>
+        
       </Suspense>
       <ToastContainer
         position="top-right"
@@ -98,5 +104,6 @@ export const App = () => {
         pauseOnHover
       />
     </>
+    
   );
 };
