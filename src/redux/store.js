@@ -15,7 +15,8 @@ import transactionReducer from './transactions/transactions-slice';
 import balanceReducer from './balance/balance-slice';
 import currencyReducer from './currency/currency-slice';
 import storage from 'redux-persist/lib/storage';
-import { globalReducer } from './global/global-reducer';
+import globalReducer from './global/global-reducer';
+import categoriesReducer from './categories/categories-slice';
 
 const persistConfig = {
   key: 'token',
@@ -31,6 +32,7 @@ export const store = configureStore({
     statistics: statisticsReducer,
     global: globalReducer,
     transactions: transactionReducer,
+    categories: categoriesReducer,
     balance: balanceReducer,
     currency: currencyReducer,
   },
