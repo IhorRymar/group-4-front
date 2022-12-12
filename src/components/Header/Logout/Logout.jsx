@@ -1,13 +1,13 @@
 import logoutIcon from './logoutIcon.png';
 import { StyledLogout } from './Logout.styled';
 import { useDispatch } from 'react-redux';
-import { logout } from 'redux/auth/auth-operations';
+import { toggleModal } from 'redux/logout-modal/logout-modal';
 
 const Logout = () => {
   const dispatch = useDispatch();
 
   const handleClick = () => {
-    dispatch(logout());
+    dispatch(toggleModal(true));
   };
 
   return (
