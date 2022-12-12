@@ -31,14 +31,14 @@ export const App = () => {
     <>
       <Suspense fallback={<Spinner />}>
         {loading && <Spinner />}
-        {isLogin && <Header /> }
+        {isLogin && <Header />}
         <Routes>
           <Route element={<PrivateRoute />}>
             <Route path="/" element={<Dashboard />}>
               <Route path="/home" element={<HomeTab />} />
-              <Route path="/statistics" element={<DiagramTab />} /> 
+              <Route path="/statistics" element={<DiagramTab />} />
               <Route path="/currency" element={<Currency />} />
-            </Route>            
+            </Route>
             <Route
               path="*"
               element={
@@ -70,7 +70,6 @@ export const App = () => {
             }
           />
         </Routes>
-        
       </Suspense>
       <ToastContainer
         position="top-right"
@@ -84,6 +83,5 @@ export const App = () => {
         pauseOnHover
       />
     </>
-    
   );
 };
