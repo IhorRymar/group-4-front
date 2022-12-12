@@ -10,7 +10,7 @@ export const MainButton = styled.button`
       return;
     }
   }};
-  border-radius: 20px;
+  border-radius: ${p => p.theme.buttons.primary.borderRadius};
   background-color: ${p => {
     if (p.type === 'submit') {
       return p.theme.buttons.primary.bg;

@@ -24,12 +24,12 @@ export const CheckboxField = styled.input`
   appearance: none;
   width: 80px;
   height: 40px;
-  background-color: white;
+  background-color: ${p => p.theme.color.switcherBgUncheked};
   position: relative;
-  border-radius: 30px;
+  border-radius: ${p => p.theme.radii.switcherBg};
   transition: 0.3s;
   cursor: pointer;
-  border: 1px solid #e0e0e0;
+  border: ${p => p.theme.borderStyles.underline};
   outline: none;
 
   :before {
@@ -38,14 +38,14 @@ export const CheckboxField = styled.input`
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: ${props => props.theme.buttons.primary.bg};
+    background-color: ${p => p.theme.buttons.primary.bg};
     width: 44px;
     height: 44px;
-    border-radius: 50%;
+    border-radius: ${p => p.theme.radii.broderSwitcher};
     outline: none;
-    border: none;
-    color: ${props => props.theme.buttons.primary.color};
-    font-size: 20px;
+    border: ${p => p.theme.borders.borderNone};
+    color: ${p => p.theme.buttons.primary.color};
+    font-size: ${p => p.theme.fontSizes[0]};
     left: -4px;
     top: -2px;
     transition: 0.6s;
@@ -53,34 +53,35 @@ export const CheckboxField = styled.input`
   }
 
   :checked {
-    background-color: #ececec;
+    background-color: ${p => p.theme.color.muted};
 
     :before {
       content: '-';
-      background: #ff6596;
-      box-shadow: 0px 6px 15px rgba(255, 101, 150, 0.5);
+      background-color: ${p => p.theme.color.expense};
+      box-shadow: ${p => p.theme.shadows.switcherShadow};
       left: 40px;
     }
   }
 `;
 
 export const TextField = styled(Field)`
-  box-sizing: border-box;
-  border: none;
-  border-bottom: 1px solid ${p => p.theme.color.muted};
+  border: ${p => p.theme.borders.borderNone};
+  border-bottom: ${p => p.theme.borderStyles.underline};
   width: 100%;
   padding-left: 14px;
   padding-right: 14px;
   padding-bottom: 8px;
   outline: none;
+  font-size: ${p => p.theme.fontSizes[1]};
+  font-weight: ${p => p.theme.fontWeights.normal};
+  font-family: ${p => p.theme.fonts.textField};
 
   ::placeholder {
     color: ${p => p.theme.color.muted};
-    font-family: 'Circe';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 27px;
+    font-family: ${p => p.theme.fonts.placeholder};
+    font-weight: ${p => p.theme.fontWeights.normal};
+    font-size: ${p => p.theme.fontSizes[1]};
+    line-height: ${p => p.theme.lineHeights.formField};
     @media screen and (min-width: 768px) {
       text-align: center;
     }
@@ -88,18 +89,17 @@ export const TextField = styled(Field)`
 `;
 
 export const MoneyText = styled.span`
-  font-family: 'Circe';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 24px;
+  font-family: ${p => p.theme.fonts.formField};
+  font-weight: ${p => p.theme.fontWeights.bold};
+  font-size: ${p => p.theme.fontSizes[0]};
+  line-height: ${p => p.theme.lineHeights.formField};
   margin-right: 24px;
   margin-left: 20px;
 `;
 
 export const Dropdown = styled(Field)`
   width: 100%;
-  border: none;
+  border: ${p => p.theme.borders.borderNone};
 `;
 
 export const TabletWrapper = styled.div`
