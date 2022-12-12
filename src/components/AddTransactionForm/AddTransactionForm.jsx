@@ -2,7 +2,10 @@ import { ErrorMessage, Formik } from 'formik';
 import { useState } from 'react';
 import moment from 'moment';
 import { toast } from 'react-toastify';
-import { addTransaction } from '../../redux/transactions/transactions-operation';
+import {
+  addTransaction,
+  fetchTransactions,
+} from '../../redux/transactions/transactions-operation';
 import * as Yup from 'yup';
 import {
   CheckboxContainter,
@@ -15,7 +18,7 @@ import {
 import { Comment } from 'components/AddTransactionForm/Comment/Comment';
 import { DatePicker } from './DatePicker/DatePicker';
 import CategorySelect from './CategorySelect/CategorySelect';
-import { StyledButton } from '../StyledButton/StyledButton';
+import { StyledButton } from '../ModalAddTransaction/StyledButton/StyledButton';
 import { useDispatch } from 'react-redux';
 import { CalendarIcon } from './DatePicker/DatePicker.styled';
 
@@ -52,6 +55,7 @@ export const AddTransactionForm = ({ toggleModal }) => {
 
     try {
       await dispatch(addTransaction(result));
+      await dispatch(fetchTransactions());
       toggleModal();
     } catch (error) {
       toast.error`${error.message}`;

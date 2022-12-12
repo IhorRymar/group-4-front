@@ -4,7 +4,7 @@ import { AiOutlineClose } from 'react-icons/ai';
 export const CloseButton = styled.button`
   display: none;
   background-color: transparent;
-  border: none;
+  border: ${p => p.theme.borders.borderNone};
   outline: none;
   @media screen and (min-width: 768px) {
     display: block;
