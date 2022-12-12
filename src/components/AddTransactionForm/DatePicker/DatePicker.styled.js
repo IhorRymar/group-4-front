@@ -3,7 +3,9 @@ import { RiCalendar2Fill } from 'react-icons/ri';
 import Datetime from 'react-datetime';
 
 export const CalendarIcon = styled(RiCalendar2Fill)`
-  color: #4a56e2;
+  pointer-events: none;
+
+  color: ${p => p.theme.color.calendarIcon};
   position: absolute;
   right: 10px;
   top: 75px;

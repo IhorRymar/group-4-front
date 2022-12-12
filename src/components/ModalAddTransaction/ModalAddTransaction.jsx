@@ -1,7 +1,7 @@
 import { ModalWindow, Overlay } from './ModalAddTransaction.styled';
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { StyledButton } from 'components/StyledButton/StyledButton';
+import { StyledButton } from 'components/ModalAddTransaction/StyledButton/StyledButton';
 import { AddTransactionForm } from '../AddTransactionForm/AddTransactionForm';
 import { Heading } from './ModalAddTransaction.styled';
 import { StyledCloseButton } from './CloseButton/CloseButton';

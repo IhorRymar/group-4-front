@@ -21,6 +21,7 @@ export const DatePicker = ({ name }) => {
 
   const inpuProps = {
     style: {
+      display: 'block',
       width: '100%',
       border: 'none',
       outline: 'none',
