@@ -1,19 +1,13 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-// import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import * as api from '../../services/auth';
 
 export const signup = createAsyncThunk(
   'auth/signup',
   async (data, { rejectWithValue }) => {
-    // const navigate = useNavigate();
     try {
       const result = await api.signup(data);
-      if (data) {
-        toast.success('Congratulations!!! You have registered');
-        return data;
-      }
-      // navigate('/login', { replace: true });
+      toast.success('Congratulations!!! You have registered');
       return result;
     } catch (error) {
       if (error.response.status === 400) {
@@ -36,10 +30,7 @@ export const login = createAsyncThunk(
   async (data, { rejectWithValue }) => {
     try {
       const result = await api.login(data);
-      if (data) {
-        toast.success('you are logged in');
-        return data;
-      }
+      toast.success('you are logged in');
       return result;
     } catch (error) {
       if (error.response.status === 400) {
@@ -64,12 +55,16 @@ export const current = createAsyncThunk(
       const { auth } = getState();
       const result = await api.getCurrent(auth.token);
       return result;
-    } catch (error) {
-      return rejectWithValue(error.response.message);
+    } catch ({ response }) {
+      const { status, data } = response;
+      const error = {
+        status,
+        message: data.message,
+      };
+      return rejectWithValue(error);
     }
   }
 );
-
 export const logout = createAsyncThunk(
   'auth/logout',
   async (_, { rejectWithValue, getState }) => {

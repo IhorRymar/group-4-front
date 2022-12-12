@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 const instance = axios.create({
-  //baseURL: 'https://connections-api.herokuapp.com',
   baseURL: 'https://wallet-backend.cyclic.app/api',
 });
 
@@ -40,8 +39,8 @@ export const getCurrent = async token => {
 
 export const logout = async token => {
   try {
-    setToken(token);
     const { data } = await instance.get('/users/logout');
+    setToken(token);
     return data;
   } catch (error) {
     setToken();
