@@ -11,10 +11,9 @@ import { useWindowDimensions } from 'hooks/useWindowDimensions';
 
 import { MainWrapper, NavBalanceWrapper } from './DashboardPage.styled';
 
-
 const DashboardPage = () => {
   const { width } = useWindowDimensions();
-  
+
   const isModalOpen = useSelector(
     state => state.global.isAddTransactionModalOpen
   );
@@ -22,7 +21,6 @@ const DashboardPage = () => {
   const dispatch = useDispatch();
 
   const onModal = () => {
-    console.log('toggle modal is');
     dispatch(toggleModal(!isModalOpen));
   };
 
@@ -31,19 +29,18 @@ const DashboardPage = () => {
       <MainWrapper>
         <NavBalanceWrapper>
           <Navigation />
-          {(width >= 768) ? <Balance /> : null }
+          {width >= 768 ? <Balance /> : null}
         </NavBalanceWrapper>
-        {(width >= 768) ? <Currency /> : null }
+        {width >= 768 ? <Currency /> : null}
       </MainWrapper>
-      <Outlet /> 
+      <Outlet />
       <ButtonCircle onClick={onModal}>+</ButtonCircle>
       {isModalOpen && (
         <ModalAddTransaction toggleModal={onModal} isOpen={isModalOpen} />
       )}
     </PageContainer>
   );
-}
-
+};
 
 // import React from 'react';
 // import Media from 'react-media';
@@ -51,11 +48,8 @@ const DashboardPage = () => {
 // import { Container } from 'container/Container.styled';
 // import { mediaQueries } from '../../utils';
 
-
 // import { DashdoardDesktop } from './DashboardPage.styled';
 // import HomePage from 'pages/HomePage/HomePage';
-
-
 
 // const DashboardPage = () => {
 //   return (
@@ -68,14 +62,13 @@ const DashboardPage = () => {
 //                 {matches.mobile && (
 //                     <div>
 //                       <HomePage />
-                              
+
 //                     </div>
 //                 )}
 //               {matches.tablet && (
 //                 <div>
-//                     <HomePage />  
-                    
-                    
+//                     <HomePage />
+
 //                 </div>
 //               )}
 //               {matches.desktop && (
@@ -83,15 +76,15 @@ const DashboardPage = () => {
 //                   <DashdoardDesktop>
 //                       <div>
 //                           <HomePage />
-                              
+
 //                       </div>
 //                    </DashdoardDesktop>
-                  
+
 //               )}
 //             </>
 //           )}
 //         </Media>
-         
+
 //       </Container>
 //     </GlobalContainer>
 //   );

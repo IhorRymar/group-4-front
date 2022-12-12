@@ -1,15 +1,19 @@
 import * as React from 'react';
 
-import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
+import {
+  StyledSelect,
+  StyledMenuItem,
+  dropdownIcon,
+  MenuProps,
+} from './CategorySelect.styled';
 import { useState } from 'react';
 import { useFormikContext } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchTransactionsCategories } from 'redux/categories/categories-operations';
 import { useEffect } from 'react';
 import { getCategories } from 'redux/categories/categories-selector';
-
+import {} from './CategorySelect.styled';
 export default function CategorySelect({ name }) {
   const dispatch = useDispatch();
 
@@ -19,25 +23,12 @@ export default function CategorySelect({ name }) {
 
   const categories = useSelector(getCategories);
 
-  // const categories = {
-  //   'Main expenses': 0,
-  //   Products: 1,
-  //   Car: 2,
-  //   'Self care': 3,
-  //   'Child care': 4,
-  //   'Household products': 5,
-  //   Education: 6,
-  //   Leisure: 6,
-  //   'Other expenses': 8,
-  //   Entertainment: 9,
-  // };
-  const [category, setCategory] = useState('');
+  const [category, setCategory] = useState('none');
   const { setFieldValue } = useFormikContext();
 
   const handleChange = event => {
     setCategory(event.target.value);
     setFieldValue(name, event.target.value);
-    console.log(category);
   };
 
   return (
@@ -51,23 +42,28 @@ export default function CategorySelect({ name }) {
         marginLeft: 0,
         fontSize: '12px',
         borderBottomWidth: '1px',
-        // borderBottom: `1px solid ${(p) => p.theme.color.muted}`,
       }}
     >
-      <Select
+      <StyledSelect
         labelId="category"
         id="category"
+        displayEmpty
         value={category}
         onChange={handleChange}
+        MenuProps={MenuProps}
+        IconComponent={dropdownIcon}
       >
+        <StyledMenuItem value="none" disabled>
+          <span style={{ color: '#E0E0E0' }}>Choose Category</span>
+        </StyledMenuItem>
         {categories.map(option => {
           return (
-            <MenuItem key={option._id} value={option.category_id}>
+            <StyledMenuItem key={option._id} value={option.category_id}>
               {option.category_name}
-            </MenuItem>
+            </StyledMenuItem>
           );
         })}
-      </Select>
+      </StyledSelect>
     </FormControl>
   );
 }

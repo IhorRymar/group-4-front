@@ -72,16 +72,23 @@ export const TextField = styled(Field)`
   padding-left: 14px;
   padding-right: 14px;
   padding-bottom: 8px;
-
   outline: none;
 
   ::placeholder {
     color: ${p => p.theme.color.muted};
+    font-family: 'Circe';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 27px;
+    @media screen and (min-width: 768px) {
+      text-align: center;
+    }
   }
 `;
 
 export const MoneyText = styled.span`
-  font-family: 'Circe, sans-serif';
+  font-family: 'Circe';
   font-style: normal;
   font-weight: 700;
   font-size: 16px;
@@ -93,4 +100,12 @@ export const MoneyText = styled.span`
 export const Dropdown = styled(Field)`
   width: 100%;
   border: none;
+`;
+
+export const TabletWrapper = styled.div`
+  @media screen and (min-width: 768px) {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
 `;
