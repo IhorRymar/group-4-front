@@ -2,7 +2,7 @@ import { ErrorMessage, Formik } from 'formik';
 import { useState } from 'react';
 import moment from 'moment';
 import { toast } from 'react-toastify';
-import { addTransaction } from 'services/transactions';
+import { addTransaction } from '../../redux/transactions/transactions-operation';
 import * as Yup from 'yup';
 import {
   CheckboxContainter,
@@ -45,21 +45,19 @@ export const AddTransactionForm = ({ toggleModal }) => {
   });
 
   const handleSubmit = async ({ category, ...rest }, actions) => {
-    const resultValues = {
-      category,
-      ...rest,
-      transactionType,
-    };
     let result =
       transactionType === 'expense'
         ? { transactionType, category, ...rest }
         : { transactionType, ...rest };
 
-    console.log(resultValues);
+    try {
+      await dispatch(addTransaction(result));
+      toggleModal();
+    } catch (error) {
+      toast.error`${error.message}`;
+    }
 
-    await dispatch(addTransaction(result));
     actions.resetForm();
-    toggleModal();
   };
   return (
     <>
