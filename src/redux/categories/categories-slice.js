@@ -17,7 +17,6 @@ const categoriesReducer = createSlice({
     },
     [fetchTransactionsCategories.fulfilled]: (store, { payload }) => {
       store.loading = false;
-      console.log(`payload ${payload}`);
       store.items = payload;
     },
     [fetchTransactionsCategories.rejected]: (store, { payload }) => {

@@ -10,7 +10,6 @@
 
 // import { MainWrapper, NavBalanceWrapper } from './HomePage.styled';
 
-
 // const HomePage = () => {
 //   const dispatch = useDispatch();
 //   const isModalOpen = useSelector(
@@ -28,7 +27,7 @@
 //         <Navigation />
 //         {(width >= 768) ? <Balance /> : null }
 //       </NavBalanceWrapper>
-      
+
 //       <HomeTab />
 //       <ButtonCircle onClick={onModal}>+</ButtonCircle>
 //       {isModalOpen && (
