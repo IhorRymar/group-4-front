@@ -6,7 +6,7 @@ export const Overlay = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.25);
+  background-color: ${p => p.theme.color.overlayBg};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -16,13 +16,13 @@ export const ModalWindow = styled.div`
   @media screen and (max-width: 767px) {
     width: 320px;
     padding: 20px;
-    background-color: #fff;
+    background-color: ${p => p.theme.color.modalWindowBg};
   }
   position: relative;
   width: 540px;
-  border-radius: 20px;
+  border-radius: ${p => p.theme.radii.modalWindow};
   padding: 73px;
-  background-color: #fff;
+  background-color: ${p => p.theme.color.modalWindowBg};
 `;
 
 export const Heading = styled.h1`
