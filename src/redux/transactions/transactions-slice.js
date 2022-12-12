@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { fetchTransactions, addTransaction } from './transactions-operation';
+import { fetchTransactions, addTransaction, removeTransaction } from './transactions-operation';
 
 const initialState = {
   items: [],
@@ -32,6 +32,18 @@ const transactionReducer = createSlice({
       store.loading = false;
     },
     [addTransaction.rejected]: (store, { payload }) => {
+      store.loading = false;
+      store.error = payload;
+    },
+    [removeTransaction.pending]: store => {
+      store.loading = true;
+      store.error = null;
+    },
+    [removeTransaction.fulfilled]: (store, { payload }) => {
+      store.loading = false;
+      store.items = store.items.result.filter(item => item.id !== payload);
+    },
+    [removeTransaction.rejected]: (store, { payload }) => {
       store.loading = false;
       store.error = payload;
     },
