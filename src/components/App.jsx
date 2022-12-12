@@ -6,8 +6,9 @@ import PublicRoute from './HOC/PublicRoute';
 import { lazy, Suspense, useEffect } from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
 import { current } from 'redux/auth/auth-operations';
-import { global } from '../redux/global/global-selectors';
+import { global, logoutModal } from '../redux/global/global-selectors';
 import { isAuth } from '../redux/auth/auth-selectors';
+import { ModalLogout } from 'components/ModalLogout/ModalLogout';
 import Header from './Header/Header';
 import HomeTab from './HomeTab/HomeTab';
 import Spinner from './Spinner/Spinner';
@@ -22,6 +23,7 @@ export const App = () => {
   const dispatch = useDispatch();
   const loading = useSelector(global);
   const isLogin = useSelector(isAuth);
+  const logout = useSelector(logoutModal);
 
   useEffect(() => {
     dispatch(current());
@@ -32,6 +34,7 @@ export const App = () => {
       <Suspense fallback={<Spinner />}>
         {loading && <Spinner />}
         {isLogin && <Header />}
+        {logout && <ModalLogout />}
         <Routes>
           <Route element={<PrivateRoute />}>
             <Route path="/" element={<Dashboard />}>
