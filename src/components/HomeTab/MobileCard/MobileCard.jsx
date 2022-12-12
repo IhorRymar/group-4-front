@@ -6,23 +6,30 @@ import moment from 'moment';
 import { Categories } from "../categories";
 import EllipsisText from "react-ellipsis-text";
 
-const MobileCard = ({ items}) => {
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchTransactions, removeTransaction } from 'redux/transactions/transactions-operation';
+import { Delete } from "@mui/icons-material";
 
-  const date = items?.length ? items?.map(item => item) : null;
-  const data = date?.sort((a, b) =>
-    b.date
-      .split('.')
-      .reverse()
-      .join()
-      .localeCompare(a.date.split('.').reverse().join())
-  );
+const MobileCard = ({ items}) => {
+  const dispatch = useDispatch();
+
+  const onRemoveTransaction = (id) => {
+    dispatch(removeTransaction(id));
+  }
+
+  const transactions = useSelector(state => state.transactions.items);
+
+  useEffect(() => {
+    dispatch(fetchTransactions(1));
+  }, [dispatch, transactions.transactionsTotalQuantity]);
 
   return (
   <>
       {
         items?.length !== 0 ?
           <TransactionContainer>
-            {data?.map(({ date, transactionType, category, comment, amount, balance, _id }) => (
+            {items?.map(({ date, transactionType, category, comment, amount, balance, _id }) => (
               <TransactionList key={_id} color={transactionType}>
                 <ListItems><TitleItems>Date</TitleItems><TextItems>{moment.utc(date).format('DD.MM.YY')}</TextItems></ListItems>
                 <ListItems><TitleItems>Type</TitleItems>{transactionType === "income" ? <TextItems>+</TextItems> : <TextItems>-</TextItems>} </ListItems>
@@ -33,6 +40,14 @@ const MobileCard = ({ items}) => {
                     <SumText style={{ color: "#24CCA7" }}>{amount.toFixed(2)}</SumText> :
                     <SumText style={{ color: "#FF6596" }}>{amount.toFixed(2)}</SumText>}</ListItems>
                 <ListItems><TitleItems>Balance</TitleItems><TextItems>{balance.toFixed(2)}</TextItems></ListItems>
+                <ListItems>
+                  <Button onClick={() => onRemoveTransaction(_id)}>
+                    <Delete sx={{
+                      color: '#fff',
+                      transform: 'scale(0.8)',
+                    }} />
+                  </Button>
+                </ListItems>
               </TransactionList>
             ))}
 
@@ -101,6 +116,10 @@ const ListItems = styled.li`
         padding-top:12px;
         padding-bottom:8px;
     }
+    :last-child {
+      padding-top: 8px;
+      justify-content: flex-end;
+    }
 } 
 `;
 
@@ -127,4 +146,15 @@ const SumText = styled(TextItems)`
 @media screen and (min-width: ${baseVars.sizeScreen.mobile}) {
     font-weight: 700;
 }
+`;
+
+const Button = styled.button`
+  display: flex;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: none;
+  border-radius: 2px;
+  background-color: ${baseVars.colors.icon} ;
+  margin: 0;
 `;

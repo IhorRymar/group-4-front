@@ -7,15 +7,23 @@ import moment from 'moment';
 import { Categories } from '../categories';
 import EllipsisText from 'react-ellipsis-text';
 
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchTransactions, removeTransaction } from 'redux/transactions/transactions-operation';
+import { Delete } from "@mui/icons-material";
+
 const TabletTab = ({ items, columns }) => {
-  const date = items?.length ? items?.map(item => item) : null;
-  const data = date?.sort((a, b) =>
-    b.date
-      .split('.')
-      .reverse()
-      .join()
-      .localeCompare(a.date.split('.').reverse().join())
-  );
+  const dispatch = useDispatch();
+
+  const onRemoveTransaction = (id) => {
+    dispatch(removeTransaction(id));
+  }
+
+  const transactions = useSelector(state => state.transactions.items);
+
+  useEffect(() => {
+    dispatch(fetchTransactions(1));
+  }, [dispatch, transactions.transactionsTotalQuantity]);
 
   return (
     <>
@@ -30,10 +38,9 @@ const TabletTab = ({ items, columns }) => {
               </HeadList>
             </HeadContainer>
           </table>
-          <BodyContainer>
             <BodyTable>
-              <tbody>
-                {data?.map(
+              <Tbody>
+                {items?.map(
                   ({
                     date,
                     transactionType,
@@ -74,12 +81,19 @@ const TabletTab = ({ items, columns }) => {
                         )}
                       </BodyItems>
                       <BodyItems>{balance.toFixed(2)}</BodyItems>
+                      <BodyItems>
+                        <Button onClick={() => onRemoveTransaction(_id)}>
+                          <Delete sx={{
+                            color: '#fff',
+                            transform: 'scale(0.8)',
+                          }} />
+                        </Button>
+                      </BodyItems>
                     </BodyList>
                   )
                 )}
-              </tbody>
+              </Tbody>
             </BodyTable>
-          </BodyContainer>
         </GeneralContainer>
       ) : (
         <EmptyContainer />
@@ -110,13 +124,10 @@ const GeneralContainer = styled.div`
   flex-direction: column;
   @media screen and (min-width: ${baseVars.sizeScreen.tablet}) {
     width: 704px;
-    height: 312px;
-    /* margin: 0 32px 0px 32px; */
     background-color: transparent;
   }
   @media screen and (min-width: ${baseVars.sizeScreen.desktop}) {
     width: 715px;
-    /* margin: 46px 16px 0px 69px; */
   }
 `;
 const HeadContainer = styled.thead`
@@ -139,107 +150,104 @@ const HeadTitles = styled.th`
   line-height: 27px;
   text-align: start;
   color: ${baseVars.colors.mainText};
-  @media screen and (min-width: ${baseVars.sizeScreen.tablet}) {
-    width: 14.5%;
-  }
-  @media screen and (min-width: ${baseVars.sizeScreen.desktop}) {
-    width: 13.5%;
-  }
+
   :first-child {
-    width: 12%;
+    width: 55px
   }
   :nth-child(2) {
-    width: 16.2%;
+    width: 65px;
     text-align: center;
   }
+  :nth-child(3) {
+    width: 135px;
+  }
   :nth-child(4) {
-    width: 17%;
+    width: 105px;
   }
   :nth-child(5) {
-    width: 14.8%;
+    width: 85px;
+    text-align: right;
   }
   :nth-child(6) {
-    width: 14.6%;
-  }
-  :nth-last-child(-n + 2) {
-    text-align: end;
-  }
-`;
-const BodyContainer = styled.div`
-  height: 254px;
-  overflow-y: scroll;
-  ::-webkit-scrollbar {
-    width: 10px;
-    background-color: transparent;
-  }
-  ::-webkit-scrollbar-thumb {
-    background-color: #e7eaf2;
-    border-radius: 9em;
-    box-shadow: inset 1px 1px 10px #f3faf7;
+    width: 85px;
+    text-align: right;
+    margin-right: 45px;
   }
 `;
+
 const BodyTable = styled.table`
-  display: flex;
+  width: 100%;
   border-collapse: collapse;
-  justify-content: center;
 `;
+
+const Tbody = styled.tbody`
+
+`;
+
 const BodyList = styled.tr`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 656px;
+  width: 100%;
   font-family: ${baseVars.fonts.main};
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
-  line-height: 18px;
+  line-height: 1.5;
   color: ${baseVars.colors.mainText};
-  padding-top: 10px;
-  padding-bottom: 10px;
-  @media screen and (min-width: ${baseVars.sizeScreen.desktop}) {
-    width: 675px;
-  }
+  padding-top: 14px;
+  padding-bottom: 14px;
+
   :first-child {
-    margin-top: 16px;
-    padding-top: 0px;
+    padding-top: 16px;
   }
   :not(:last-child) {
     border-bottom: 1px solid #dcdcdf;
   }
 `;
 const BodyItems = styled.td`
-  max-height: 36px;
   text-align: start;
-  @media screen and (min-width: ${baseVars.sizeScreen.tablet}) {
-    width: 14.5%;
-  }
-  @media screen and (min-width: ${baseVars.sizeScreen.desktop}) {
-    width: 13.5%;
-  }
+
   :first-child {
-    width: 12%;
+    width: 75px;
+    padding-left: 20px;
   }
   :nth-child(2) {
-    width: 16.2%;
+    width: 65px;
     text-align: center;
   }
+  :nth-child(3) {
+    width: 135px;
+  }
   :nth-child(4) {
-    width: 17%;
+    width: 105px;
   }
   :nth-child(5) {
-    width: 14.8%;
+    width: 85px;
+    text-align: right;
   }
   :nth-child(6) {
-    width: 14.6%;
-  }
-  :nth-last-child(-n + 2) {
-    text-align: end;
+    width: 85px;
+    text-align: right;
   }
   :hover {
     z-index: 1;
     overflow: visible;
   }
 `;
+
 const SpanSum = styled.span`
   font-weight: 700;
+`;
+
+const Button = styled.button`
+  display: flex;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: none;
+  border-radius: 2px;
+  background-color: ${baseVars.colors.icon} ;
+  margin: 0;
+  margin-right: 20px;
 `;
