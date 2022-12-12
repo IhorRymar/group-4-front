@@ -1,6 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { fetchTransactions, addTransaction, removeTransaction } from './transactions-operation';
+import {
+  fetchTransactions,
+  addTransaction,
+  removeTransaction,
+} from './transactions-operation';
 
 const initialState = {
   items: [],
