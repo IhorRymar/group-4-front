@@ -6,7 +6,12 @@ export const getTransactions = async (page) => {
 };
 
 
-export const addTransaction = async transaction => {
+export const addTransaction = async (transaction) => {
   const { data: result } = await instance.post('/transactions', transaction);
+  console.log(result);
+};
+
+export const removeTransaction = async (id) => {
+  const { data: result } = await instance.delete(`/transactions/${id}`);
   console.log(result);
 };
