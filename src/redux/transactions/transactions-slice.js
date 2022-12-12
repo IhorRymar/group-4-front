@@ -30,7 +30,6 @@ const transactionReducer = createSlice({
     },
     [addTransaction.fulfilled]: (store, { payload }) => {
       store.loading = false;
-      store.items = store.items.push(payload);
     },
     [addTransaction.rejected]: (store, { payload }) => {
       store.loading = false;

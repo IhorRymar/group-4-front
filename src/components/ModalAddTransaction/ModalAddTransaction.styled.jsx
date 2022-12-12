@@ -6,7 +6,7 @@ export const Overlay = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.25);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -18,9 +18,10 @@ export const ModalWindow = styled.div`
     padding: 20px;
     background-color: #fff;
   }
+  position: relative;
   width: 540px;
   border-radius: 20px;
-  padding: 20px;
+  padding: 73px;
   background-color: #fff;
 `;
 
