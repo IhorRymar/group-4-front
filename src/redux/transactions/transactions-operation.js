@@ -27,3 +27,15 @@ export const addTransaction = createAsyncThunk(
     }
   }
 );
+
+export const removeTransaction = createAsyncThunk(
+  'transactions/remove',
+  async (id, { rejectWithValue }) => {
+    try {
+      await api.removeTransaction(id);
+      return id;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);

@@ -70,7 +70,7 @@ const Paginate = styled(Pagination)`
   justify-content: center;
   margin-top: 20px;
   @media screen and (min-width: ${baseVars.sizeScreen.mobile}) {
-    width:320px;}
+    width:280px;}
   @media screen and (min-width: ${baseVars.sizeScreen.tablet}) {
     width: 704px;}
     @media screen and (min-width: ${baseVars.sizeScreen.desktop}) {
