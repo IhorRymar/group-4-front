@@ -8,7 +8,6 @@ import { logout } from 'redux/auth/auth-operations';
 import {
   ModalWindow,
   Overlay,
-  Heading,
 } from '../ModalAddTransaction/ModalAddTransaction.styled';
 
 import { StyledHeadingLogout } from './ModalLogout.styled';
