@@ -7,7 +7,6 @@ import {
   dropdownIcon,
   MenuProps,
 } from './CategorySelect.styled';
-import { useState } from 'react';
 import { useFormikContext } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchTransactionsCategories } from 'redux/categories/categories-operations';
@@ -23,11 +22,9 @@ export default function CategorySelect({ name }) {
 
   const categories = useSelector(getCategories);
 
-  const [category, setCategory] = useState('none');
-  const { setFieldValue } = useFormikContext();
+  const { setFieldValue, values } = useFormikContext();
 
   const handleChange = event => {
-    setCategory(event.target.value);
     setFieldValue(name, event.target.value);
   };
 
@@ -48,7 +45,7 @@ export default function CategorySelect({ name }) {
         labelId="category"
         id="category"
         displayEmpty
-        value={category}
+        value={values.category}
         onChange={handleChange}
         MenuProps={MenuProps}
         IconComponent={dropdownIcon}
