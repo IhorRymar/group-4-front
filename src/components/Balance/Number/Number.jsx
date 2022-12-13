@@ -22,6 +22,7 @@ export const Number = ({ balance }) => {
         color: '#000000',
       }}
     >
+      
       {number.to(balance => balance?.toFixed(2))}
     </animated.div>
   );

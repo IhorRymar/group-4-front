@@ -104,10 +104,12 @@ const TabletTab = ({ items, columns }) => {
                     <BodyItems>{balance.toFixed(2)}</BodyItems>
                     <BodyItems>
                       <Button onClick={() => onRemoveTransaction(_id)}>
-                        <DeleteIcon />
-                      </Button>
-                      <Button onClick={() => onEditTransaction(_id)}>
-                        <EditIcon />
+                        <Delete
+                          sx={{
+                            color: '#fff',
+                            transform: 'scale(0.8)',
+                          }}
+                        />
                       </Button>
                     </BodyItems>
                   </BodyList>

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Number } from './Number/Number';
+// import { Number } from './Number/Number';
 
 export const Wrapper = styled.div`
   display: flex;
@@ -25,7 +25,7 @@ export const Text = styled.p`
   /* margin-bottom: 12px; */
 `;
 
-export const BalanceStyled = styled(Number)`
+export const BalanceStyled = styled.div`
   font-family: 'Poppins', sans-serif;
   font-weight: 700;
   font-size: 30px;
@@ -33,4 +33,9 @@ export const BalanceStyled = styled(Number)`
   color: #000000;
   /* padding-left: 40px; */
   /* padding-bottom: 11px; */
+`;
+
+export const CurrencySymbol = styled.span`
+  font-weight: 400;
+  margin-right: 8px;
 `;
