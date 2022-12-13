@@ -13,6 +13,7 @@ const isLoadingReducer = (state = initialState, action) => {
     'auth/logout/pending',
     'transactions/add/pending',
     'transactions/fetch/pending',
+    'transactions/fetchById/pending',
     'categories/fetch/pending',
     'balance/fetch/pending',
     'statistics/fetch/pending',

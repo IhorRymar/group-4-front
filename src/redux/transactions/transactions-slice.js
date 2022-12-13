@@ -2,7 +2,9 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import {
   fetchTransactions,
+  fetchTransactionById,
   addTransaction,
+  updateTransactionById,
   removeTransaction,
 } from './transactions-operation';
 
@@ -28,6 +30,19 @@ const transactionReducer = createSlice({
       store.loading = false;
       store.error = payload;
     },
+
+    [fetchTransactionById.pending]: store => {
+      store.loading = true;
+      store.error = null;
+    },
+    [fetchTransactionById.fulfilled]: (store, { payload }) => {
+      store.loading = false;
+    },
+    [fetchTransactionById.rejected]: (store, { payload }) => {
+      store.loading = false;
+      store.error = payload;
+    },
+
     [addTransaction.pending]: store => {
       store.loading = true;
       store.error = null;
@@ -39,6 +54,19 @@ const transactionReducer = createSlice({
       store.loading = false;
       store.error = payload;
     },
+
+    [updateTransactionById.pending]: store => {
+      store.loading = true;
+      store.error = null;
+    },
+    [updateTransactionById.fulfilled]: (store, { payload }) => {
+      store.loading = false;
+    },
+    [updateTransactionById.rejected]: (store, { payload }) => {
+      store.loading = false;
+      store.error = payload;
+    },
+
     [removeTransaction.pending]: store => {
       store.loading = true;
       store.error = null;
