@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { fetchBalance } from './balance-operation';
 
 const initialState = {
-  balance: 0,
+  balance: {balance: 0},
   loading: false,
   error: null,
 };

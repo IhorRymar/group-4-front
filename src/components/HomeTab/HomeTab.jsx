@@ -44,7 +44,7 @@ const HomeTab = () => {
               {matches.small && <MobileCard items={data} columns={columns} />}
             {matches.medium && <TabletTab items={data} columns={columns}   />}
             {matches.large && <TabletTab items={data} columns={columns} />}
-            <Paginate  count={totalPagesInteger} page={page} onChange={handleChange} />
+            {(transactionsTotalQuantity > 10) ? <Paginate  count={totalPagesInteger} page={page} onChange={handleChange} /> : null }
             </Fragment>
           )}
       </Media>
@@ -74,5 +74,5 @@ const Paginate = styled(Pagination)`
   @media screen and (min-width: ${baseVars.sizeScreen.tablet}) {
     width: 704px;}
     @media screen and (min-width: ${baseVars.sizeScreen.desktop}) {
-    width: 768px;}
+    width: 715px;}
 `
