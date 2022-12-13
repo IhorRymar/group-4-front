@@ -14,7 +14,7 @@ justify-content: center;
 align-items: center;
 margin: 0 auto;
 background-color: transparent;
-border: 1px solid #DCDCDF;
+/* border: 1px solid #DCDCDF; */
 @media screen and (min-width: ${baseVars.sizeScreen.mobile}) {
     width:280px;
     height:282px;}
