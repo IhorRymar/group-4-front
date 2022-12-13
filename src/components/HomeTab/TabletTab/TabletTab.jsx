@@ -6,9 +6,8 @@ import { EmptyContainer } from '../EmptyContainer/EmptyContainer';
 import moment from 'moment';
 import { Categories } from '../categories';
 import EllipsisText from 'react-ellipsis-text';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   fetchTransactions,
@@ -104,12 +103,10 @@ const TabletTab = ({ items, columns }) => {
                     <BodyItems>{balance.toFixed(2)}</BodyItems>
                     <BodyItems>
                       <Button onClick={() => onRemoveTransaction(_id)}>
-                        <Delete
-                          sx={{
-                            color: '#fff',
-                            transform: 'scale(0.8)',
-                          }}
-                        />
+                        <DeleteIcon />
+                      </Button>
+                      <Button onClick={() => onEditTransaction(_id)}>
+                        <EditIcon />
                       </Button>
                     </BodyItems>
                   </BodyList>
@@ -275,6 +272,7 @@ const Button = styled.button`
   padding: 0;
   border: none;
   border-radius: 2px;
+  background-color: transparent;
   margin: 0;
   margin-right: 20px;
   cursor: pointer;
