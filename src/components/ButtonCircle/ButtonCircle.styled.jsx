@@ -12,5 +12,10 @@ export const Button = styled.button`
   border: none;
   color: ${props => props.theme.buttons.primary.color};
   font-size: 20px;
+  scale: 1;
   cursor: pointer;
+  :hover {
+    scale: 1.2;
+    transition: scale 150ms linear;
+  }
 `;

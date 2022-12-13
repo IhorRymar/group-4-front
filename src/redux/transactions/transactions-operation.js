@@ -14,6 +14,18 @@ export const fetchTransactions = createAsyncThunk(
   }
 );
 
+export const fetchTransactionById = createAsyncThunk(
+  'transactions/fetchById',
+  async (id, { rejectWithValue }) => {
+    try {
+      const data = await api.getTransactionById(id);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
+
 export const addTransaction = createAsyncThunk(
   'transactions/add',
   async (transaction, { rejectWithValue }) => {
@@ -23,6 +35,21 @@ export const addTransaction = createAsyncThunk(
       return data;
     } catch (error) {
       toast.error(`Transaction adding is failed. ${error.message}`);
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const updateTransactionById = createAsyncThunk(
+  'transactions/update',
+  async (data, { rejectWithValue }) => {
+    const { id, transaction } = data;
+    try {
+      const data = await api.updateTransaction(id, transaction);
+      toast.success('Transaction is updated successfuly');
+      return data;
+    } catch (error) {
+      toast.error(`Transaction updating is failed. ${error.message}`);
       return rejectWithValue(error);
     }
   }
