@@ -27,77 +27,76 @@ const TabletTab = ({ items, columns }) => {
 
   return (
     <>
-      {items?.length !== 0 ? (
-        <GeneralContainer>
-          <table>
-            <HeadContainer>
-              <HeadList>
-                {columns.map(colum => (
-                  <HeadTitles key={colum.accessor}>{colum.Header} </HeadTitles>
-                ))}
-              </HeadList>
-            </HeadContainer>
-          </table>
-            <BodyTable>
-              <Tbody>
-                {items?.map(
-                  ({
-                    date,
-                    transactionType,
-                    category,
-                    comment,
-                    amount,
-                    balance,
-                    _id,
-                  }) => (
-                    <BodyList key={_id}>
-                      <BodyItems>
-                        {moment.utc(date).format('DD.MM.YY')}
-                      </BodyItems>
-                      <BodyItems>
-                        {transactionType === 'income' ? '+' : '-'}
-                      </BodyItems>
-                      <BodyItems>{Categories(category)}</BodyItems>
-                      <BodyItems>
-                        <EllipsisText
-                          text={`${comment || '---'}`}
-                          length={24}
-                          tooltip="true"
-                        />
-                      </BodyItems>
-                      <BodyItems>
-                        {transactionType === 'income' ? (
-                          <SpanSum
-                            style={{ color: `${baseVars.colors.incomeText}` }}
-                          >
-                            {amount.toFixed(2)}
-                          </SpanSum>
-                        ) : (
-                          <SpanSum
-                            style={{ color: `${baseVars.colors.expensesText}` }}
-                          >
-                            {amount.toFixed(2)}
-                          </SpanSum>
-                        )}
-                      </BodyItems>
-                      <BodyItems>{balance.toFixed(2)}</BodyItems>
-                      <BodyItems>
-                        <Button onClick={() => onRemoveTransaction(_id)}>
-                          <Delete sx={{
-                            color: '#fff',
-                            transform: 'scale(0.8)',
-                          }} />
-                        </Button>
-                      </BodyItems>
-                    </BodyList>
-                  )
-                )}
-              </Tbody>
-            </BodyTable>
-        </GeneralContainer>
+      <GeneralContainer>
+        <table>
+          <HeadContainer>
+            <HeadList>
+              {columns.map(colum => (
+                <HeadTitles key={colum.accessor}>{colum.Header} </HeadTitles>
+              ))}
+            </HeadList>
+          </HeadContainer>
+        </table>
+        {items?.length !== 0 ? (
+          <BodyTable>
+            <Tbody>
+              {items?.map(({
+                date,
+                transactionType,
+                category,
+                comment,
+                amount,
+                balance,
+                _id,
+              }) => (
+                <BodyList key={_id}>
+                  <BodyItems>
+                    {moment.utc(date).format('DD.MM.YY')}
+                  </BodyItems>
+                  <BodyItems>
+                    {transactionType === 'income' ? '+' : '-'}
+                  </BodyItems>
+                  <BodyItems>{Categories(category)}</BodyItems>
+                  <BodyItems>
+                    <EllipsisText
+                      text={`${comment || '---'}`}
+                      length={24}
+                      tooltip="true"
+                    />
+                  </BodyItems>
+                  <BodyItems>
+                    {transactionType === 'income' ? (
+                      <SpanSum
+                        style={{ color: `${baseVars.colors.incomeText}` }}
+                      >
+                        {amount.toFixed(2)}
+                        </SpanSum>
+                    ) : (
+                      <SpanSum
+                        style={{ color: `${baseVars.colors.expensesText}` }}
+                      >
+                        {amount.toFixed(2)}
+                      </SpanSum>
+                    )}
+                  </BodyItems>
+                  <BodyItems>{balance.toFixed(2)}</BodyItems>
+                  <BodyItems>
+                    <Button onClick={() => onRemoveTransaction(_id)}>
+                      <Delete sx={{
+                        color: '#fff',
+                        transform: 'scale(0.8)',
+                      }} />
+                    </Button>
+                  </BodyItems>
+                </BodyList>
+                )
+              )}
+            </Tbody>
+          </BodyTable>
       ) : (
         <EmptyContainer />
-      )}
+        )}
+      </GeneralContainer>
     </>
   );
 };
