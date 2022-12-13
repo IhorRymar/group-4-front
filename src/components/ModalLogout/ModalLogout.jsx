@@ -8,8 +8,9 @@ import { logout } from 'redux/auth/auth-operations';
 import {
   ModalWindow,
   Overlay,
-  Heading,
 } from '../ModalAddTransaction/ModalAddTransaction.styled';
+
+import { StyledHeadingLogout } from './ModalLogout.styled';
 
 import { StyledButton } from 'components/ModalAddTransaction/StyledButton/StyledButton';
 
@@ -48,7 +49,7 @@ export const ModalLogout = () => {
   return createPortal(
     <Overlay>
       <ModalWindow>
-        <Heading>Точно впевнені?</Heading>
+        <StyledHeadingLogout>Confirm logout?</StyledHeadingLogout>
         <StyledButton type="submit" onClick={handleClickOk}>
           OK
         </StyledButton>

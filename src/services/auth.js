@@ -39,8 +39,8 @@ export const getCurrent = async token => {
 
 export const logout = async token => {
   try {
-    const { data } = await instance.get('/users/logout');
     setToken(token);
+    const { data } = await instance.get('/users/logout');
     return data;
   } catch (error) {
     setToken();
