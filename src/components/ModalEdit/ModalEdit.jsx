@@ -5,6 +5,7 @@ import { Heading } from 'components/ModalAddTransaction/ModalAddTransaction.styl
 import { ModalEditForm } from './ModalEditForm';
 import { StyledButton } from 'components/ModalAddTransaction/StyledButton/StyledButton';
 import { StyledCloseButton } from 'components/ModalAddTransaction/CloseButton/CloseButton';
+import { TransactionForm } from 'components/TransactionForm/TransactionForm';
 
 export const ModalEdit = ({ toggleModal, isOpen, updateTransaction }) => {
   const modalRoot = document.querySelector('#modal-root');
@@ -28,9 +29,10 @@ export const ModalEdit = ({ toggleModal, isOpen, updateTransaction }) => {
       <ModalWindow>
         <Heading>Edit transaction</Heading>
 
-        <ModalEditForm
+        <TransactionForm
           toggleModal={toggleModal}
           transaction={updateTransaction}
+          type="update"
         />
         <StyledButton type="button" onClick={toggleModal}>
           Cancel

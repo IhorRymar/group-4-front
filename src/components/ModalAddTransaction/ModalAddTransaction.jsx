@@ -5,6 +5,7 @@ import { StyledButton } from 'components/ModalAddTransaction/StyledButton/Styled
 import { AddTransactionForm } from '../AddTransactionForm/AddTransactionForm';
 import { Heading } from './ModalAddTransaction.styled';
 import { StyledCloseButton } from './CloseButton/CloseButton';
+import { TransactionForm } from 'components/TransactionForm/TransactionForm';
 
 export const ModalAddTransaction = ({ toggleModal, isOpen }) => {
   const modalRoot = document.querySelector('#modal-root');
@@ -29,7 +30,7 @@ export const ModalAddTransaction = ({ toggleModal, isOpen }) => {
       <ModalWindow>
         <Heading>Add transaction</Heading>
 
-        <AddTransactionForm toggleModal={toggleModal} />
+        <TransactionForm toggleModal={toggleModal} typeForm="add" />
         <StyledButton type="button" onClick={toggleModal}>
           Cancel
         </StyledButton>
