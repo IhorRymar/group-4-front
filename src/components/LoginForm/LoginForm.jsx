@@ -1,12 +1,13 @@
 import React , { useCallback, useState } from 'react';
 import { useDispatch } from 'react-redux'
 import { Formik } from 'formik'
-import { Btn, Button , Container, Logotype, Icon, FormaRegistration, Label,Error} from "./LoginForm.styled";
+import { Btn, Button, Container, Logotype, Icon, FormaRegistration, Label, Error} from "./LoginForm.styled";
 import {login} from '../../redux/auth/auth-operations'
 import { loginSchema } from '../../utils/validationsSchemas'
 import sprite from '../../images/svg/sprite.svg'
-import { Visibility, VisibilityOff } from '@mui/icons-material';
-import { IconButton, InputAdornment, TextField } from '@mui/material';
+import { Visibility, VisibilityOff, Lock } from '@mui/icons-material';
+import { HiEnvelope } from "react-icons/hi2";
+import { styled, IconButton, TextField } from '@mui/material';
 
 
 
@@ -60,66 +61,61 @@ const LoginForm = () => {
             <FormaRegistration>
               <Label>
                 {touched.email && errors.email && (
-                 <Error>{errors.email}</Error>
-               )}
-                <TextField
-                 variant="filled"
-              margin="normal"
-              required
-              fullWidth
-              label="E-mail"
-                type={`email`}
+                <Error>{errors.email}</Error>
+              )}
+                <StyledTextField
+                  variant="filled"
+                  margin="normal"
+                  required
+                  fullWidth
+                  placeholder="E-mail"
+                  type={`email`}
                   name={`email`}
                   size="small"
-              autoComplete="email"
-              color="primary"
-              autoFocus
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.email}
+                  autoComplete="email"
+                  color="primary"
+                  autoFocus
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.email}
+                  InputProps={{ disableUnderline: true }}
                 />
-
-                {/* <Inputicon width="24" height="24">
-                  <use href={`${sprite}#icon-email`}></use>
-                </Inputicon> */}
+                <HiEnvelope
+                  style={{ position: 'absolute', left: '15px', bottom: '48px', color: '#E0E0E0', }}
+                  size="23px"
+                />
               </Label>
 
               <Label>
                 {touched.password && errors.password && (
                 <Error>{errors.password}</Error>
               )}
-                <TextField
-                placeholder="Password"
-                type={showPassword ? 'text' : 'password'}
+                <StyledTextField
+                  type={showPassword ? 'text' : 'password'}
                   name={`password`}
-                  label="Password"
-              required
-              fullWidth
-              variant="filled"
-              margin="normal"
-              size="small"
-              autoComplete="current-password"
-                onChange={handleChange}
-                onBlur={handleBlur}
+                  placeholder="Password"
+                  required
+                  fullWidth
+                  variant="filled"
+                  margin="normal"
+                  size="small"
+                  autoComplete="current-password"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
                   value={values.password}
-                  InputProps={{
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <IconButton
-                      aria-label="toggle password visibility"
-                      onClick={tooglePassword}
-                      onMouseDown={handleMouseDownPassword}
-                    >
-                      {showPassword ? <Visibility /> : <VisibilityOff />}
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              }}
+                  InputProps={{disableUnderline: true }}
                 />
-
-                {/* <Inputicon width="24" height="24">
-                  <use href={`${sprite}#icon-password`}></use>
-                </Inputicon> */}
+                <Lock
+                  sx={{ position: 'absolute', left: '15px', bottom: '48px', color: '#E0E0E0', }}
+                />
+                <IconButton
+                  aria-label="toggle password visibility"
+                  sx={{ position: 'absolute', right: '0', color: '#E0E0E0', }}
+                  onClick={tooglePassword}
+                  onMouseDown={handleMouseDownPassword}
+                >
+                  {showPassword ? <Visibility /> : <VisibilityOff />}
+                </IconButton>
               </Label>
               <Btn
                 disabled={!isValid || !dirty}
@@ -139,6 +135,31 @@ const LoginForm = () => {
     </div>
   )
 }
+
+const StyledTextField = styled(TextField)({
+  width: '280px',
+  margin: '0 0 40px',
+
+  '@media screen and (min-width: 768px)': {
+    width: '100%',
+  },
+
+  '& .MuiFilledInput-root': {
+    display: 'flex',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    borderBottom: '1px solid #E0E0E0',
+    padding: '0',
+  },
+
+  '& .Mui-focused .MuiFilledInput-root': {
+    backgroundColor: '#fff',
+  },
+
+  '& .MuiFilledInput-input': {
+    padding: '8px 40px 8px 54px',
+  },
+});
 
 export default LoginForm
 

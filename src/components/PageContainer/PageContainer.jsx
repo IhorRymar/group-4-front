@@ -1,4 +1,5 @@
-import { Background, Backdrop, Container } from "./PageContainer.styled";
+import { Backdrop, Container } from "./PageContainer.styled";
+import Background from './Background/Background';
 
 const PageContainer = ({ children }) => {
   return (
