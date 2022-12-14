@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 export const Button = styled.button`
   position: absolute;
-  bottom: 20px;
-  right: 20px;
+  bottom: 15px;
+  right: 0px;
   background-color: ${props => props.theme.buttons.primary.bg};
   width: 44px;
   height: 44px;
@@ -17,5 +17,15 @@ export const Button = styled.button`
   :hover {
     scale: 1.2;
     transition: scale 150ms linear;
+  }
+
+  @media (min-width: 768px) {
+    bottom: 20px;
+    right: 18px;
+  }
+
+  @media (min-width: 1280px) {
+    bottom: 20px;
+    right: 18px;
   }
 `;
