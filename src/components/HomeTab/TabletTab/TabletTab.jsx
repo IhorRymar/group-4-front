@@ -6,18 +6,40 @@ import { EmptyContainer } from '../EmptyContainer/EmptyContainer';
 import moment from 'moment';
 import { Categories } from '../categories';
 import EllipsisText from 'react-ellipsis-text';
+import { useState, useEffect } from 'react';
 
-import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchTransactions, removeTransaction } from 'redux/transactions/transactions-operation';
-import { Delete } from "@mui/icons-material";
+import {
+  fetchTransactions,
+  fetchTransactionById,
+  removeTransaction,
+} from 'redux/transactions/transactions-operation';
+import { ModalEdit } from 'components/ModalEdit/ModalEdit';
+import { Delete, Edit } from '@mui/icons-material';
+import { toast } from 'react-toastify';
 
 const TabletTab = ({ items, columns }) => {
   const dispatch = useDispatch();
-
-  const onRemoveTransaction = (id) => {
+  const [isModalEditOpen, setІsModalEditOpen] = useState(false);
+  const [updateTransaction, setUpdateTransaction] = useState({});
+  const onRemoveTransaction = id => {
     dispatch(removeTransaction(id));
-  }
+  };
+  const toggleModal = () => {
+    setІsModalEditOpen(!isModalEditOpen);
+  };
+
+  const onEditTransaction = async id => {
+    try {
+      const transaction = await dispatch(fetchTransactionById(id));
+      setUpdateTransaction(transaction.payload);
+    } catch (error) {
+      toast.error(`${error.msg}`);
+    }
+    const transaction = await dispatch(fetchTransactionById(id));
+    setUpdateTransaction(transaction.payload);
+    toggleModal();
+  };
 
   const transactions = useSelector(state => state.transactions.items);
 
@@ -27,76 +49,82 @@ const TabletTab = ({ items, columns }) => {
 
   return (
     <>
-      <GeneralContainer>
-        <table>
-          <HeadContainer>
-            <HeadList>
-              {columns.map(colum => (
-                <HeadTitles key={colum.accessor}>{colum.Header} </HeadTitles>
-              ))}
-            </HeadList>
-          </HeadContainer>
-        </table>
-        {items?.length !== 0 ? (
+      {items?.length !== 0 ? (
+        <GeneralContainer>
+          <table>
+            <HeadContainer>
+              <HeadList>
+                {columns.map(colum => (
+                  <HeadTitles key={colum.accessor}>{colum.Header} </HeadTitles>
+                ))}
+              </HeadList>
+            </HeadContainer>
+          </table>
           <BodyTable>
             <Tbody>
-              {items?.map(({
-                date,
-                transactionType,
-                category,
-                comment,
-                amount,
-                balance,
-                _id,
-              }) => (
-                <BodyList key={_id}>
-                  <BodyItems>
-                    {moment.utc(date).format('DD.MM.YY')}
-                  </BodyItems>
-                  <BodyItems>
-                    {transactionType === 'income' ? '+' : '-'}
-                  </BodyItems>
-                  <BodyItems>{Categories(category)}</BodyItems>
-                  <BodyItems>
-                    <EllipsisText
-                      text={`${comment || '---'}`}
-                      length={24}
-                      tooltip="true"
-                    />
-                  </BodyItems>
-                  <BodyItems>
-                    {transactionType === 'income' ? (
-                      <SpanSum
-                        style={{ color: `${baseVars.colors.incomeText}` }}
-                      >
-                        {amount.toFixed(2)}
+              {items?.map(
+                ({
+                  date,
+                  transactionType,
+                  category,
+                  comment,
+                  amount,
+                  balance,
+                  _id,
+                }) => (
+                  <BodyList key={_id}>
+                    <BodyItems>{moment.utc(date).format('DD.MM.YY')}</BodyItems>
+                    <BodyItems>
+                      {transactionType === 'income' ? '+' : '-'}
+                    </BodyItems>
+                    <BodyItems>{Categories(category)}</BodyItems>
+                    <BodyItems>
+                      <EllipsisText
+                        text={`${comment || '---'}`}
+                        length={24}
+                        tooltip="true"
+                      />
+                    </BodyItems>
+                    <BodyItems>
+                      {transactionType === 'income' ? (
+                        <SpanSum
+                          style={{ color: `${baseVars.colors.incomeText}` }}
+                        >
+                          {amount.toFixed(2)}
                         </SpanSum>
-                    ) : (
-                      <SpanSum
-                        style={{ color: `${baseVars.colors.expensesText}` }}
-                      >
-                        {amount.toFixed(2)}
-                      </SpanSum>
-                    )}
-                  </BodyItems>
-                  <BodyItems>{balance.toFixed(2)}</BodyItems>
-                  <BodyItems>
-                    <Button onClick={() => onRemoveTransaction(_id)}>
-                      <Delete sx={{
-                        color: '#fff',
-                        transform: 'scale(0.8)',
-                      }} />
-                    </Button>
-                  </BodyItems>
-                </BodyList>
+                      ) : (
+                        <SpanSum
+                          style={{ color: `${baseVars.colors.expensesText}` }}
+                        >
+                          {amount.toFixed(2)}
+                        </SpanSum>
+                      )}
+                    </BodyItems>
+                    <BodyItems>{balance.toFixed(2)}</BodyItems>
+                    <BodyItems>
+                      <Button onClick={() => onRemoveTransaction(_id)}>
+                        <DeleteIcon />
+                      </Button>
+                      <Button onClick={() => onEditTransaction(_id)}>
+                        <EditIcon />
+                      </Button>
+                    </BodyItems>
+                  </BodyList>
                 )
               )}
             </Tbody>
           </BodyTable>
+        </GeneralContainer>
       ) : (
         <EmptyContainer />
-        )}
-      </GeneralContainer>
+      )}
+      {isModalEditOpen && (
+        <ModalEdit
+          toggleModal={toggleModal}
+          isOpen={isModalEditOpen}
+          updateTransaction={updateTransaction}
+        />
+      )}
     </>
   );
 };
@@ -151,7 +179,7 @@ const HeadTitles = styled.th`
   color: ${baseVars.colors.mainText};
 
   :first-child {
-    width: 55px
+    width: 55px;
   }
   :nth-child(2) {
     width: 65px;
@@ -179,9 +207,7 @@ const BodyTable = styled.table`
   border-collapse: collapse;
 `;
 
-const Tbody = styled.tbody`
-
-`;
+const Tbody = styled.tbody``;
 
 const BodyList = styled.tr`
   display: flex;
@@ -246,7 +272,34 @@ const Button = styled.button`
   padding: 0;
   border: none;
   border-radius: 2px;
-  background-color: ${baseVars.colors.icon} ;
+  background-color: transparent;
   margin: 0;
   margin-right: 20px;
+  cursor: pointer;
+`;
+
+const DeleteIcon = styled(Delete)`
+  scale: 0.8;
+  background-color: transparent;
+  color: ${baseVars.colors.icon};
+  :hover {
+    scale: 1;
+    background-color: ${baseVars.colors.icon};
+    color: white;
+    transition: scale 150ms linear;
+    border-radius: 10px;
+  }
+`;
+
+const EditIcon = styled(Edit)`
+  scale: 0.8;
+  background-color: transparent;
+  color: ${baseVars.colors.icon};
+  :hover {
+    scale: 1;
+    background-color: ${baseVars.colors.icon};
+    color: white;
+    transition: scale 150ms linear;
+    border-radius: 10px;
+  }
 `;

@@ -5,18 +5,15 @@ import { useFormikContext } from 'formik';
 import { StyledDateTime } from './DatePicker.styled';
 
 export const DatePicker = ({ name }) => {
-  const {
-    setFieldValue,
-    values: { date },
-  } = useFormikContext();
+  const { setFieldValue, values } = useFormikContext();
   const hadnleChange = value => {
-    setFieldValue(name, moment(value).format('DD.MM.YYYY'));
+    setFieldValue(name, moment(value).utc());
   };
   const configDatePicker = {
     locale: 'uk',
 
     name,
-    value: { date },
+    value: values.date,
   };
 
   const inpuProps = {

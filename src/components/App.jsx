@@ -10,14 +10,14 @@ import { global, logoutModal } from '../redux/global/global-selectors';
 import { isAuth } from '../redux/auth/auth-selectors';
 import { ModalLogout } from 'components/ModalLogout/ModalLogout';
 import Header from './Header/Header';
-import HomeTab from './HomeTab/HomeTab';
 import Spinner from './Spinner/Spinner';
-import Currency from './Currency/Currency';
-import DiagramTab from './DiagramTab/DiagramTab';
 
 const Register = lazy(() => import('../pages/RegisterPage/RegisterPage'));
 const Login = lazy(() => import('../pages/LoginPage/LoginPage.jsx'));
 const Dashboard = lazy(() => import('../pages/DashboardPage/DashboardPage'));
+const HomeTab = lazy(() => import('./HomeTab/HomeTab'));
+const DiagramTab = lazy(() => import('./DiagramTab/DiagramTab'));
+const Currency = lazy(() => import('./Currency/Currency'));
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -38,9 +38,9 @@ export const App = () => {
         <Routes>
           <Route element={<PrivateRoute />}>
             <Route path="/" element={<Dashboard />}>
-              <Route path="/home" element={<HomeTab />} />
-              <Route path="/statistics" element={<DiagramTab />} />
-              <Route path="/currency" element={<Currency />} />
+              <Route path="home" element={<HomeTab />} />
+              <Route path="statistics" element={<DiagramTab />} />
+              <Route path="currency" element={<Currency />} />
             </Route>
             <Route
               path="*"

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const MainButton = styled.button`
   width: 100%;
   height: 50px;
+  scale: 1;
   margin-bottom: ${p => {
     if (p.type === 'submit') {
       return p.theme.buttons.primary.mb;
@@ -33,4 +34,9 @@ export const MainButton = styled.button`
       return p.theme.buttons.secondary.border;
     }
   }};
+
+  :hover {
+    scale: 1.2;
+    transition: scale 150ms linear;
+  }
 `;
