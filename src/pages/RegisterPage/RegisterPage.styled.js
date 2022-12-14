@@ -2,10 +2,11 @@ import styled from 'styled-components';
 
 export const RegisterImg = styled.div`
   @media screen and (min-width: 768px) {
+    width: 100%;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
-    margin-bottom: 50px;
+    padding: 60px 0 50px 0;
   }
   @media screen and (min-width: 1280px) {
     display: flex;
@@ -13,39 +14,23 @@ export const RegisterImg = styled.div`
     justify-content: center;
     align-items: center;
     margin: 0;
+    padding: 0 0 0 66px;
   }
 `;
 
 export const Title = styled.p`
-  position: absolute;
-  right: 30px;
-  top: 163px;
   font-family: Poppins;
   font-style: normal;
   font-weight: 400;
   font-size: 30px;
   line-height: 1.5;
   color: #000000;
-  @media screen and (min-width: 1280px) {
-    position: absolute;
-    top: 590px;
-    left: 200px;
-  }
-`;
 
-export const Tittle = styled.p`
-  position: absolute;
-  right: 60px;
-  font-family: Poppins;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 30px;
-  line-height: 1.5;
-  color: #000000;
-  display: inline-block;
+  @media screen and (min-width: 768px) {
+    margin: 0 71px 0 0;
+  }
+
   @media screen and (min-width: 1280px) {
-    position: absolute;
-    top: 585px;
-    left: 200px;
+    margin-top: 30px 0 0 0;
   }
 `;

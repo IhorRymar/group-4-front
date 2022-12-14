@@ -5,10 +5,16 @@ import styled from 'styled-components';
 export const Container = styled.div`
   min-width: 280px;
   max-width: 480px;
-  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   @media screen and (min-width: 768px) {
+    align-items: stretch;
     max-width: none;
     width: 533px;
+    height: auto;
     margin: 0 auto;
     padding: 40px 58.5px 62px 65px;
     background-color: #ffffff;
@@ -36,18 +42,20 @@ export const Inputicon = styled.svg`
   left: 10px;
   top: 4px;
 `;
+
 export const Label = styled.label`
+  width: 280px;
   position: relative;
   display: block;
-  margin-bottom: 5px;
   @media screen and (min-width: 768px) {
-    margin-bottom: 10px;
+    width: 100%;
   }
 `;
+
 export const Logotype = styled.div`
   display: flex;
   justify-content: center;
-  margin-bottom: 60px;
+  margin-bottom: 52px;
 `;
 
 export const Btn = styled.button`
@@ -59,7 +67,7 @@ export const Btn = styled.button`
   align-items: center;
   background: #24cca7;
   border-radius: 20px;
-  margin-top: 20px;
+  margin-bottom: 20px;
   border: none;
   outline: none;
   font-family: Circe, sans-serif;
@@ -93,7 +101,7 @@ export const Button = styled(NavLink)`
   width: 280px;
   height: 50px;
   margin: 0 auto;
-  margin-top: 20px;
+  /* margin-top: 20px; */
   display: flex;
   justify-content: center;
   align-items: center;

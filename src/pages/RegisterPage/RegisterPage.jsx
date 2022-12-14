@@ -1,14 +1,14 @@
-import { Container, Img, FormLogin, Title} from "pages/LoginPage/LoginPage.styled";
-import { RegisterImg } from "./RegisterPage.styled";
+import { Container, Img, FormLogin } from "pages/LoginPage/LoginPage.styled";
+import { RegisterImg, Title } from "./RegisterPage.styled";
 import Media from 'react-media'
 import { mediaQueries } from '../../utils'
 import  RegisterForm  from '../../components/RegisterForm/RegisterForm';
 import registerimg from '../../images/photo/register-img.png'
-import PageContainer from '../../components/PageContainer/PageContainer'
+import Background from 'components/PageContainer/Background/Background';
 
 const RegisterPage = () => {
   return (
-    <PageContainer>
+    <Background>
       <Container>
          <Media queries={mediaQueries}>
           {(matches) => (
@@ -47,7 +47,7 @@ const RegisterPage = () => {
           <RegisterForm />
         </FormLogin>
       </Container>
-      </PageContainer>
+      </Background>
   )
 }
 

@@ -4,11 +4,11 @@ import LoginForm from '../../components/LoginForm/LoginForm'
 import { Title, WrapperImg, FormLogin, Img, Container } from './LoginPage.styled'
 import { mediaQueries } from '../../utils'
 import signinImg from '../../images/photo/signin-img.png'
-import PageContainer from 'components/PageContainer/PageContainer'
+import Background from 'components/PageContainer/Background/Background';
 
 const LoginPage = () => {
   return (
-    <PageContainer>
+    <Background>
       <Container>
         <Media queries={mediaQueries}>
           {(matches) => (
@@ -39,7 +39,7 @@ const LoginPage = () => {
           <LoginForm />
         </FormLogin>
       </Container>
-    </PageContainer>
+    </Background>
   )
 }
 
