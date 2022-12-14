@@ -6,7 +6,8 @@ import PublicRoute from './HOC/PublicRoute';
 import { lazy, Suspense, useEffect } from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
 import { current } from 'redux/auth/auth-operations';
-import { global, logoutModal } from '../redux/global/global-selectors';
+import { global } from '../redux/global/global-selectors';
+import { logOutModalOpen } from 'redux/modal/modal-selector';
 import { isAuth } from '../redux/auth/auth-selectors';
 import { ModalLogout } from 'components/ModalLogout/ModalLogout';
 import Header from './Header/Header';
@@ -23,7 +24,7 @@ export const App = () => {
   const dispatch = useDispatch();
   const loading = useSelector(global);
   const isLogin = useSelector(isAuth);
-  const logout = useSelector(logoutModal);
+  const logout = useSelector(logOutModalOpen);
 
   useEffect(() => {
     dispatch(current());

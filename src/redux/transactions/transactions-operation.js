@@ -43,9 +43,10 @@ export const addTransaction = createAsyncThunk(
 export const updateTransactionById = createAsyncThunk(
   'transactions/update',
   async (data, { rejectWithValue }) => {
-    const { id, transaction } = data;
+    const { id, result } = data;
+
     try {
-      const data = await api.updateTransaction(id, transaction);
+      const data = await api.updateTransaction(id, result);
       toast.success('Transaction is updated successfuly');
       return data;
     } catch (error) {

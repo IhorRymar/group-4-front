@@ -34,14 +34,12 @@ const transactionReducer = createSlice({
     },
 
     [fetchTransactionById.pending]: store => {
-      store.loading = true;
       store.error = null;
     },
     [fetchTransactionById.fulfilled]: (store, { payload }) => {
       store.loading = false;
     },
     [fetchTransactionById.rejected]: (store, { payload }) => {
-      store.loading = false;
       store.error = payload;
     },
 
