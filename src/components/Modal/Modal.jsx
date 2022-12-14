@@ -6,7 +6,7 @@ import { ModalWindow, Overlay } from './ModalStyled';
 
 import { Heading } from './ModalStyled';
 import { StyledButton } from 'components/StyledButton/StyledButton';
-import { StyledCloseButton } from 'components/CloseButton/CloseButtong';
+import { StyledCloseButton } from 'components/CloseButton/CloseButton';
 
 export const Modal = ({ toggleModal, heading, isOpen, children }) => {
   const modalRoot = document.querySelector('#modal-root');
