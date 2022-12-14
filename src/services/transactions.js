@@ -24,3 +24,8 @@ export const removeTransaction = async id => {
   const { data: result } = await instance.delete(`/transactions/${id}`);
   console.log(result);
 };
+
+export const getTransactionsYears = async page => {
+  const { data } = await instance.get(`/transactions/transactionsYears`);
+  return data;
+};

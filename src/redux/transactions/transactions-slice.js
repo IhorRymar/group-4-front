@@ -6,10 +6,12 @@ import {
   addTransaction,
   updateTransactionById,
   removeTransaction,
+  fetchTransactionsYears,
 } from './transactions-operation';
 
 const initialState = {
   items: [],
+  years: [],
   loading: false,
   error: null,
 };
@@ -76,6 +78,19 @@ const transactionReducer = createSlice({
       store.items = store.items.result.filter(item => item.id !== payload);
     },
     [removeTransaction.rejected]: (store, { payload }) => {
+      store.loading = false;
+      store.error = payload;
+    },
+
+    [fetchTransactionsYears.pending]: store => {
+      store.loading = true;
+      store.error = null;
+    },
+    [fetchTransactionsYears.fulfilled]: (store, { payload }) => {
+      store.loading = false;
+      store.years = payload;
+    },
+    [fetchTransactionsYears.rejected]: (store, { payload }) => {
       store.loading = false;
       store.error = payload;
     },
