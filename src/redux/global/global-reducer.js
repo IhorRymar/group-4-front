@@ -27,7 +27,7 @@ const isLoadingReducer = (state = initialState, action) => {
 
 const globalReducer = combineReducers({
   loading: isLoadingReducer,
-  isAddTransactionModalOpen: modalScliceReducer,
+  isModalOpen: modalScliceReducer,
   logoutModal: logoutModalSliceReducer,
 });
 

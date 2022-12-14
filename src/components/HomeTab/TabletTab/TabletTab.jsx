@@ -7,7 +7,7 @@ import moment from 'moment';
 import { Categories } from '../categories';
 import EllipsisText from 'react-ellipsis-text';
 import { useState, useEffect } from 'react';
-
+import { editTransOpen } from '../../../redux/modal/modal-selector';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   fetchTransactions,
@@ -17,16 +17,17 @@ import {
 import { ModalEdit } from 'components/ModalEdit/ModalEdit';
 import { Delete, Edit } from '@mui/icons-material';
 import { toast } from 'react-toastify';
+import { isEditModalOpen } from 'redux/modal/modal-sclice';
 
 const TabletTab = ({ items, columns }) => {
   const dispatch = useDispatch();
-  const [isModalEditOpen, setІsModalEditOpen] = useState(false);
+  const openEdit = useSelector(editTransOpen);
   const [updateTransaction, setUpdateTransaction] = useState({});
   const onRemoveTransaction = id => {
     dispatch(removeTransaction(id));
   };
   const toggleModal = () => {
-    setІsModalEditOpen(!isModalEditOpen);
+    dispatch(isEditModalOpen(!openEdit));
   };
 
   const onEditTransaction = async id => {
@@ -118,10 +119,10 @@ const TabletTab = ({ items, columns }) => {
       ) : (
         <EmptyContainer />
       )}
-      {isModalEditOpen && (
+      {openEdit && (
         <ModalEdit
           toggleModal={toggleModal}
-          isOpen={isModalEditOpen}
+          isOpen={openEdit}
           updateTransaction={updateTransaction}
         />
       )}

@@ -20,14 +20,16 @@ import {
 import { Comment } from './Comment/Comment';
 import { DatePicker } from './DatePicker/DatePicker';
 import CategorySelect from './CategorySelect/CategorySelect';
-import { StyledButton } from '../ModalAddTransaction/StyledButton/StyledButton';
+import { StyledButton } from '../StyledButton/StyledButton';
 import { useDispatch } from 'react-redux';
 import { CalendarIcon } from './DatePicker/DatePicker.styled';
+import { isAddModalOpen, isEditModalOpen } from 'redux/modal/modal-sclice';
+import { fetchBalance } from 'redux/balance/balance-operation';
 
-export const TransactionForm = ({ toggleModal, transaction, typeForm }) => {
+export const TransactionForm = ({ transaction, typeForm }) => {
   const initalTransactionType =
     typeForm === 'add' ? 'income' : transaction?.transactionType;
-  console.log(initalTransactionType);
+
   const dispatch = useDispatch();
   const [transactionType, setTransactonType] = useState(initalTransactionType);
   const isIncomeHandler = e => {
@@ -60,24 +62,24 @@ export const TransactionForm = ({ toggleModal, transaction, typeForm }) => {
         : { transactionType, ...rest };
 
     const submitData =
-      typeForm === 'add' ? { ...result } : { id: transaction._id, ...result };
+      typeForm === 'add' ? { ...result } : { id: transaction._id, result };
     try {
       switch (typeForm) {
         case 'add':
           await dispatch(addTransaction(submitData));
-          console.log(submitData);
           break;
         case 'update':
           await dispatch(updateTransactionById(submitData));
-          console.log(submitData);
+          dispatch(fetchBalance());
           break;
 
         default:
-          console.log('switchDefault');
+          alert('Something went wrong!');
       }
-
-      //   await dispatch(fetchTransactions());
-      toggleModal();
+      await dispatch(fetchTransactions());
+      typeForm === 'add'
+        ? dispatch(isAddModalOpen(false))
+        : dispatch(isEditModalOpen(false));
     } catch (error) {
       toast.error`${error.message}`;
     }
@@ -132,7 +134,12 @@ export const TransactionForm = ({ toggleModal, transaction, typeForm }) => {
           )}
           <TabletWrapper>
             <label htmlFor="amount">
-              <TextField type="number" name="amount" placeholder="0.00" />
+              <TextField
+                type="number"
+                min="0"
+                name="amount"
+                placeholder="0.00"
+              />
               <ErrorMessage
                 name="amount"
                 render={msg => {

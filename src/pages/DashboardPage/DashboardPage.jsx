@@ -5,23 +5,22 @@ import Currency from 'components/Currency/Currency';
 import { ButtonCircle } from 'components/ButtonCircle/ButtonCircle';
 import { ModalAddTransaction } from 'components/ModalAddTransaction/ModalAddTransaction';
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleModal } from 'redux/modal/modal-sclice';
+import { isAddModalOpen } from 'redux/modal/modal-sclice';
 import { Outlet } from 'react-router';
 import { useWindowDimensions } from 'hooks/useWindowDimensions';
 
 import { MainWrapper, NavBalanceWrapper } from './DashboardPage.styled';
+import { addModalOpen } from 'redux/modal/modal-selector';
 
 const DashboardPage = () => {
   const { width } = useWindowDimensions();
 
-  const isModalOpen = useSelector(
-    state => state.global.isAddTransactionModalOpen
-  );
+  const modalOpen = useSelector(addModalOpen);
 
   const dispatch = useDispatch();
 
   const onModal = () => {
-    dispatch(toggleModal(!isModalOpen));
+    dispatch(isAddModalOpen(!modalOpen));
   };
 
   return (
@@ -35,9 +34,7 @@ const DashboardPage = () => {
       </MainWrapper>
       <Outlet />
       <ButtonCircle onClick={onModal}>+</ButtonCircle>
-      {isModalOpen && (
-        <ModalAddTransaction toggleModal={onModal} isOpen={isModalOpen} />
-      )}
+      {modalOpen && <ModalAddTransaction isOpen={isAddModalOpen} />}
     </PageContainer>
   );
 };
