@@ -1,63 +1,30 @@
-import { createPortal } from 'react-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
-import { logoutModal } from 'redux/global/global-selectors';
-import { toggleModal } from 'redux/logout-modal/logout-modal';
 import { logout } from 'redux/auth/auth-operations';
-
-import {
-  ModalWindow,
-  Overlay,
-} from '../ModalAddTransaction/ModalAddTransaction.styled';
-
-import { StyledHeadingLogout } from './ModalLogout.styled';
-
-import { StyledButton } from 'components/ModalAddTransaction/StyledButton/StyledButton';
-
+import { isLogOutModalOpen } from 'redux/modal/modal-sclice';
+import { logOutModalOpen } from 'redux/modal/modal-selector';
+import { StyledButton } from 'components/StyledButton/StyledButton';
+import { Modal } from '../Modal/Modal';
 export const ModalLogout = () => {
-  const LogoutModalRoot = document.querySelector('#modal-logout');
-
-  const isLogoutModalOpen = useSelector(logoutModal);
-
+  const isModalOpen = useSelector(logOutModalOpen);
   const dispatch = useDispatch();
 
-  const closeModal = () => {
-    dispatch(toggleModal(!isLogoutModalOpen));
+  const toggleModal = () => {
+    dispatch(isLogOutModalOpen(!isModalOpen));
   };
-
   const handleClickOk = () => {
-    dispatch(toggleModal(!isLogoutModalOpen));
+    toggleModal();
     dispatch(logout());
   };
 
-  useEffect(() => {
-    const handleKeyDown = e => {
-      if (e.code === 'Escape') {
-        dispatch(toggleModal(!isLogoutModalOpen));
-      }
-    };
-
-    if (isLogoutModalOpen) {
-      window.addEventListener('keydown', handleKeyDown);
-    }
-
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [dispatch, isLogoutModalOpen]);
-
-  return createPortal(
-    <Overlay>
-      <ModalWindow>
-        <StyledHeadingLogout>Confirm logout?</StyledHeadingLogout>
-        <StyledButton type="submit" onClick={handleClickOk}>
-          OK
-        </StyledButton>
-        <StyledButton type="button" onClick={closeModal}>
-          Cancel
-        </StyledButton>
-      </ModalWindow>
-    </Overlay>,
-    LogoutModalRoot
+  return (
+    <Modal
+      heading="Confirm logout?"
+      toggleModal={toggleModal}
+      isOpen={isModalOpen}
+    >
+      <StyledButton type="submit" onClick={handleClickOk}>
+        OK
+      </StyledButton>
+    </Modal>
   );
 };

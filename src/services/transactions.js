@@ -11,8 +11,7 @@ export const getTransactionById = async id => {
 };
 
 export const addTransaction = async transaction => {
-  const { data: result } = await instance.post('/transactions', transaction);
-  console.log(result);
+  await instance.post('/transactions', transaction);
 };
 
 export const updateTransaction = async (id, transaction) => {
@@ -21,8 +20,7 @@ export const updateTransaction = async (id, transaction) => {
 };
 
 export const removeTransaction = async id => {
-  const { data: result } = await instance.delete(`/transactions/${id}`);
-  console.log(result);
+  await instance.delete(`/transactions/${id}`);
 };
 
 export const getTransactionsYears = async page => {
