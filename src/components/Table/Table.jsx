@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchStatistics } from 'redux/Statistics/statistics-operations';
-import { fetchTransactions } from 'redux/transactions/transactions-operation';
+import { fetchTransactions, fetchTransactionsYears } from 'redux/transactions/transactions-operation';
 
 import { months, convertMonthNameToNumber } from 'services/monthList';
 
@@ -28,14 +28,8 @@ const Table = ({ stats }) => {
   const income = useSelector(state => state.statistics.income);
   const expensesTotal = expenses.reduce((acc, item) => acc + item.totalSum, 0);
   const incomeTotal = income.reduce((acc, item) => acc + item.totalSum, 0);
-  // const allTransactions = useSelector(state => state.transactions.items.result);
-  // const yearList = [...new Set(allTransactions.map(item => item.date.substring(0, 4)))];
-  const startYear = 2018;
-  const yearList = [];
-    
-  for (let i = startYear; i <= currentYear; i++) {
-    yearList.push(i);
-  }
+  const transactionsYears = useSelector(state => state.transactions.years);
+  const yearList = transactionsYears.map(item => item.year);
 
   const dispatch = useDispatch();
 
@@ -46,6 +40,7 @@ const Table = ({ stats }) => {
     } ;
     dispatch(fetchStatistics(period));
     dispatch(fetchTransactions());
+    dispatch(fetchTransactionsYears());
   }, [dispatch, monthNumber, year]);
 
   return (

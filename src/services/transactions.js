@@ -22,3 +22,8 @@ export const updateTransaction = async (id, transaction) => {
 export const removeTransaction = async id => {
   await instance.delete(`/transactions/${id}`);
 };
+
+export const getTransactionsYears = async page => {
+  const { data } = await instance.get(`/transactions/transactionsYears`);
+  return data;
+};

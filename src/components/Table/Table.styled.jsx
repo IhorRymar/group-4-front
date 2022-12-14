@@ -93,6 +93,10 @@ width: 100%;
   @media screen and (min-width: 768px) {
     padding: 16px 30px 0;
   }
+
+  :last-child {
+    padding-bottom: 20px;
+  }
 `;
 
 export const TotalText = styled.p`

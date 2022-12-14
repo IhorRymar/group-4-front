@@ -154,6 +154,10 @@ const borderColor = type => {
 };
 
 const TransactionContainer = styled.div`
+  min-height: calc(100vh - 226px);
+  max-height: calc(100vh - 226px);
+  overflow: hidden;
+  overflow-y: scroll;
   @media screen and (min-width: ${baseVars.sizeScreen.mobile}) {
     display: flex;
     flex-direction: column;
@@ -222,26 +226,36 @@ const SumText = styled(TextItems)`
 
 const Button = styled.button`
   display: flex;
+  justify-content: center;
+  align-items: center;
   width: 24px;
   height: 24px;
   padding: 0;
   border: none;
   border-radius: 2px;
-  background-color: transparent;
+  background-color: ${baseVars.colors.icon};
   margin: 0;
-  :nth-child(2n + 1) {
+  cursor: pointer;
+  scale: 1;
+  transition: scale 250ms linear;
+
+  :not(:last-child) {
     margin-right: 10px;
+  }
+
+  :hover {
+    scale: 1.2;
+    background-color: ${baseVars.colors.iconFocus};
+
   }
 `;
 
 const DeleteIcon = styled(Delete)`
-  scale: 0.8;
-  background-color: ${baseVars.colors.icon};
-  color: white;
+  color: ${baseVars.colors.secondText};
+  padding: 2px;
 `;
 
 const EditIcon = styled(Edit)`
-  scale: 0.8;
-  background-color: ${baseVars.colors.icon};
-  color: white;
+  color: ${baseVars.colors.secondText};
+  padding: 2px;
 `;
