@@ -281,11 +281,12 @@ const Button = styled.button`
   margin: 0;
   margin-right: 10px;
   cursor: pointer;
+  scale: 1;
+  transition: scale 250ms linear;
 
   :hover {
     scale: 1.2;
     background-color: ${baseVars.colors.iconFocus};
-    transition: scale 150ms linear;
   }
 `;
 

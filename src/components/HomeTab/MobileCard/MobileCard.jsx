@@ -232,6 +232,8 @@ const Button = styled.button`
   background-color: ${baseVars.colors.icon};
   margin: 0;
   cursor: pointer;
+  scale: 1;
+  transition: scale 250ms linear;
 
   :not(:last-child) {
     margin-right: 10px;
@@ -240,7 +242,7 @@ const Button = styled.button`
   :hover {
     scale: 1.2;
     background-color: ${baseVars.colors.iconFocus};
-    transition: scale 150ms linear;
+
   }
 `;
 
