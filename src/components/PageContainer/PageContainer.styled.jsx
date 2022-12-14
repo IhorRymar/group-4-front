@@ -17,11 +17,12 @@ import styled from 'styled-components';
 export const Backdrop = styled.div`
   background-color: rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(25px);
-  min-height: 100vh;
+  min-height: calc(100vh - 60px);
+  height: auto;
 `;
 
 export const Container = styled.div`
-  position: relative;
+  /* position: relative; */
   /* height: 100vh; */
   width: 320px;
   padding: 0 20px;

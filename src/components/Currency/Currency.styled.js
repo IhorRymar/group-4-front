@@ -13,27 +13,10 @@ export const ContainerStyled = styled.div`
 `;
 
 export const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 728px;
-  margin: 0 auto;
+  height: calc(100vh - 156px);
 
   @media screen and (min-width: 768px) {
-    flex-direction: row;
-    justify-content: space-between;
-  }
-
-  @media screen and (min-width: 1280px) {
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    max-width: 37%;
-    margin: 0;
-    padding-left: 50px;
-    height: 100vh;
-    position: relative;
+    height: 100%;
   }
 `;
 
@@ -84,9 +67,11 @@ export const ItemField = styled.div`
 export const Table = styled.div`
   border-radius: 30px;
   width: 280px;
+  /* height: calc(100vh - 156px); */
   position: relative;
   @media screen and (min-width: 768px) {
     min-width: 336px;
+    /* height: 100%; */
   }
   @media screen and (min-width: 1280px) {
     min-width: 393px;
