@@ -5,17 +5,18 @@ import styled from 'styled-components';
 export const Container = styled.div`
   min-width: 280px;
   max-width: 480px;
-  height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 40px 0;
   @media screen and (min-width: 768px) {
     align-items: stretch;
     max-width: none;
     width: 533px;
     height: auto;
-    margin: 0 auto;
+    margin: 0 auto 40px;
     padding: 40px 58.5px 62px 65px;
     background-color: #ffffff;
     border-radius: 20px;

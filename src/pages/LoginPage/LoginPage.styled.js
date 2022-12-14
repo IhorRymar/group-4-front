@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
+  align-items: center;
   max-width: 100%;
   height: 100vh;
   margin: 0 auto;
@@ -32,14 +33,18 @@ export const Title = styled.p`
   color: #000000;
 
   @media screen and (min-width: 768px) {
-    margin-right: 71px;
+    margin: 0 71px 0 0;
+  }
+
+  @media screen and (min-width: 1280px) {
+    margin: 30px 0 0 0;
   }
 `;
 
 export const Img = styled.img`
   @media screen and (min-width: 768px) {
     width: 260px;
-    margin-right: 40px;
+    /* margin-right: 40px; */
   }
   @media screen and (min-width: 1280px) {
     width: 435px;
@@ -60,11 +65,10 @@ export const WrapperImg = styled.div`
   @media screen and (min-width: 1280px) {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
     margin: 0;
-    width: 549px;
-    padding: 0 0 0 76px;
+    padding: 40px 38px 0 76px;
   }
 `;
 
@@ -80,6 +84,6 @@ export const FormLogin = styled.div`
     width: auto;
     background-color: rgba(255, 255, 255, 0.4);
     backdrop-filter: blur(50px);
-    padding: 52px 91px 52px 107px;
+    padding: 0 91px 0 107px;
   }
 `;

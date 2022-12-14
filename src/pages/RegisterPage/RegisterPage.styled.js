@@ -14,7 +14,7 @@ export const RegisterImg = styled.div`
     justify-content: center;
     align-items: center;
     margin: 0;
-    padding: 0 0 0 66px;
+    padding: 30px 30px 0 66px;
   }
 `;
 
@@ -31,6 +31,6 @@ export const Title = styled.p`
   }
 
   @media screen and (min-width: 1280px) {
-    margin-top: 30px 0 0 0;
+    margin: 30px 0 0 0;
   }
 `;
