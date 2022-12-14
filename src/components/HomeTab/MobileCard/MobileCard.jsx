@@ -154,6 +154,10 @@ const borderColor = type => {
 };
 
 const TransactionContainer = styled.div`
+  min-height: calc(100vh - 226px);
+  max-height: calc(100vh - 226px);
+  overflow: hidden;
+  overflow-y: scroll;
   @media screen and (min-width: ${baseVars.sizeScreen.mobile}) {
     display: flex;
     flex-direction: column;

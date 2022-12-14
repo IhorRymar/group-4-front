@@ -60,6 +60,7 @@ const TabletTab = ({ items, columns }) => {
               </HeadList>
             </HeadContainer>
           </table>
+          <TableWrapper>
           <BodyTable>
             <Tbody>
               {items?.map(
@@ -113,7 +114,8 @@ const TabletTab = ({ items, columns }) => {
                 )
               )}
             </Tbody>
-          </BodyTable>
+            </BodyTable>
+            </TableWrapper>
         </GeneralContainer>
       ) : (
         <EmptyContainer />
@@ -202,12 +204,20 @@ const HeadTitles = styled.th`
   }
 `;
 
+const TableWrapper = styled.div`
+
+`;
+
+
 const BodyTable = styled.table`
   width: 100%;
   border-collapse: collapse;
+  /* border: 1px solid #000; */
 `;
 
-const Tbody = styled.tbody``;
+const Tbody = styled.tbody`
+
+`;
 
 const BodyList = styled.tr`
   display: flex;
