@@ -66,3 +66,15 @@ export const removeTransaction = createAsyncThunk(
     }
   }
 );
+
+export const fetchTransactionsYears = createAsyncThunk(
+  'transactions/fetchYears',
+  async (_, { rejectWithValue }) => {
+    try {
+      const data = await api.getTransactionsYears();
+      return data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
