@@ -102,11 +102,11 @@ const TabletTab = ({ items, columns }) => {
                     </BodyItems>
                     <BodyItems>{balance.toFixed(2)}</BodyItems>
                     <BodyItems>
-                      <Button onClick={() => onRemoveTransaction(_id)}>
-                        <DeleteIcon />
-                      </Button>
                       <Button onClick={() => onEditTransaction(_id)}>
                         <EditIcon />
+                      </Button>
+                      <Button onClick={() => onRemoveTransaction(_id)}>
+                        <DeleteIcon />
                       </Button>
                     </BodyItems>
                   </BodyList>
@@ -198,7 +198,7 @@ const HeadTitles = styled.th`
   :nth-child(6) {
     width: 85px;
     text-align: right;
-    margin-right: 45px;
+    margin-right: 75px;
   }
 `;
 
@@ -255,6 +255,9 @@ const BodyItems = styled.td`
     width: 85px;
     text-align: right;
   }
+  :nth-child(7) {
+    display: flex;
+  }
   :hover {
     z-index: 1;
     overflow: visible;
@@ -267,39 +270,32 @@ const SpanSum = styled.span`
 
 const Button = styled.button`
   display: flex;
+  justify-content: center;
+  align-items: center;
   width: 24px;
   height: 24px;
   padding: 0;
   border: none;
   border-radius: 2px;
-  background-color: transparent;
+  background-color: ${baseVars.colors.icon};
   margin: 0;
-  margin-right: 20px;
+  margin-right: 10px;
   cursor: pointer;
+  scale: 1;
+  transition: scale 250ms linear;
+
+  :hover {
+    scale: 1.2;
+    background-color: ${baseVars.colors.iconFocus};
+  }
 `;
 
 const DeleteIcon = styled(Delete)`
-  scale: 0.8;
-  background-color: transparent;
-  color: ${baseVars.colors.icon};
-  :hover {
-    scale: 1;
-    background-color: ${baseVars.colors.icon};
-    color: white;
-    transition: scale 150ms linear;
-    border-radius: 10px;
-  }
+  color: ${baseVars.colors.secondText};
+  padding: 2px;
 `;
 
 const EditIcon = styled(Edit)`
-  scale: 0.8;
-  background-color: transparent;
-  color: ${baseVars.colors.icon};
-  :hover {
-    scale: 1;
-    background-color: ${baseVars.colors.icon};
-    color: white;
-    transition: scale 150ms linear;
-    border-radius: 10px;
-  }
+  color: ${baseVars.colors.secondText};
+  padding: 2px;
 `;
