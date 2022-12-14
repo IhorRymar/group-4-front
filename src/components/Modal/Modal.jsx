@@ -6,6 +6,7 @@ import { ModalWindow, Overlay } from './ModalStyled';
 
 import { Heading } from './ModalStyled';
 import { StyledButton } from 'components/StyledButton/StyledButton';
+import { StyledCloseButton } from 'components/CloseButton/CloseButtong';
 
 export const Modal = ({ toggleModal, heading, isOpen, children }) => {
   const modalRoot = document.querySelector('#modal-root');
@@ -34,6 +35,7 @@ export const Modal = ({ toggleModal, heading, isOpen, children }) => {
         <StyledButton type="button" onClick={toggleModal}>
           Cancel
         </StyledButton>
+        <StyledCloseButton type="button" onClick={toggleModal} />
       </ModalWindow>
     </Overlay>,
     modalRoot

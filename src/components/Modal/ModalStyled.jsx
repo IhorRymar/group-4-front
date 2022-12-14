@@ -10,10 +10,13 @@ export const Overlay = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow-y: scroll;
 `;
 
 export const ModalWindow = styled.div`
+  min-height: 350px;
   @media screen and (max-width: 767px) {
+    min-height: 350px;
     width: 320px;
     padding: 20px;
     background-color: ${p => p.theme.color.modalWindowBg};

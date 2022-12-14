@@ -9,6 +9,7 @@ export const StyledComment = styled(TextareaAutosize)`
   font-family: ${p => p.theme.fonts.placeholder};
   font-weight: ${p => p.theme.fontWeights.normal};
   font-size: ${p => p.theme.fontSizes[1]};
+  resize: none;
 
   ::placeholder {
     font-family: ${p => p.theme.fonts.placeholder};
