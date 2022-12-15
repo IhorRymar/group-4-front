@@ -1,32 +1,33 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { logout } from 'redux/auth/auth-operations';
-import { isLogOutModalOpen } from 'redux/modal/modal-sclice';
-import { logOutModalOpen } from 'redux/modal/modal-selector';
+import { removeTransaction } from 'redux/transactions/transactions-operation';
+import { isDelModalOpen } from 'redux/modal/modal-sclice';
+import { delModalOpen } from 'redux/modal/modal-selector';
 import { StyledButton } from 'components/StyledButton/StyledButton';
 import { Modal } from '../Modal/Modal';
-export const ModalLogout = () => {
-  const isModalOpen = useSelector(logOutModalOpen);
+
+export const ModalDelTransaction = ({ id }) => {
+  const isModalOpen = useSelector(delModalOpen);
   const dispatch = useDispatch();
 
   const toggleModal = () => {
-    dispatch(isLogOutModalOpen(!isModalOpen));
+    dispatch(isDelModalOpen(!isModalOpen));
     return {
-      type: 'modal/isLogOutModalOpen',
+      type: 'modal/isDelModalOpen',
     };
   };
   const handleClickOk = () => {
     toggleModal();
-    dispatch(logout());
+    dispatch(removeTransaction(id));
   };
 
   return (
     <Modal
-      heading="Confirm logout?"
+      heading="Are you sure you want delete transaction?"
       toggleModal={toggleModal}
       isOpen={isModalOpen}
     >
       <StyledButton type="submit" onClick={handleClickOk}>
-        OK
+        YES
       </StyledButton>
     </Modal>
   );
