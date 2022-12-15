@@ -6,6 +6,7 @@ const modalSlice = createSlice({
     isAddModalOpen: false,
     isEditModalOpen: false,
     isLogOutModalOpen: false,
+    isDelModalOpen: false,
   },
   reducers: {
     isAddModalOpen: (state, action) => {
@@ -17,9 +18,16 @@ const modalSlice = createSlice({
     isLogOutModalOpen: (state, action) => {
       state.isLogOutModalOpen = action.payload;
     },
+    isDelModalOpen: (state, action) => {
+      state.isDelModalOpen = action.payload;
+    },
   },
 });
 
-export const { isAddModalOpen, isEditModalOpen, isLogOutModalOpen } =
-  modalSlice.actions;
+export const {
+  isAddModalOpen,
+  isEditModalOpen,
+  isLogOutModalOpen,
+  isDelModalOpen,
+} = modalSlice.actions;
 export default modalSlice.reducer;

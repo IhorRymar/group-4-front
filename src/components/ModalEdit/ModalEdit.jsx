@@ -9,6 +9,9 @@ export const ModalEdit = ({ updateTransaction }) => {
   const dispatch = useDispatch();
   const toggleModal = () => {
     dispatch(isEditModalOpen(!isOpen));
+    return {
+      type: 'modal/isEditModalOpen',
+    };
   };
   return (
     <Modal heading="Edit transaction" toggleModal={toggleModal} isOpen={isOpen}>

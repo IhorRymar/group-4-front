@@ -9,6 +9,9 @@ export const ModalAddTransaction = () => {
   const dispatch = useDispatch();
   const toggleModal = () => {
     dispatch(isAddModalOpen(!isAddModalOpen));
+    return {
+      type: 'modal/isAddModalOpen',
+    };
   };
   return (
     <Modal

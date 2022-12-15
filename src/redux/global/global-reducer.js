@@ -1,5 +1,4 @@
 import modalScliceReducer from 'redux/modal/modal-sclice';
-import logoutModalSliceReducer from 'redux/logout-modal/logout-modal';
 
 import { combineReducers } from 'redux';
 
@@ -28,7 +27,6 @@ const isLoadingReducer = (state = initialState, action) => {
 const globalReducer = combineReducers({
   loading: isLoadingReducer,
   isModalOpen: modalScliceReducer,
-  logoutModal: logoutModalSliceReducer,
 });
 
 export default globalReducer;
