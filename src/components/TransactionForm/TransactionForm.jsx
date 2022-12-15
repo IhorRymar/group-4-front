@@ -134,12 +134,7 @@ export const TransactionForm = ({ transaction, typeForm }) => {
           )}
           <TabletWrapper>
             <label htmlFor="amount">
-              <TextField
-                type="number"
-                min="0"
-                name="amount"
-                placeholder="0.00"
-              />
+              <TextField type="text" min="0" name="amount" placeholder="0.00" />
               <ErrorMessage
                 name="amount"
                 render={msg => {

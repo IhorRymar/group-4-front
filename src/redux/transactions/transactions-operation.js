@@ -61,6 +61,7 @@ export const removeTransaction = createAsyncThunk(
   async (id, { rejectWithValue }) => {
     try {
       await api.removeTransaction(id);
+      toast.error('Transaction is deleted');
       return id;
     } catch (error) {
       return rejectWithValue(error);
