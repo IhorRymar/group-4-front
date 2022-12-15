@@ -14,7 +14,7 @@ import {
 } from 'redux/transactions/transactions-operation';
 import { Delete, Edit } from '@mui/icons-material';
 import { ModalEdit } from 'components/ModalEdit/ModalEdit';
-import { ModalDelTransaction } from 'components/ModalDelTransaction/ModalDelTransaction';
+import { ModalDelTransaction } from './../../ModalDelTransaction/ModalDelTransaction';
 import { isEditModalOpen, isDelModalOpen } from 'redux/modal/modal-sclice';
 import {
   editTransOpen,

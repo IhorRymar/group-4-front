@@ -17,7 +17,7 @@ import {
   fetchTransactionById,
 } from 'redux/transactions/transactions-operation';
 import { ModalEdit } from 'components/ModalEdit/ModalEdit';
-import { ModalDelTransaction } from 'components/ModalDelTransaction/ModalDelTransaction';
+import { ModalDelTransaction } from './../../ModalDelTransaction/ModalDelTransaction';
 import { Delete, Edit } from '@mui/icons-material';
 import { toast } from 'react-toastify';
 import { isEditModalOpen, isDelModalOpen } from 'redux/modal/modal-sclice';
