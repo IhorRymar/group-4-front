@@ -1,7 +1,7 @@
 import { createPortal } from 'react-dom';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-
+import { useRef } from 'react';
 import { ModalWindow, Overlay } from './ModalStyled';
 
 import { Heading } from './ModalStyled';
@@ -11,6 +11,7 @@ import { StyledCloseButton } from 'components/CloseButton/CloseButton';
 export const Modal = ({ toggleModal, heading, isOpen, children }) => {
   const modalRoot = document.querySelector('#modal-root');
 
+  const modalRef = useRef();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -29,7 +30,7 @@ export const Modal = ({ toggleModal, heading, isOpen, children }) => {
 
   return createPortal(
     <Overlay>
-      <ModalWindow>
+      <ModalWindow ref={modalRef} isOpen={isOpen}>
         <Heading>{heading}</Heading>
         {children}
         <StyledButton type="button" onClick={toggleModal}>

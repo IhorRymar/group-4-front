@@ -15,17 +15,43 @@ export const Overlay = styled.div`
 
 export const ModalWindow = styled.div`
   min-height: 350px;
+  position: relative;
+  width: 540px;
+  border-radius: ${p => p.theme.radii.modalWindow};
+  padding: 73px;
+  background-color: ${p => p.theme.color.modalWindowBg};
+  animation: growBox 150ms ease-in-out;
   @media screen and (max-width: 767px) {
     min-height: 350px;
     width: 320px;
     padding: 20px;
     background-color: ${p => p.theme.color.modalWindowBg};
   }
-  position: relative;
-  width: 540px;
-  border-radius: ${p => p.theme.radii.modalWindow};
-  padding: 73px;
-  background-color: ${p => p.theme.color.modalWindowBg};
+
+  @keyframes growBox {
+    0% {
+      scale: 0.2;
+      opacity: 0.2;
+    }
+    25% {
+      scale: 0.4;
+      opacity: 0.4;
+    }
+
+    50% {
+      scale: 0.6;
+      opacity: 0.6;
+    }
+
+    75% {
+      scale: 0.8;
+      opacity: 0.8;
+    }
+    100% {
+      scale: 1;
+      opacity: 1;
+    }
+  }
 `;
 
 export const Heading = styled.h1`
