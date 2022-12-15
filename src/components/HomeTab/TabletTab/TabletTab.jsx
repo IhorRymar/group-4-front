@@ -7,27 +7,30 @@ import moment from 'moment';
 import { Categories } from '../categories';
 import EllipsisText from 'react-ellipsis-text';
 import { useState, useEffect } from 'react';
-import { editTransOpen } from '../../../redux/modal/modal-selector';
+import {
+  editTransOpen,
+  delModalOpen,
+} from '../../../redux/modal/modal-selector';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   fetchTransactions,
   fetchTransactionById,
-  removeTransaction,
 } from 'redux/transactions/transactions-operation';
 import { ModalEdit } from 'components/ModalEdit/ModalEdit';
+import { ModalDelTransaction } from 'components/ModalDelTransaction/ModalDelTransaction';
 import { Delete, Edit } from '@mui/icons-material';
 import { toast } from 'react-toastify';
-import { isEditModalOpen } from 'redux/modal/modal-sclice';
+import { isEditModalOpen, isDelModalOpen } from 'redux/modal/modal-sclice';
 
 const TabletTab = ({ items, columns }) => {
   const dispatch = useDispatch();
   const openEdit = useSelector(editTransOpen);
+  const openDel = useSelector(delModalOpen);
   const [updateTransaction, setUpdateTransaction] = useState({});
+  const [deleteId, setDeleteId] = useState('');
   const onRemoveTransaction = id => {
-    dispatch(removeTransaction(id));
-  };
-  const toggleModal = () => {
-    dispatch(isEditModalOpen(!openEdit));
+    setDeleteId(id);
+    dispatch(isDelModalOpen(!openDel));
   };
 
   const onEditTransaction = async id => {
@@ -39,7 +42,7 @@ const TabletTab = ({ items, columns }) => {
     }
     const transaction = await dispatch(fetchTransactionById(id));
     setUpdateTransaction(transaction.payload);
-    toggleModal();
+    dispatch(isEditModalOpen(!openEdit));
   };
 
   const transactions = useSelector(state => state.transactions.items);
@@ -62,72 +65,71 @@ const TabletTab = ({ items, columns }) => {
             </HeadContainer>
           </table>
           <TableWrapper>
-          <BodyTable>
-            <Tbody>
-              {items?.map(
-                ({
-                  date,
-                  transactionType,
-                  category,
-                  comment,
-                  amount,
-                  balance,
-                  _id,
-                }) => (
-                  <BodyList key={_id}>
-                    <BodyItems>{moment.utc(date).format('DD.MM.YY')}</BodyItems>
-                    <BodyItems>
-                      {transactionType === 'income' ? '+' : '-'}
-                    </BodyItems>
-                    <BodyItems>{Categories(category)}</BodyItems>
-                    <BodyItems>
-                      <EllipsisText
-                        text={`${comment || '---'}`}
-                        length={24}
-                        tooltip="true"
-                      />
-                    </BodyItems>
-                    <BodyItems>
-                      {transactionType === 'income' ? (
-                        <SpanSum
-                          style={{ color: `${baseVars.colors.incomeText}` }}
-                        >
-                          {amount.toFixed(2)}
-                        </SpanSum>
-                      ) : (
-                        <SpanSum
-                          style={{ color: `${baseVars.colors.expensesText}` }}
-                        >
-                          {amount.toFixed(2)}
-                        </SpanSum>
-                      )}
-                    </BodyItems>
-                    <BodyItems>{balance.toFixed(2)}</BodyItems>
-                    <BodyItems>
-                      <Button onClick={() => onEditTransaction(_id)}>
-                        <EditIcon />
-                      </Button>
-                      <Button onClick={() => onRemoveTransaction(_id)}>
-                        <DeleteIcon />
-                      </Button>
-                    </BodyItems>
-                  </BodyList>
-                )
-              )}
-            </Tbody>
+            <BodyTable>
+              <Tbody>
+                {items?.map(
+                  ({
+                    date,
+                    transactionType,
+                    category,
+                    comment,
+                    amount,
+                    balance,
+                    _id,
+                  }) => (
+                    <BodyList key={_id}>
+                      <BodyItems>
+                        {moment.utc(date).format('DD.MM.YY')}
+                      </BodyItems>
+                      <BodyItems>
+                        {transactionType === 'income' ? '+' : '-'}
+                      </BodyItems>
+                      <BodyItems>{Categories(category)}</BodyItems>
+                      <BodyItems>
+                        <EllipsisText
+                          text={`${comment || '---'}`}
+                          length={24}
+                          tooltip="true"
+                        />
+                      </BodyItems>
+                      <BodyItems>
+                        {transactionType === 'income' ? (
+                          <SpanSum
+                            style={{ color: `${baseVars.colors.incomeText}` }}
+                          >
+                            {amount.toFixed(2)}
+                          </SpanSum>
+                        ) : (
+                          <SpanSum
+                            style={{ color: `${baseVars.colors.expensesText}` }}
+                          >
+                            {amount.toFixed(2)}
+                          </SpanSum>
+                        )}
+                      </BodyItems>
+                      <BodyItems>{balance.toFixed(2)}</BodyItems>
+                      <BodyItems>
+                        <Button onClick={() => onEditTransaction(_id)}>
+                          <EditIcon />
+                        </Button>
+                        <Button onClick={() => onRemoveTransaction(_id)}>
+                          <DeleteIcon />
+                        </Button>
+                      </BodyItems>
+                    </BodyList>
+                  )
+                )}
+              </Tbody>
             </BodyTable>
-            </TableWrapper>
+          </TableWrapper>
         </GeneralContainer>
       ) : (
         <EmptyContainer />
       )}
       {openEdit && (
-        <ModalEdit
-          toggleModal={toggleModal}
-          isOpen={openEdit}
-          updateTransaction={updateTransaction}
-        />
+        <ModalEdit isOpen={openEdit} updateTransaction={updateTransaction} />
       )}
+      {openDel && <ModalDelTransaction id={deleteId} />}
     </>
   );
 };
@@ -205,10 +207,7 @@ const HeadTitles = styled.th`
   }
 `;
 
-const TableWrapper = styled.div`
-
-`;
-
+const TableWrapper = styled.div``;
 
 const BodyTable = styled.table`
   width: 100%;
@@ -216,9 +215,7 @@ const BodyTable = styled.table`
   /* border: 1px solid #000; */
 `;
 
-const Tbody = styled.tbody`
-
-`;
+const Tbody = styled.tbody``;
 
 const BodyList = styled.tr`
   display: flex;

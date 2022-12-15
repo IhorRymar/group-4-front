@@ -10,27 +10,25 @@ import { toast } from 'react-toastify';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   fetchTransactions,
-  removeTransaction,
   fetchTransactionById,
 } from 'redux/transactions/transactions-operation';
 import { Delete, Edit } from '@mui/icons-material';
 import { ModalEdit } from 'components/ModalEdit/ModalEdit';
-
+import { ModalDelTransaction } from 'components/ModalDelTransaction/ModalDelTransaction';
+import { isEditModalOpen, isDelModalOpen } from 'redux/modal/modal-sclice';
+import {
+  editTransOpen,
+  delModalOpen,
+} from '../../../redux/modal/modal-selector';
 const MobileCard = ({ items }) => {
   const dispatch = useDispatch();
-  const [isModalEditOpen, setІsModalEditOpen] = useState(false);
+  const openEdit = useSelector(editTransOpen);
+  const openDel = useSelector(delModalOpen);
   const [updateTransaction, setUpdateTransaction] = useState({});
+  const [deleteId, setDeleteId] = useState('');
   const onRemoveTransaction = id => {
-    dispatch(removeTransaction(id));
-  };
-
-  const transactions = useSelector(state => state.transactions.items);
-
-  useEffect(() => {
-    dispatch(fetchTransactions(1));
-  }, [dispatch, transactions.transactionsTotalQuantity]);
-  const toggleModal = () => {
-    setІsModalEditOpen(!isModalEditOpen);
+    setDeleteId(id);
+    dispatch(isDelModalOpen(!openDel));
   };
 
   const onEditTransaction = async id => {
@@ -42,8 +40,14 @@ const MobileCard = ({ items }) => {
     }
     const transaction = await dispatch(fetchTransactionById(id));
     setUpdateTransaction(transaction.payload);
-    toggleModal();
+    dispatch(isEditModalOpen(!openEdit));
   };
+
+  const transactions = useSelector(state => state.transactions.items);
+
+  useEffect(() => {
+    dispatch(fetchTransactions(1));
+  }, [dispatch, transactions.transactionsTotalQuantity]);
 
   return (
     <>
@@ -117,13 +121,10 @@ const MobileCard = ({ items }) => {
       ) : (
         <EmptyContainer />
       )}
-      {isModalEditOpen && (
-        <ModalEdit
-          toggleModal={toggleModal}
-          isOpen={isModalEditOpen}
-          updateTransaction={updateTransaction}
-        />
+      {openEdit && (
+        <ModalEdit isOpen={openEdit} updateTransaction={updateTransaction} />
       )}
+      {openDel && <ModalDelTransaction id={deleteId} />}
     </>
   );
 };
@@ -246,7 +247,6 @@ const Button = styled.button`
   :hover {
     scale: 1.2;
     background-color: ${baseVars.colors.iconFocus};
-
   }
 `;
 

@@ -49,7 +49,6 @@ export const store = configureStore({
           'transactions/update/fulfilled',
         ],
       },
-      ignoredActions: [],
     }),
 });
 

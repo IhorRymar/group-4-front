@@ -13,7 +13,11 @@ export const Modal = ({ toggleModal, heading, isOpen, children }) => {
 
   const modalRef = useRef();
   const dispatch = useDispatch();
-
+  const hadleClick = e => {
+    if (e.target === e.currentTarget) {
+      dispatch(toggleModal(false));
+    }
+  };
   useEffect(() => {
     const handleKeyDown = e => {
       if (e.code === 'Escape') {
@@ -29,7 +33,7 @@ export const Modal = ({ toggleModal, heading, isOpen, children }) => {
   }, [dispatch, isOpen, toggleModal]);
 
   return createPortal(
-    <Overlay>
+    <Overlay onClick={hadleClick}>
       <ModalWindow ref={modalRef} isOpen={isOpen}>
         <Heading>{heading}</Heading>
         {children}
