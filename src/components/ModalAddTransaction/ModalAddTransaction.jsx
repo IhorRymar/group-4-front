@@ -12,7 +12,7 @@ export const ModalAddTransaction = () => {
   };
   return (
     <Modal
-      heading="AddTransaciotn"
+      heading="AddTransaction"
       toggleModal={toggleModal}
       isOpen={isModalOpen}
     >
