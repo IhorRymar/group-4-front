@@ -66,7 +66,9 @@ const HomeTab = () => {
         )}
       </Media>
 
-      <ButtonCircle onClick={onModal}>+</ButtonCircle>
+      <ButtonCircle onClick={onModal}>
+        <span>+</span>
+      </ButtonCircle>
       {isModalOpen && (
         <ModalAddTransaction toggleModal={onModal} isOpen={isModalOpen} />
       )}
